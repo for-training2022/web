@@ -34,3 +34,27 @@
     </error-page>
 
 </web-app>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<servlet>
+<servlet-name>S00005</servlet-name>
+<servlet-class>jp.excd.servlet.S00005</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>S00006</servlet-name>
+<servlet-class>jp.excd.servlet.S00006</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>Init</servlet-name>
+<servlet-class>jp.excd.servlet.MySQLSetting</servlet-class>
+<load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+<servlet-name>S00005</servlet-name>
+<url-pattern>/ja/S00005/*</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>S00006</servlet-name>
+<url-pattern>/ja/S00006/*</url-pattern>
+</servlet-mapping>
+</web-app>
