@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
-<html>
+<html lang="ja">
 <%
 	// (1) 「エラー情報(error)」が設定されている場合は、画面に「エラー情報(error)」を表示する。
 	String errorMessage = (String)request.getAttribute("error");
@@ -116,51 +116,64 @@
 	if (sort_order == null) sort_order="01";
 %>
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ" />
+	<meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
 
-<link rel="stylesheet" type="text/css" href="/web/css/main_1.css">
-<link rel="stylesheet" type="text/css" href="/web/css/menu.css" />
-<script type="text/javascript" src="/web/js/jquery-3.3.0.min.js"></script>
-<script type="text/javascript" src="/web/js/pageTop.js"></script>
-<script type="text/javascript" src="/web/js/menu.js"></script>
-<script type="text/javascript" src="/web/js/search_song.js"></script>
-<script>
-$(function(){
-	$("#id_rating_average_from").val("<%= rating_average_from %>");
-	$("#id_rating_average_to").val("<%= rating_average_to %>");
-	$("#id_sort_order").val("<%= sort_order %>");
-});
-</script>
-<title>音楽室</title>
+	<link rel="stylesheet" type="text/css" href="/web/css/main.css">
+	<script type="text/javascript" src="/web/js/jquery-3.3.0.min.js"></script>
+	<script type="text/javascript" src="/web/js/pageTop.js"></script>
+	<script type="text/javascript" src="/web/js/menu.js"></script>
+	<script type="text/javascript" src="/web/js/search_song.js"></script>
+	
+	<script>
+	$(function(){
+		$("#id_rating_average_from").val("<%= rating_average_from %>");
+		$("#id_rating_average_to").val("<%= rating_average_to %>");
+		$("#id_sort_order").val("<%= sort_order %>");
+	});
+	</script>
+	
+	<title>作品検索</title>
 
 </head>
 
 <body>
-	<div id="overlay"></div>
-	<form method="post" id="form1" action="/web/ja/S00005/search">
 
-		<!--ページ全体のラッパー-->
-		<div class="wrapper">
-
-			<!--タイトル・メニュー部分をまとめたdiv(main)-->
-			<div class="main">
-				<!--タイトルのdiv(title/main)-->
-				<div class="title">
-					<h1>作品検索</h1>
-				</div>
-				<!--メニューのdiv(menu?)-->
-				<div class="right">
-					<img src="/web/images/menu_編集後.png" class="menu_top" alt="メニュー">
-				</div>
-			</div>
-
-			<% if ("".equals(errorMessage) == false) { %>
+	<!-- メニューのキャンセルレイヤの起点 -->
+	<div id="layer_marker">
+	</div>
+	
+	<div class="wrapper">
+	
+	<!-- タイトルバー -->
+    <div class="title_bar">
+      <p class="page_title">作品検索</p>
+      <a href="#" id="menu_open">
+        <img alt="メニュー" src="../images/menu.png" class="menu-icon" />
+      </a>
+    </div>
+    
+    
+    
+	<!-- エラーメッセージ -->
+    <!--<div class="error_message"> -->
+      <!--<img alt="エラーマーク" src="../images/error_mark.png" /> -->
+     <!-- <p>「感動指数」は、数値で入力してください。</p> -->
+   <!-- </div> -->
+    
+    <% if ("".equals(errorMessage) == false) { %>
 				<div class="errormesage">
 					<%= errorMessage %>
 				</div>
 			<% } %>
+			
+    <!-- フォーム -->
+	<form method="post" name="main" action="/web/ja/S00005/search">
+
+					
 
 			<!--条件divをまとめるdiv(contents)-->
 			<div class="contents_search">
@@ -168,56 +181,96 @@ $(function(){
 				<!-- 条件タイトル、フォームをまとめるdiv-->
 				<div id="jouken_date" class="jouken<%= release_date_is_error %>">
 
-					<!--条件のタイトル-->
-					<div class="jouken_title">
-						<a>公開日</a>
-					</div>
-
-					<div class="jouken_form">
-						<!--条件フォームをまとめるdiv-->
-						<div class="jouken_form1">
-							<!--一つ目の条件フォーム-->
-							<input type="radio" id="id_release_date_radio1" name="release_date_radio" value="1" <%= release_date_Radio1 %>>指定&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" id="id_release_date_radio2" name="release_date_radio" value="0" <%= release_date_Radio2 %>>指定なし &nbsp;&nbsp;&nbsp;&nbsp;
-						</div>
-						<div class="jouken_form2">
-							<!--2つ目の条件フォーム-->
-							<input type="date" id="id_release_date_from" name="release_date_from" value="<%= release_date_is_from %>">
-							<p>～</p>
-							<input type="date" id="id_release_date_to" name="release_date_to" value="<%= release_date_is_to %>">
-						</div>
-					</div>
-				</div>
+					
+					<!-- 公開日 -->
+      <div class="input_table">
+        <table>
+          <tr>
+            <td class="label" rowspan=2 >公開日</td>
+            <td class="value">
+              <table class="radio_base">
+                <tr>
+                  <td>
+                    <input type="radio" name="release_date_radio" value="1" class="onOffRadio"><span class="radio_label">指定</span>
+                  </td>
+                  <td>
+                    <input type="radio" name="release_date_radio" value="2" class="onOffRadio" checked="checked"><span class="radio_label">指定なし</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="value">
+              <input type="date" name="release_date_from" value="2012-10-29">
+              <br/>
+              ～
+              <br/>
+              <input type="date" name="release_date_to" value="2012-02-16">
+            </td>
+          </tr>
+        </table>
+      </div>
+				
 
 				<div id="jouken_rating" class="jouken<%= rating_is_error %>">
-					<div class="jouken_title">
-						<a>感動指数</a>
-					</div>
-					<div class="jouken_form">
-						<div class="jouken_form1">
-							<input type="radio" id="id_rating_radio1" name="rating_radio" value="1" <%= rating_radio1 %>>指定 &nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" id="id_rating_radio2" name="rating_radio" value="0" <%= rating_radio2 %>>指定なし &nbsp;&nbsp;&nbsp;&nbsp;
-						</div>
-						<div class="jouken_form2">
-							<input type="text" id="id_rating_from" name="rating_from" maxlength='8' value="<%= rating_from %>">
-							<p>～</p>
-							<input type="text" id="id_rating_to" name="rating_to" maxlength='8' value="<%= rating_to %>">
-						</div>
-					</div>
+					<div class="input_table">
+					  <table>
+          <tr>
+            <td class="label" rowspan=2 >感動指数</td>
+						
+					 <td class="value">
+					 <table class="radio_base">
+                <tr>
+                  <td>
+                    <input type="radio" name="rating_radio" value="1" class="onOffRadio"><span class="radio_label">指定</span>
+                  </td>
+                  <td>
+                    <input type="radio" name="rating_radio" value="2" class="onOffRadio" checked="checked"><span class="radio_label">指定なし</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="value">
+              <input type="text" name="rating_from" value="">
+              <br/>
+              ～
+              <br/>
+              <input type="text" name="rating_to" value="">
+            </td>
+          </tr>
+        </table>
 				</div>
-
+				
+				
+				
+  <!-- 平均感動指数 -->
 				<div id="jouken_ratingAverage" class="jouken<%= rating_average_is_error %>">
-					<div class="jouken_title">
-						<a>平均感動指数</a>
-					</div>
-					<div class="jouken_form">
-						<div class="jouken_form1">
-							<input type="radio" id="id_rating_average_radio1" name="rating_average_radio" value="1" <%= rating_radio1 %>>指定&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" id="id_rating_average_radio2" name="rating_average_radio" value="0" <%= rating_radio2 %>>指定なし &nbsp;&nbsp;&nbsp;&nbsp;
-						</div>
-						<div class="jouken_form2">
-							<select id="id_rating_average_from" name="rating_average_from">
-
+					<div class="input_table">
+			 <table>
+          <tr>
+            <td class="label" rowspan=2 >平均感動指数</td>
+            <td class="value">
+              <table class="radio_base">
+                <tr>
+                  <td>
+                    <input type="radio" name="rating_average_radio" value="1" class="onOffRadio"><span class="radio_label">指定</span>
+                  </td>
+                  <td>
+                    <input type="radio" name="rating_average_radio" value="2" class="onOffRadio" checked="checked"><span class="radio_label">指定なし</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="value">
+				 <select name="rating_average_from" tabindex="1">	
+					
+						
+						
 								<option value="1.0">1.0</option>
 								<option value="1.1">1.1</option>
 								<option value="1.2">1.2</option>
@@ -260,9 +313,10 @@ $(function(){
 								<option value="4.9">4.9</option>
 								<option value="5.0">5.0</option>
 							</select>
-							<p>～</p>
-							<select id="id_rating_average_to" name="rating_average_to">
-
+							  <br/>
+             					 ～
+              					<br/>
+							 <select name="rating_average_to" tabindex="2">
 								<option value="1.0">1.0</option>
 								<option value="1.1">1.1</option>
 								<option value="1.2">1.2</option>
@@ -305,76 +359,117 @@ $(function(){
 								<option value="4.9">4.9</option>
 								<option value="5.0">5.0</option>
 							</select>
+							</td>
+							</tr>
+							</table>
 						</div>
 					</div>
 				</div>
 
+				<!-- 再生回数 -->
 				<div id="jouken_views" class="jouken<%= views_is_error %>">
-					<div class="jouken_title">
-						<a>再生回数</a>
-					</div>
-					<div class="jouken_form">
-						<div class="jouken_form1">
-							<input type="radio" id="id_views_radio1" name="views_radio" value="1" <%= views_radio1 %>>指定 &nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" id="id_views_radio2" name="views_radio" value="0" <%= views_radio2 %>>指定なし &nbsp;&nbsp;&nbsp;&nbsp;
-						</div>
-						<div class="jouken_form2">
-							<input type="text" id="id_views_from" name="views_from" maxlength='8' value="<%= views_from %>">
-							<p>～</p>
-							<input type="text" id="id_views_to" name="views_to" maxlength='8' value="<%= views_to %>">
-						</div>
-					</div>
-				</div>
+					<div class="input_table">
+					 <table>
+          <tr>
+            <td class="label" rowspan=2 >再生回数</td>
+						<td class="value">
+              <table class="radio_base">
+                <tr>
+                  <td>
+                    <input type="radio" name="views_radio" value="1" class="onOffRadio"><span class="radio_label">指定</span>
+                  </td>
+                  <td>
+                    <input type="radio" name="views_radio" value="2" class="onOffRadio" checked="checked"><span class="radio_label">指定なし</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+          <td class="value">
+              <input type="text" name="views_from" value="">
+              <br/>
+              ～
+              <br/>
+              <input type="text" name="views_to" value="">
+            </td>
+          </tr>
+        </table>
+      </div>
+					
 
+				<!-- 曲名 -->
 				<div id="jouken_song_title" class="jouken<%= title_is_error %>">
-					<div class="jouken_title">
-						<a>曲名</a>
-					</div>
-					<div class="jouken_form">
-						<div class="jouken_form1">
-							<input type="radio" id="id_song_title_radio1" name="song_title_radio" value="1" <%=title_radio1 %>>指定&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" id="id_song_title_radio2" name="song_title_radio" value="0" <%=title_radio2 %>>指定なし &nbsp;&nbsp;&nbsp;&nbsp;
-						</div>
-						<div class="jouken_form2">
-							<input type="radio" id="id_song_title_match_radio1" name="song_title_match_radio" value="3" <%=title_type_radio1 %>>あいまい
-							<input type="radio" id="id_song_title_match_radio2" name="song_title_match_radio" value="4" <%=title_type_radio2 %>>完全一致 <br>
-							<br>
-							<input type="text" id="id_song_title_text" name="song_title_text" maxlength = '255' value="<%=title%>">
-						</div>
-					</div>
-				</div>
+					<div class="input_table">
+						<table>
+         					 <tr>
+					            <td class="label" rowspan=2 >曲名</td>
+					            <td class="value">
+					              <table class="radio_base">
+					                <tr>
+					                  <td>
+			                    <input type="radio" name="title_radio" value="1" class="onOffRadio"><span class="radio_label">指定</span>
+			                  </td>
+			                  <td>
+			                    <input type="radio" name="title_radio" value="2" class="onOffRadio" checked="checked"><span class="radio_label">指定なし</span>
+			                  </td>
+			                </tr>
+			              </table>
+			            </td>
+			          </tr>
+			          <tr>
+			            <td class="value">
+			              <table class="radio_base">
+			                <tr>
+			                  <td>
+			                    <input type="radio" name="title_match_type_radio" value="1"><span class="radio_label">あいまい</span>
+			                  </td>
+			                  <td>
+			                    <input type="radio" name="title_match_type_radio" value="2" checked="checked"><span class="radio_label">完全一致</span>
+			                  </td>
+			                </tr>
+			              </table>
+			              <input type="text" name="title" value="" maxlength = '255'>
+			            </td>
+			          </tr>
+			        </table>
+			      </div>
+			      </div>
 
+
+				<!-- 並び順 -->
 				<div id="jouken_sort_order" class="jouken">
-					<div class="jouken_title">
-						<a>並び順</a>
-					</div>
-					<div class="jouken_form">
-						<div class="jouken_form2">
-							<select id="id_sort_order" name="sort_order">
-								<option value="01">新しい順</option>
-								<option value="02">古い順</option>
-								<option value="03">感動指数が多い順</option>
-								<option value="04">感動指数が少ない順</option>
-								<option value="05">平均感動指数が高い順</option>
-								<option value="06">平均感動指数が低い順</option>
-								<option value="07">再生回数が多い順</option>
-								<option value="08">再生回数が少ない順</option>
-							</select>
-						</div>
-					</div>
-				</div>
+					<div class="input_table">
+						<table>
+          <tr>
+            <td class="label">並び順</td>
+            <td class="value">
+              <select name="order" tabindex="10">
+                <option value="" selected="selected">新しい順</option>
+                <option value="">新しい順</option>
+                <option value="">古い順</option>
+                <option value="">感動指数が多い順</option>
+                <option value="">感動指数が少ない順</option>
+                <option value="">平均感動指数が高い順</option>
+                <option value="">平均感動指数が低い順</option>
+                <option value="">再生回数が多い順</option>
+                <option value="">再生回数が少ない順</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </div>
+	</div>
 
-
-			</div>
-
+		<!-- メインボタン -->
+		<div class="main_button">
+		<a href="S00006.html">検索</a>
 		</div>
-		<br>
-		<p></p>
-		<div class="kensaku">
-			<input type="submit" value="検索">
-		</div>
+		
 	</form>
-	<nav id="menu-conts" class="hidden">
+	
+	<!-- ページトップへjavaScript -->
+	<!--<nav id="menu-conts" class="hidden">
 		<div>
 			<a>メニュー</a>
 			<button type="button" id="close-btn">×CLOSE</button>
@@ -389,21 +484,22 @@ $(function(){
 					id="return" alt="運営会社"></a></li>
 		</ul>
 	</nav>
+			-->
 
-	<hr>
-	<footer>
-		<p>
-			Copyright &copy; <a href="https://www.excd.jp/top">EXCEED
-				Co.,ltd.</a>
-		</p>
+	
 
-		<div id="pagetop" hidden>
-			<img src="../images/pagetop.png" alt="">
-		</div>
+		
 
-
-	</footer>
-
+		<!-- ページトップへjavaScript -->
+    <div id="pagetop" hidden>
+      <img alt="ページトップ" src="../images/pagetop.png">
+    </div>
+	
+	 <!-- フッター -->
+    <footer>
+      Copyright <a href="https://www.excd.jp/">&copy; EXCEED Co., Ltd.</a> All Rights Reserved.
+    </footer>
+	
 
 </body>
 

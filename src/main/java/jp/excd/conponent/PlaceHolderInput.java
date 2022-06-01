@@ -55,4 +55,18 @@ public class PlaceHolderInput {
 		this.stringValue = stringValue;
 	}
 
+	/**
+	 * 
+	 * @param value
+	 */
+	public void setValue(int value) {
+		this.setIntValue(value);
+	}
+	public void setValue(double value) {
+		this.setDoubleValue(value);
+	}
+	public void setValue(String value) {
+		this.setStringValue(value);
+	}
+	
 }
