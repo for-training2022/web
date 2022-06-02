@@ -33,4 +33,18 @@
     <location>/jsp/404.jsp</location>
     </error-page>
 
+	<servlet>
+		<servlet-name>search</servlet-name>
+		<servlet-class>jp.excd.servlet.MySQLReturn</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
