@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
+import jp.excd.common.CommonUtils;
+import jp.excd.common.constants.C0001;
+import jp.excd.common.constants.C0005;
 
 public class MySQLReturn extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -68,11 +69,24 @@ public class MySQLReturn extends HttpServlet{
 					PersonRecord p =new PersonRecord();
 					p.setNickname(rs.getString("nickname"));
 					p.setUnique_code(rs.getString("unique_code"));
-					p.setJoined_date_formated(rs.getString("joined_date"));
-					p.setGender(rs.getString("gender"));
-					p.setBirthday_formated(rs.getString("birthday"));
-					p.setListener_count(rs.getLong("listener_count"));
-					p.setLanguage_type(rs.getString("language_type"));
+					String join =CommonUtils.dateformat(rs.getString("joined_date"));
+					p.setJoined_date(join);
+					String gen = (rs.getString("gender"));
+					C0005 C5 = C0005.getById(gen);
+					if(C5 != null) {
+					p.setGender(C5.getLabel());
+					}else {
+					p.setGender("");
+					}
+					String birth = CommonUtils.dateformat(rs.getString("birthday"));
+					p.setBirthday(birth);
+					String listener = CommonUtils.valueformat(rs.getLong("listener_count"));
+					p.setListener_count(listener);
+					String lang =(rs.getString("language_type"));
+					C0001 C1 = C0001.getById(lang);
+					if(C1 !=null) {
+					p.setLanguage_type(C1.getLabel());
+					}
 					persons.add(p);
 					
 					

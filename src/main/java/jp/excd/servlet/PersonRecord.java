@@ -1,7 +1,5 @@
 package jp.excd.servlet;
 
-import java.text.DecimalFormat;
-
 public class PersonRecord {
 	
 	private String nickname;
@@ -32,14 +30,8 @@ public class PersonRecord {
 		return joined_date;
 	}
 	
-	public String setJoined_date_formated(String a) {
-		if(a==null) {
-			this.joined_date="";
-			return joined_date;
-		}else {
-		this.joined_date = a.substring(0,4)+"年"+a.substring(4,6)+"月"+a.substring(6)+"日";
-		return joined_date;
-		}
+	public void setJoined_date(String joiend_date) {
+		this.joined_date = joiend_date;
 	}
 	
 	public String getGender() {
@@ -54,24 +46,16 @@ public class PersonRecord {
 		return birthday;
 	}
 	
-	public  String setBirthday_formated(String a) {
-		if(a==null) {
-			this.birthday="";
-			return birthday;
-		}else {
-		this.birthday = a.substring(0,4)+"年"+a.substring(4,6)+"月"+a.substring(6)+"日";
-		return birthday;
-		}
+	public  void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	
 	public String getListener_count() {
 		return listener_count;
 	}
 	
-	public String setListener_count(Long a) {
-		DecimalFormat df = new DecimalFormat("###,###");
-		this.listener_count=df.format(a);
-		return listener_count;
+	public void setListener_count(String listener_count) {
+		this.listener_count = listener_count;
 	}
 	
 	public String getLanguage_type() {
