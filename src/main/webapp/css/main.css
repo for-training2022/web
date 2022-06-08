@@ -730,8 +730,11 @@ div.title_bar p.main_title {
   text-align:center;
   font-size: 32px;
   color: #0000ff;
-  font-weight:bold;
+  font-weight:800;
   text-shadow: 0 0 0.2em rgba(255,255,255,1);
+  font-family:"游明朝";
+  font-style:italic;
+  color:#00CCCC;
 }
 div.title_bar p.sub_title {
   position:absolute;
