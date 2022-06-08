@@ -28,6 +28,7 @@ public class DataBox {
 	String nickname2;
 	String uniqueCode2;
 	String rating;
+	String composerId;
 
 
 
@@ -107,6 +108,10 @@ public class DataBox {
 	public void setRating(String str22) {
 		rating = str22;
 	}
+	public void setComposerId(String str23) {
+		composerId = str23;
+	}
+	
 
 
 	public String getTitle() {
@@ -205,6 +210,10 @@ public class DataBox {
 
 	public String getUniqueCode2() {
 		return uniqueCode2;
+	}
+	
+	public String getComposerId() {
+		return composerId;
 	}
 
 }
