@@ -27,7 +27,7 @@
     <!-- タイトルバー -->
     <div class="title_bar">
       <p class="page_title">作曲家検索</p>
-      <a href="S00007.html" class="back">&lt;&nbsp;戻る</a> 
+      <a href="/web/jsp/S00007.jsp" class="back">&lt;&nbsp;戻る</a> 
       <a href="#" id="menu_open"> 
         <img alt="メニュー" src="/web/images/menu.png" class="menu-icon" />
       </a>
@@ -43,7 +43,7 @@
     <div class="message_with_right_button">
      <p><%=request.getAttribute("hits")%>件が該当します。</p>
       <div class="right_button">
-        <a href="S00007.jsp">条件変更</a>
+        <a href="/web/jsp/S00007.jsp">条件変更</a>
       </div>
     </div>
 
@@ -84,7 +84,7 @@
 
     <!-- メインボタン -->
     <div class="main_button">
-      <a href="S00007.jsp">条件変更</a>
+      <a href="/web/jsp/S00007.jsp">条件変更</a>
     </div>
     
     

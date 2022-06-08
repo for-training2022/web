@@ -7,7 +7,7 @@
 <title>作曲家検索</title>
 </head>
 <body>
-	<form method="POST" action="/web/search">
+	<form method="POST" action="/web/search1">
 		<h1>作曲家検索</h1>
 		
 		

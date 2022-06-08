@@ -6,6 +6,9 @@ public enum C0005 {
 	 * 男
 	 */
 	MALE("1","男性"),
+	/**
+	 * 女
+	 */
 	FEMALE("2","女性");
 	
 	private String id;
@@ -23,7 +26,11 @@ public enum C0005 {
 	public String getLabel() {
 		return label;
 	}
-	
+	/**
+	 * データベースから取得したコード値があるか走査する
+	 * @param データベースから取得したコード値
+	 * @return 
+	 */
 	public  static C0005 getById(String id) {
 		
 		for( C0005 C5:C0005.values()) {

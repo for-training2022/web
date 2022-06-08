@@ -52,6 +52,11 @@ public enum C0002 {
 		return label;
 	}
 	
+	/**
+	 * データベースから取得したコード値があるか走査する
+	 * @param データベースから取得したコード値
+	 * @return
+	 */
 	public  static C0002 getById(String id) {
 		
 		for( C0002 C2:C0002.values()) {

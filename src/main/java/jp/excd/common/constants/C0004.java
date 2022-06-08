@@ -2,7 +2,14 @@ package jp.excd.common.constants;
 
 public enum C0004 {
 	
+	/**
+	 * コメント
+	 */
 	NORMAL("0","通常コメント"),
+	
+	/**
+	 * コメントに対する返信
+	 */
 	REPLY("1","返信");
 	
 	private String id;
@@ -21,6 +28,11 @@ public enum C0004 {
 		return label;
 	}
 	
+	/**
+	 * データベースから取得したコード値があるか走査
+	 * @param データベースから取得したコード値
+	 * @return
+	 */
 	public  static C0004 getById(String id) {
 		
 		for( C0004 C4:C0004.values()) {

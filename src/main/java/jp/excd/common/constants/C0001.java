@@ -2,7 +2,14 @@ package jp.excd.common.constants;
 
 public enum C0001 {
 	
+	/**
+	 * 英語
+	 */
 	ENG("001","英語"),
+	
+	/**
+	 * 日本語
+	 */
 	JPN("002","日本語");
 	
 	private String id;
@@ -21,6 +28,12 @@ public enum C0001 {
 		return label;
 	}
 	
+	
+	/**
+	 * データベースから取得したコード値があるか走査する
+	 * @param データベースから取得したコード値
+	 * @return
+	 */
 	public  static C0001 getById(String id) {
 		
 		for( C0001 C1:C0001.values()) {

@@ -35,7 +35,7 @@
 
 	<servlet>
 		<servlet-name>search</servlet-name>
-		<servlet-class>jp.excd.servlet.MySQLReturn</servlet-class>
+		<servlet-class>jp.excd.servlet.S00007</servlet-class>
 		<init-param>	
 		<param-name>javaEncoding</param-name>
 		<param-value>UTF-8</param-value>
@@ -44,7 +44,21 @@
 	
 	<servlet-mapping>
 		<servlet-name>search</servlet-name>
-		<url-pattern>/search</url-pattern>
+		<url-pattern>/ja/S00007/search</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>search1</servlet-name>
+		<servlet-class>jp.excd.servlet.MySQLReturn</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>search1</servlet-name>
+		<url-pattern>/search1</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

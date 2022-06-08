@@ -1,8 +1,14 @@
 package jp.excd.common.constants;
 
 public enum C0003 {
-
+	
+	/**
+	 * 楽譜通り
+	 */
 	NORMAL("0","楽譜どおり"),
+	/**
+	 * 1オクターブ上
+	 */
 	VB("1","1オクターブ上で表記");
 	
 	private String id;
@@ -21,6 +27,12 @@ public enum C0003 {
 		return label;
 	}
 	
+	
+	/**
+	 * データベースから取得したコード値があるか走査する
+	 * @param データベースから取得したコード値
+	 * @return
+	 */
 	public  static C0003 getById(String id) {
 		
 		for( C0003 C3:C0003.values()) {
