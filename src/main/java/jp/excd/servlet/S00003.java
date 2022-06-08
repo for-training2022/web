@@ -185,7 +185,7 @@ public class S00003 extends HttpServlet{
 
 		//(13)while文を通してCommentListに追加。
 		while(rs.next()) {
-			
+
 			db2.setComment(rs.getString("comment"));
 			db2.setSequence(rs.getInt("sequence"));
 			db2.setComposerId(CommonUtils.idformat(rs.getLong("composer_id")));
@@ -195,47 +195,21 @@ public class S00003 extends HttpServlet{
 			db2.setRating(CommonUtils.ratingformat(rs.getByte("rating")));
 			db2.setNickname2(rs.getString("nickname"));
 			db2.setUniqueCode2(rs.getString("unique_code2"));
-			
+
 			CommentList.add(db2);
 		}
+		
+		//（14）以上でCommentListに追加したデータをsetAttributeする。
+		request.setAttribute("CommentList", CommentList);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		//（15）jsp画像が押下された際にmelokoを起動するURLを作成する。
+		String melokoUrl = "meloko://?song_id=".concat(id);
+		
+		//（16）（15）で設定したmelokoUrlをsetAttributeする。
+		request.setAttribute("melokoUrl", melokoUrl);
+		
+		//（17）S00003にフォワーディングする。
+		getServletConfig().getServletContext().getRequestDispatcher("/jsp/output.jsp" ).forward( request, response );
 
 	}
 }
