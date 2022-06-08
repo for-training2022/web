@@ -168,10 +168,10 @@ public class S00003 extends HttpServlet{
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
 		}else{
 			request.setAttribute("SongList", SongList);
-		}aaaaaaaaaaaaa
+		}
 
 		//（10）SongSqlを使い、引数で渡されたconn.prepareStatement()メソッドを実行する。
-		aaaaaaaaapstmt = con.prepareStatement(CommentSql);
+		pstmt = con.prepareStatement(CommentSql);
 
 		//(11)Sqlの？に（3）で値を代入したidをセットして実行する
 		pstmt.setString(1, id);
@@ -186,16 +186,17 @@ public class S00003 extends HttpServlet{
 		//(13)while文を通してCommentListに追加。
 		while(rs.next()) {
 			
-			db2.setComment()
-			db2.setSequence(0)
-			db2.setType()
-			db2.setToCommentId()
-			db2.setWriteDatetime()
-			db2.
+			db2.setComment(rs.getString("comment"));
+			db2.setSequence(rs.getInt("sequence"));
+			db2.setComposerId(CommonUtils.idformat(rs.getLong("composer_id")));
+			db2.setType(rs.getString("type"));
+			db2.setToCommentId(CommonUtils.idformat(rs.getLong("to_comment_id")));
+			db2.setWriteDatetime(CommonUtils.epoch(rs.getDouble("write_datetime")));
+			db2.setRating(CommonUtils.ratingformat(rs.getByte("rating")));
+			db2.setNickname2(rs.getString("nickname"));
+			db2.setUniqueCode2(rs.getString("unique_code2"));
 			
-			
-			
-			CommentList.add(db);
+			CommentList.add(db2);
 		}
 
 
