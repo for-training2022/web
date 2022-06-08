@@ -152,34 +152,13 @@ public class CommonUtils {
 	public static String commentidformat(long a) {
 		return String.valueOf(a);
 	}
-	
+
 	public static String ratingformat(byte a) {
-		return (String.valueOf(a));
-		
+		return String.valueOf(a);
+
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	public static String idformat(long a2) {
+		return String.valueOf(a2);
+	}
 }
