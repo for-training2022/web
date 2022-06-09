@@ -53,5 +53,25 @@
 	    <location>/jsp/404.jsp</location>
     </error-page>
 
+	
+	<servlet>
+		<servlet-name>S00007</servlet-name>
+		<servlet-class>jp.excd.servlet.S00007</servlet-class>	
+		<init-param>
+			<param-name>javaEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>S00007</servlet-name>
+		<url-pattern>/ja/S00007/search</url-pattern>
+	</servlet-mapping>
+	
+	
+
+
+
+
 </web-app>
 

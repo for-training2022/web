@@ -1,8 +1,8 @@
 package jp.excd.servlet;
 
 import java.io.IOException;
-
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jp.excd.bean.ComposerRecord;
-import jp.excd.bean.SongRecord;
+import jp.excd.common.CommonUtils;
 import jp.excd.conponent.PlaceHolderInput;
 
 public class S00007 extends HttpServlet {
@@ -33,22 +33,45 @@ public class S00007 extends HttpServlet {
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request, response);
 	}
 
-	public void doPost(
-			HttpServletRequest request,
-			HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		Connection con = null;
+		
 		request.setCharacterEncoding("UTF-8");
+		
 
+
+		
+		// ホスト名
+		String hostName = "localhost";
+
+		// ユーザ
+		String connectUserName = "root";
+
+		// パスワード
+		String connectPassword = "exceed";
+
+		// DB名
 		String dbName = "meloko";
-		String userName = "meloko";
-		String password = "exceed";
-		String timeZone = "JST";
+
+		// timeZone
+		String timeZone = "Asia/Tokyo";
+
+		// コネクション用のSQL
+		final String URL = "jdbc:mysql://"
+				+ hostName
+				+ ":3306/"
+				+ dbName
+				+ "?serverTimezone="
+				+ timeZone
+				+ "&allowPublicKeyRetrieval=true"
+				+ "&useSSL=false";
+
+		// コネクション
+		Connection con = null;
 
 		try {
-			// (1)DB接続（コネクションの確立）
-			con = MySQLSetting.getConnection(dbName, userName, password, timeZone);
+			// コネクション
+			con = DriverManager.getConnection(URL, connectUserName, connectPassword);
 			
 			// (2)内部メソッド呼び出し
 			this.mainProcessForSearch(request, response, con);
@@ -137,13 +160,14 @@ public class S00007 extends HttpServlet {
 		Integer rt = null;
 		Double rAf = null;
 		Double rAt = null;
-		Integer vf = null;
-		Integer vt = null;
+
 
 		//-----------------------------------------------------------------------------------------------
 		// 入力チェック
 		//-----------------------------------------------------------------------------------------------
 
+		
+		
 		//(3)ニックネームについてエラー判定を行う。
 		if("1".equals(nickname_radio)) {
 			if(nickname == null || "".equals(nickname)) {
@@ -391,11 +415,7 @@ public class S00007 extends HttpServlet {
 
 		
 		// (16) 言語について、以下のとおりエラー判定を行う。
-		if ("1".equals(language_type_jp)) {
-			//処理続行
-		}else if("1".equals(language_type_en)){
-			//処理続行
-		}else if(language_type_en == null || "".equals(language_type_en)) {
+		if ((!"002".equals(language_type_jp)) && (!"001".equals(language_type_en))){
 			//エラー
 			String s = this.getDescription(con, "ES00007_014");
 			request.setAttribute("error", s);
@@ -463,7 +483,7 @@ public class S00007 extends HttpServlet {
 		request.setAttribute("hits", count);
 		request.setAttribute("list", newList);
 
-		// (20) S00006.jsp にフォワーディングする。
+		// (20) S00008.jsp にフォワーディングする。
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00008.jsp").forward(request, response);
 		}
 
@@ -474,7 +494,7 @@ public class S00007 extends HttpServlet {
 		String ret = "";
 		String sql = "select description from mst_description where description_id =?";
 		PreparedStatement pstmt = con.prepareStatement(sql);
-
+				
 		pstmt.setString(1, description_id);
 		ResultSet rs = pstmt.executeQuery();
 
@@ -514,34 +534,67 @@ public class S00007 extends HttpServlet {
 		String sql1 = "SELECT unique_code, nickname, joined_date, gender, birthday,listener_count,language_type ";
 		String sql2 = "FROM composer ";
 		String sql3 = "WHERE ";
-		String sql4 = "joined_date >= ? ";
+		String sql4 = "joined_date >= joined_date_from";
 		String sql5 = "AND ";
-		String sql6 = "joined_date <= ? ";
+		String sql6 = "joined_date <= joined_date_to ";
 		String sql7 = "AND ";
-		String sql8 = "gender = ? ";
+		String sql8 = "gender = gender ";
 		String sql9 = "AND ";
-		String sql10 = "birthday >= ? ";
+		String sql10 = "birthday >= birthday_from ";
 		String sql11 = "AND ";
-		String sql12 = "birthday <= ? ";
+		String sql12 = "birthday <= birthday_to ";
 		String sql13 = "AND ";
-		String sql14 = "listener_count <= ? ";
+		String sql14 = "listener_count >= listener_count_from ";
 		String sql15 = "AND ";
-		String sql16 = "listener_count >= ? ";
+		String sql16 = "listener_count <= listener_count_to ";
 		String sql17 = "AND ";
 		String sql18 = "language_type = ? ";
 		String sql19 = "language_type = ? or  language_type = ? ";
 		String sql20 = "AND ";
 		String sql21 = "nickname like ? ";
-		String sql22 = "nickname = ? ";
+		String sql22 = "nickname = nickname ";
 		String sql23 = "ORDER BY joined_date desc ";
 		String sql24 = "ORDER BY joined_date asc ";
 		String sql25 = "ORDER BY listener_count desc ";
 		String sql26 = "ORDER BY listener_count asc ";
-		String sql27 = "ORDER BY unique_code desc; ";
+		String sql27 = " ,unique_code desc;";
 		 
 
 		// (2) SQLを連結するための文字列を宣言する。
 		String query = sql1 + sql2;
+		
+		//プリペアド
+		PreparedStatement pstmt = null;
+		
+		try {
+			//日本語のとき
+			if (("002".equals(language_type_jp)) && (!"001".equals(language_type_en))) {
+			pstmt = con.prepareStatement(sql18);
+			pstmt.setString(1,"002");
+			}
+			//英語のとき
+			if ((!"002".equals(language_type_jp)) && ("001".equals(language_type_en))) {
+				pstmt = con.prepareStatement(sql18);
+				pstmt.setString(1,"001");
+			}
+			//日本語・英語のとき
+			if (("002".equals(language_type_jp)) && ("001".equals(language_type_en))) {
+				pstmt = con.prepareStatement(sql19);
+				pstmt.setString(1,"002");
+				pstmt.setString(2,"001");
+			}
+			
+			//ニックネームあいまい検索
+			if("1".equals(nickname_type_radio)) {
+				pstmt = con.prepareStatement(sql21);
+				pstmt.setString(1,"%"+nickname+"%");
+			}	
+			
+		}catch (SQLException e) {
+					e.printStackTrace();
+				}
+		
+		
 		
 		// (3) プレイスホルダに設定する値を格納するためのListを用意する。
 		List<PlaceHolderInput> list = new ArrayList<PlaceHolderInput>();
@@ -706,8 +759,8 @@ public class S00007 extends HttpServlet {
 				}
 				
 		//(11) 言語のSQLへの連結及びプレイスホルダへの設定
-				if ("1".equals(language_type_jp)) {
-					if ("1".equals(language_type_en)) {
+				if ("002".equals(language_type_jp)) {
+					if ("001".equals(language_type_en)) {
 						if (list.size() == 0) {
 							query = query + sql3;
 						} else {
@@ -734,7 +787,7 @@ public class S00007 extends HttpServlet {
 						p.setValue(language_type_en);
 						list.add(p);
 						}
-				} else if ("1".equals(language_type_en)){
+				} else if ("001".equals(language_type_en)){
 					if (list.size() == 0) {
 						query = query + sql3;
 					} else {
@@ -749,8 +802,6 @@ public class S00007 extends HttpServlet {
 					list.add(p);
 				} else {
 							throw new Exception();	
-				} else {
-					//処理続行
 				}
 				
 		//(12) ニックネームのSQLへの連結及びプレイスホルダへの設定
@@ -762,11 +813,11 @@ public class S00007 extends HttpServlet {
 						if(list.size() == 0) {
 							query = query + sql3;
 						} else {
-							query = query + sql19;
+							query = query + sql20;
 							}if("1".equals(nickname_type_radio)) {
-								query = query + sql20;
-							} else if(! "1".equals(nickname_type_radio)) {
 								query = query + sql21;
+							} else if(! "1".equals(nickname_type_radio)) {
+								query = query + sql22;
 								
 								PlaceHolderInput p = new PlaceHolderInput();
 								p.setType("2");
@@ -782,22 +833,23 @@ public class S00007 extends HttpServlet {
 
 		// (13) 並び順の値に従って、ORDER BY句を連結する。
 		if ("01".equals(sort_order)) {
-			query = query + sql22;
-		} else if ("02".equals(sort_order)) {
 			query = query + sql23;
-		} else if ("03".equals(sort_order)) {
+		} else if ("02".equals(sort_order)) {
 			query = query + sql24;
-		} else if ("04".equals(sort_order)) {
+		} else if ("03".equals(sort_order)) {
 			query = query + sql25;
+		} else if ("04".equals(sort_order)) {
+			query = query + sql26;
 		} else {
 			throw new Exception();
 		}
 
-		query = query + sql26;
+		query = query + sql27;
 
 		// (14) PreparedStatementのインスタンスを得る。
-		PreparedStatement pstmt = con.prepareStatement(query);
-
+		pstmt = con.prepareStatement(query);
+		
+		
 		// (15) Where句の連結があれば、(4)で生成したプレイスホルダ用のListの内容をすべて、プレイスホルダに設定する。
 		for (int i = 0; i < list.size(); i++) {
 			PlaceHolderInput option = list.get(i);
@@ -806,46 +858,53 @@ public class S00007 extends HttpServlet {
 				pstmt.setInt(i + 1, option.getIntValue());
 			} else if ("2".equals(type)) {
 				pstmt.setString(i + 1, option.getStringValue());	
+			}
 		}
 
 		// (16) executeQueryを実行し、結果の「ResultSet」を得る。
 		ResultSet rs = pstmt.executeQuery();
+
 		List<ComposerRecord> composerList = new ArrayList<ComposerRecord>();
-
+											
 		while (rs.next()) {
-			SongRecord record = new SongRecord();
-			//ソングID
-			String Song_id = rs.getString("id");
-			record.setSong_id(Song_id);
-			//曲名
-			String Title = rs.getString("title");
-			record.setTitle(Title);
-			//総評価数
-			String Rating_total = NumberFormat.getNumberInstance().format(rs.getLong("rating_total"));
-			record.setRating_total(Rating_total);
-			//平均評価数
-			double Rating_average = rs.getDouble("rating_average");
-			record.setRating_average(Rating_average);
-			//再生回数
-			String Total_listen_count = NumberFormat.getNumberInstance().format(rs.getLong("Total_listen_count"));
-			record.setTotal_listen_count(Total_listen_count);
-			//公開日
-			double Release_datetime = rs.getDouble("release_datetime");
-			record.setRelease_datetime(getLastUploadTime(Release_datetime));
-			//ファイルネーム
-			String Image_file_name = rs.getString("Image_file_name");
-			record.setImage_file_name(Image_file_name);
+			ComposerRecord record = new ComposerRecord();
+			CommonUtils c = new CommonUtils();
+			
+			//ユニークコード
+			String Unique_code = rs.getString("unique_code");
+			record.setUniqueCode(Unique_code);
+			//ニックネーム
+			String Nickname = rs.getString("nickname");
+			record.setNickname(Nickname);
+			//登録日
+			String Joined_date = rs.getString("Joined_date");
+			record.setJoined_date(Joined_date);
+			//性別
+			String Gender = rs.getString("gender");
+			record.setGender(Gender);
+			//誕生日
+			String Birthday = rs.getString("birthday");
+			record.setBirthday(Birthday);
+			//リスナー数
+			String Listener_count = c.valueformat(rs.getLong("listener_count"));
+			record.setListener_count(Listener_count);
+			//言語
+			String Language_type = rs.getString("language_type");
+			record.setLanguage_type (Language_type);
 
-			songList.add(record);
+			composerList.add(record);
 		}
 		
+		request.setAttribute("list", composerList);
+
 		// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
 		pstmt.close();
 
 		// (18) 前処理で生成したListを呼び出し元に返却する。
-		return songList;
+		return composerList;
+	
 	}
-
+			
 	private boolean isNumber(String listener_count_from) {
 		try {
 			Integer.parseInt(listener_count_from);
@@ -883,110 +942,5 @@ public class S00007 extends HttpServlet {
 		return retValue;
 	}
 
-	/**
-	 * 公開日時の表示ラベル取得
-	 * @param release_datetime
-	 * @return
-	 */
-	private String getLastUploadTime(Double release_datetime) {
-
-		String resultVal;
-		double d_releaseDay = 0;
-
-		//現在のエポック秒を取得
-		Date date = new Date();
-		Double nowEpoch = (double) date.getTime();
-
-		//差分を算出
-		Double diff = nowEpoch - release_datetime * 1000;
-
-		//小数点以下を切り捨てる処理
-		NumberFormat numberFormat = NumberFormat.getInstance();
-		numberFormat.setMaximumFractionDigits(0);
-
-		//公開時間を取得
-		//1秒未満
-		if (diff < 1000) {
-			resultVal = "たった今";
-
-		}
-		//1秒以上かつ2秒未満
-		else if (diff < 2000) {
-			resultVal = "1秒前";
-
-		}
-		//2秒以上かつ60秒未満
-		else if (diff < 60000) {
-			resultVal = diff + "秒前";
-
-		}
-		//1分以上かつ2分未満
-		else if (diff < 120000) {
-			resultVal = "1分前";
-
-		}
-		//2分以上かつ60分未満
-		else if (diff < 3600000) {
-			d_releaseDay = (diff / 60000);
-			resultVal = numberFormat.format(d_releaseDay) + "分前";
-
-		}
-		//1時間以上かつ2時間未満
-		else if (diff < 7200000) {
-			resultVal = "1時間前";
-
-		}
-		//2時間以上かつ24時間未満
-		else if (diff < 86400000) {
-			d_releaseDay = (diff / 3600000);
-			resultVal = numberFormat.format(d_releaseDay) + "時間前";
-
-		}
-		//1日以上かつ2日未満
-		else if (diff < 172800000) {
-			resultVal = "1日前";
-
-		}
-		//2日以上かつ7日未満
-		else if (diff < 604800000) {
-			d_releaseDay = (diff / 86400000);
-			resultVal = numberFormat.format(d_releaseDay) + "日前";
-
-		}
-		//7日以上かつ14日未満
-		else if (diff < 1209600000) {
-			resultVal = "1週間前";
-
-		}
-		//14日以上かつ30日未満
-		else if (diff < 2592000000L) {
-			d_releaseDay = (diff / 604800000);
-			resultVal = numberFormat.format(d_releaseDay) + "週間前";
-
-		}
-		//30日以上かつ60日未満
-		else if (diff < 5184000000L) {
-			resultVal = "1ヶ月前";
-
-		}
-		//60日以上かつ365日未満
-		else if (diff < 31536000000L) {
-			d_releaseDay = (diff / 2592000000L);
-			resultVal = numberFormat.format(d_releaseDay) + "ヶ月前";
-
-		}
-		//1年以上かつ2年未満
-		else if (diff < 63072000000L) {
-			resultVal = "1年前";
-
-		}
-		//2年以上
-		else {
-			d_releaseDay = (diff / 31536000000L);
-			resultVal = numberFormat.format(d_releaseDay) + "年前";
-
-		}
-		return resultVal;
-	}
 
 }

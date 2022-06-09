@@ -13,7 +13,7 @@
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>音楽室</title>
 <link rel="stylesheet" href="/web/css/main_1.css" />
-<link rel="stylesheet" type="text/css" href="/web/css/menu.css" />
+<link rel="stylesheet" type="text/css" href="/web/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/web/css/S00006.css" />
 <script src="/web/js/jquery-3.3.0.min.js"></script>
 <script type="text/javascript" src="/web/js/pageTop.js"></script>
@@ -54,27 +54,7 @@
 
 		<div class="contents">
 			<ul>
-				<%
-					for (SongRecord record : songs) {
-				%>
-				<li>
-					<div class="detail">
-						<h1><%=record.getTitle()%></h1>
-						<div class="gazou">
-							<a href="/web/ja/S00003/<%= record.getSong_id()%>"> <img src="/web/images/<%=record.getImage_file_name()%>" class="trimc" alt="">
-							</a>
-						</div>
-						<p>
-							<span class="sisuu">総感動指数:</span><span><%=record.getRating_total()%></span>
-							<span class="sisuu">平均感動指数:</span><span><%=record.getRating_average()%></span><br>
-							<span class="sisuu">再生回数</span><span><%=record.getTotal_listen_count()%></span>
-							<span class="sisuu">公開:</span><span><%=record.getRelease_datetime()%></span>
-						</p>
-					</div>
-				</li>
-				<%
-					}
-				%>
+				
 			</ul>
 			<div class="jouken2">
 				<a id="changeLink2" href="#" class="btn-change2">条件変更</a>

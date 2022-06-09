@@ -834,11 +834,15 @@ public class S00005 extends HttpServlet {
 			songList.add(record);
 		}
 		
+
+		
 		// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
 		pstmt.close();
 
 		// (18) 前処理で生成したListを呼び出し元に返却する。
 		return songList;
+		
+		
 	}
 
 	private boolean isNumber(String num) {
@@ -982,6 +986,10 @@ public class S00005 extends HttpServlet {
 
 		}
 		return resultVal;
-	}
+		
+		
 
+	}
+	
+	
 }

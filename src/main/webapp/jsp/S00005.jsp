@@ -153,16 +153,10 @@
       <p class="page_title">作品検索</p>
       <a href="#" id="menu_open">
         <img alt="メニュー" src="../images/menu.png" class="menu-icon" />
+           	<%@ include file = "Menuin.jsp" %>
       </a>
     </div>
     
-    
-    
-	<!-- エラーメッセージ -->
-    <!--<div class="error_message"> -->
-      <!--<img alt="エラーマーク" src="../images/error_mark.png" /> -->
-     <!-- <p>「感動指数」は、数値で入力してください。</p> -->
-   <!-- </div> -->
     
     <% if ("".equals(errorMessage) == false) { %>
 				<div class="errormesage">
@@ -175,11 +169,10 @@
 
 					
 
-			<!--条件divをまとめるdiv(contents)-->
-			<div class="contents_search">
 
-				<!-- 条件タイトル、フォームをまとめるdiv-->
-				<div id="jouken_date" class="jouken<%= release_date_is_error %>">
+
+	<!-- 条件タイトル、フォームをまとめるdiv-->
+	<div id="jouken_date" class="<%= release_date_is_error %>">
 
 					
 					<!-- 公開日 -->
@@ -487,7 +480,7 @@
 			-->
 
 	
-
+	</div>
 		
 
 		<!-- ページトップへjavaScript -->
