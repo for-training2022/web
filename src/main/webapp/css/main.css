@@ -598,14 +598,14 @@ div.menu_base {
   right: 0px;
   height: 258px;
   z-index:20;
-  background: #0000ff;
+  background: #e0ffff;
   opacity:1.0;
 }
 div.menu_header {
   box-sizing: border-box;
   width:100%;
   height:38px;
-  background-color: #bfffe4;
+  background-color: #EBF1DE;
   border-top: thin solid #333333;
   border-bottom: thin solid #333333;
 }
@@ -683,8 +683,8 @@ div.menu_base ul li a p.to_excd {
 div.menu_base ul li a img.pop_up {
   box-sizing: border-box;
   margin-top: 7px;
-  width: 28px;
-  height: 28px;
+  width: 35px;
+  height: 35px;
   clear: left;
 }
 
@@ -744,8 +744,11 @@ div.title_bar p.main_title {
   text-align:center;
   font-size: 32px;
   color: #0000ff;
-  font-weight:bold;
+  font-weight:800;
   text-shadow: 0 0 0.2em rgba(255,255,255,1);
+  font-family:"游明朝";
+  font-style:italic;
+  color:#00CCCC;
 }
 div.title_bar p.sub_title {
   position:absolute;
@@ -827,11 +830,14 @@ div.top_tab ul li a {
 /******************************************************************************/
 /* ■■トップ告知                                                           */
 /******************************************************************************/
-div.top_notice {
+div.top_notice:active {
   /* absoluteの起点 */
   position:relative;
   width: 100%;
   background-color: #ffff00;
+}
+div.top_notice:not(:active){
+	visibility:none;
 }
 div.top_notice p.top_notice_title {
   position:absolute;
@@ -1089,7 +1095,7 @@ div.person_list ul li div.list div span.value {
   padding-left: 8px;
 }
   
-
+}
 div.person_list ul li div.list div span.composer_link a {
   font-size: 14px;
   color: #000080;
