@@ -816,11 +816,14 @@ div.top_tab ul li a {
 /******************************************************************************/
 /* ■■トップ告知                                                           */
 /******************************************************************************/
-div.top_notice {
+div.top_notice:active {
   /* absoluteの起点 */
   position:relative;
   width: 100%;
   background-color: #ffff00;
+}
+div.top_notice:not(:active){
+	visibility:none;
 }
 div.top_notice p.top_notice_title {
   position:absolute;
