@@ -415,10 +415,10 @@
 			              <table class="radio_base">
 			                <tr>
 			                  <td>
-			                    <input type="radio" name="title_match_type_radio" value="1"><span class="radio_label">あいまい</span>
+			                    <input type="radio" name="title_type_radio" value="1"><span class="radio_label">あいまい</span>
 			                  </td>
 			                  <td>
-			                    <input type="radio" name="title_match_type_radio" value="2" checked="checked"><span class="radio_label">完全一致</span>
+			                    <input type="radio" name="title_type_radio" value="2" checked="checked"><span class="radio_label">完全一致</span>
 			                  </td>
 			                </tr>
 			              </table>

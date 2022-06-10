@@ -59,8 +59,8 @@ public class PlaceHolderInput {
 	 * 
 	 * @param value
 	 */
-	public void setValue(int value) {
-		this.setIntValue(value);
+	public void setValue(int intvalue) {
+		this.setIntValue(intvalue);
 	}
 	public void setValue(double value) {
 		this.setDoubleValue(value);
@@ -69,4 +69,13 @@ public class PlaceHolderInput {
 		this.setStringValue(value);
 	}
 	
+	public int getValue(int intvalue) {
+		return getIntValue();
+	}
+	public double getValue(double value) {
+		return getValue(intValue);
+	}
+
+	
 }
+

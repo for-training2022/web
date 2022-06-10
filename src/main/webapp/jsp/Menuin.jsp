@@ -18,7 +18,7 @@
 	<div class="wrapper">
 
 	<a href="#" id="menu_open">
-	<img alt="メニュー" src="../images/menu.png" class="menu-icon" />
+	<img alt="メニュー" src="web/images/menu.png" class="menu-icon" />
 	</a>
       
    <!-- メニューの起点 -->

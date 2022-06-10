@@ -27,7 +27,7 @@
     <!-- タイトルバー -->
     <div class="title_bar">
       <p class="page_title">作曲家検索</p>
-      <a href="S00007.html" class="back">&lt;&nbsp;戻る</a> 
+      <a href="javascript:formBack.submit()" class="back">&lt;&nbsp;戻る</a> 
       <a href="#" id="menu_open"> 
         <img alt="メニュー" src="/web/images/menu.png" class="menu-icon" />
       </a>
@@ -41,9 +41,9 @@
 
     <!-- 検索結果表示 -->
     <div class="message_with_right_button">
-     <p><%=request.getAttribute("hits")%>件が該当します。</p>
+     <p><%=request.getAttribute("hits")%></p>
       <div class="right_button">
-        <a href="S00007.jsp">条件変更</a>
+        <a href="javascript:formChange.submit()">条件変更</a>
       </div>
     </div>
 
@@ -57,7 +57,7 @@
         <li>
           <div class="list">
           <hr>
-            <div class="person_name"><a href="/web/ja/S00004/<%= record.getUniqueCode()%>"><%=record.getNickname() %></a>
+            <div class="person_name"><a href="/web/ja/S00004/<%=record.getUniqueCode()%>"><%=record.getNickname() %></a>
             </div>
 
             <div class="detail">
@@ -84,7 +84,7 @@
 
     <!-- メインボタン -->
     <div class="main_button">
-      <a href="S00007.jsp">条件変更</a>
+      <a href="javascript:formChange.submit()">条件変更</a>
     </div>
     
     
@@ -97,11 +97,11 @@
 		<input name="joined_date_from" type="hidden" value="<%= request.getAttribute("joined_date_from") %>">
 		<input name="joined_date_to" type="hidden" value="<%= request.getAttribute("joined_date_to") %>">
 		<input name="gender_radio" type="hidden" value="<%= request.getAttribute("gender_radio") %>">
-		<input name="gender" type="hidden" value="<%= request.getAttribute("genser") %>">
+		<input name="gender" type="hidden" value="<%= request.getAttribute("gender") %>">
 		<input name="birthday_radio" type="hidden" value="<%= request.getAttribute("birthday_radio") %>">
 		<input name="birthday_from" type="hidden" value="<%= request.getAttribute("birthday_from") %>">
 		<input name="birthday_to" type="hidden" value="<%= request.getAttribute("birthday_to") %>">
-		<input name="listener_count_radio" type="hidden" value="<%= request.getAttribute("lister_count_radio") %>">
+		<input name="listener_count_radio" type="hidden" value="<%= request.getAttribute("listener_count_radio") %>">
 		<input name="listener_count_from" type="hidden" value="<%= request.getAttribute("listener_count_from") %>">
 		<input name="listener_count_to" type="hidden" value="<%= request.getAttribute("listener_count_to") %>">
 		<input name="language_type_jp" type="hidden" value="<%= request.getAttribute("language_type_jp") %>">
@@ -116,11 +116,11 @@
 		<input name="joined_date_from" type="hidden" value="<%= request.getAttribute("joined_date_from") %>">
 		<input name="joined_date_to" type="hidden" value="<%= request.getAttribute("joined_date_to") %>">
 		<input name="gender_radio" type="hidden" value="<%= request.getAttribute("gender_radio") %>">
-		<input name="gender" type="hidden" value="<%= request.getAttribute("genser") %>">
+		<input name="gender" type="hidden" value="<%= request.getAttribute("gender") %>">
 		<input name="birthday_radio" type="hidden" value="<%= request.getAttribute("birthday_radio") %>">
 		<input name="birthday_from" type="hidden" value="<%= request.getAttribute("birthday_from") %>">
 		<input name="birthday_to" type="hidden" value="<%= request.getAttribute("birthday_to") %>">
-		<input name="listener_count_radio" type="hidden" value="<%= request.getAttribute("lister_count_radio") %>">
+		<input name="listener_count_radio" type="hidden" value="<%= request.getAttribute("listener_count_radio") %>">
 		<input name="listener_count_from" type="hidden" value="<%= request.getAttribute("listener_count_from") %>">
 		<input name="listener_count_to" type="hidden" value="<%= request.getAttribute("listener_count_to") %>">
 		<input name="language_type_jp" type="hidden" value="<%= request.getAttribute("language_type_jp") %>">
