@@ -189,7 +189,7 @@
 	    </div>
 	    <!-- メニューの起点 -->
     	<div id="menu_marker">
-   		</div>
+    </div>
     
 
 		<!-- エラーメッセージ -->    
@@ -412,7 +412,7 @@
 	
 			<!-- メインボタン -->
 			<div class="main_button">
-			<a><input type="submit" value="検索"></a>
+			<input type="submit" value="検索">
 			</div>
 		
 	</div>

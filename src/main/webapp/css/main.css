@@ -204,7 +204,7 @@ div.main_button {
   margin-top: 8px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 40px;
+  margin-bottom: auto;
   width: 95%;
 }
 div.main_button a {
@@ -216,6 +216,20 @@ div.main_button a {
   height: 36px;
   line-height: 36px;
   border: thin solid #333333;
+  background-color: #cccccc;
+  color: #000080;
+  text-decoration: none;
+}
+
+div.main_button input {
+  display: block;
+  box-sizing: border-box;
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  border: thin solid #333333; 
   background-color: #cccccc;
   color: #000080;
   text-decoration: none;
@@ -235,8 +249,8 @@ div.main_button a {
 /******************************************************************************/
 footer {
   font-size: 0.8em;
-  text-align: center;
-  border-top: thin solid #6495ED;
+  text-align: right;
+  border-top: thin solid #666666;
   margin-top: 1.0em;
   padding-top: 0.5em;
   padding-right: 0.5em;
@@ -323,6 +337,12 @@ div.input_table table tr td.value {
 }
 div.input_table table tr:first-child td {
   border-top: thin solid #333333;
+}
+div.left_padding1{
+  padding-left: 55px;
+}
+div.left_padding2{
+  padding-left: 90px;
 }
 /******************************************************************************/
 /* ■■■指定ラジオ                                                           */
@@ -997,6 +1017,26 @@ div.comments ul li div.reply p.time {
 }
 
 /******************************************************************************/
+/* ■個別(S00009：専用アプリダウンロード)                                     */
+/******************************************************************************/
+
+/*メロコのアイコンの調整*/
+
+div.comment{
+  width: 100%;
+  padding: 20px;
+  max-width: 640px;
+}
+  div.melokolink img{
+  height : 150px;
+  width : 150px;
+  border-radius: 35px;
+}
+div.melokolink{
+  filter: drop-shadow(-5px 5px 5px  #aaa);
+}
+
+/******************************************************************************/
 /* ■■作曲家リスト                                                               */
 /******************************************************************************/
 div.person_list {
@@ -1061,4 +1101,3 @@ div.person_list ul li div.list div.detail {
   padding-bottom: 4px;
   padding-left: 8px;
 }
-
