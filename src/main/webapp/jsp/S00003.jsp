@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, jp.excd.servlet.DataBox"%>
+	pageEncoding="UTF-8"
+	import="java.util.*, jp.excd.servlet.CommentBean,jp.excd.servlet.SongBean"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -15,16 +16,14 @@
 
 <title>
 	<%
-	List<DataBox> SongList = new ArrayList<DataBox>();
-	SongList = (List<DataBox>) request.getAttribute("SongList");
-
-	DataBox db = new DataBox();
-	out.println(db.getTitle());
+	SongBean songBean = null;
+	songBean = (SongBean) request.getAttribute("songBean");
+	out.println(songBean.getTitle());
 	%>
 </title>
-<link rel="stylesheet" href="../css/main.css" />
-<script src="../js/jquery-3.3.0.min.js"></script>
-<script src="../js/util.js"></script>
+<link rel="stylesheet" href="/web/css/main.css" />
+<script src="/web/js/jquery-3.3.0.min.js"></script>
+<script src="/web/js/util.js"></script>
 <!-- 画像の圧縮表示設定 -->
 <style>
 div.song_link div.cell div.song1 img {
@@ -44,7 +43,7 @@ div.song_link div.cell div.song1 img {
 
 		<!-- タイトルバー -->
 		<div class="title_bar">
-			<p class="page_title"><%=db.getTitle()%></p>
+			<p class="page_title"><%=songBean.getTitle()%></p>
 			<a href="#" id="menu_open"> <img alt="メニュー"
 				src="/images/menu.png" class="menu-icon" />
 			</a>
@@ -58,7 +57,7 @@ div.song_link div.cell div.song1 img {
 			<table>
 				<tr>
 					<td class="label">曲名</td>
-					<td class="value"><%=db.getTitle()%></td>
+					<td class="value"><%=songBean.getTitle()%></td>
 				</tr>
 			</table>
 		</div>
@@ -66,7 +65,7 @@ div.song_link div.cell div.song1 img {
 		<!-- 作者へのリンク -->
 		<div class="label_and_link">
 			<span class="label">作者：</span><span class="link"> <a
-				href="http://localhost:8080/web/jsp/S00004/<%=db.getUniqueCode1()%>"><%=db.getNickname1()%></a></span>
+				href="http://localhost:8080/web/jsp/S00004/<%=songBean.getUniqueCode1()%>"><%=songBean.getNickname1()%></a></span>
 		</div>
 
 		<!-- メッセージ -->
@@ -76,7 +75,7 @@ div.song_link div.cell div.song1 img {
 					<td class="label">メッセージ</td>
 				</tr>
 				<tr>
-					<td class="value"><%=db.getMessage()%></td>
+					<td class="value"><%=songBean.getMessage()%></td>
 				</tr>
 			</table>
 		</div>
@@ -85,11 +84,14 @@ div.song_link div.cell div.song1 img {
 		<div class="song_link">
 			<div class="cell">
 				<div class="image_base">
-					<a href="meloko://?song_id=<%=request.getAttribute("melokoUrl") %>">
-						<div class="image song1">
-							<img alt=><%=db.getTitle()%>
-							src="<%=db.getImageFileName()%>"/> <img alt="play" class="play"
-								src="../images/play.png" />
+					<a href="<%=request.getAttribute("melokoUrl")%>">
+						<div class="image">
+							<img alt = "<%=songBean.getTitle() %>" 
+							src="/web/images/<%=songBean.getImageFileName()%>" 
+							width="<%=songBean.getImageFileWidth() %>" 
+							height="<%=songBean.getImageFileHeight() %>"> 
+							<img alt = "play" class = "play"
+							src="/web/images/play.png">
 						</div>
 					</a>
 				</div>
@@ -104,14 +106,14 @@ div.song_link div.cell div.song1 img {
 				</tr>
 				<tr>
 					<td class="value"><span class="label_top">総感動指数：</span> <span
-						class="value"><%=db.getRatingTotal()%></span> <span class="label">平均感動指数：</span><span
-						class="value"><%=db.getRatingAverage()%></span> <span
-						class="label">再生回数：</span> <span class="value"><%=db.getTotalListenCount()%></span>
-						<span class="label">公開：</span><span class="value"><%=db.getReleaseDatetime()%></span>
-						<span class="label">最終更新日：</span> <span class="value"><%=db.getLastUpdateDatetime()%></span>
-						<span class="label">KEY：</span> <span class="value"><%=db.getKey()%></span>
-						<span class="label">楽譜表記：</span> <span class="value"><%=db.getScoreType()%></span>
-						<span class="label">BPM：</span> <span class="value"><%=db.getBpm()%></span></td>
+						class="value"><%=request.getAttribute("rating_total")%></span> <span
+						class="label">平均感動指数：</span><span class="value"><%=request.getAttribute("rating_average")%></span>
+						<span class="label">再生回数：</span> <span class="value"><%=songBean.getTotalListenCount()%></span>
+						<span class="label">公開：</span><span class="value"><%=songBean.getReleaseDatetime()%></span>
+						<span class="label">最終更新日：</span> <span class="value"><%=songBean.getLastUpdateDatetime()%></span>
+						<span class="label">KEY：</span> <span class="value"><%=songBean.getKey()%></span>
+						<span class="label">楽譜表記：</span> <span class="value"><%=songBean.getScoreType()%></span>
+						<span class="label">BPM：</span> <span class="value"><%=songBean.getBpm()%></span></td>
 				</tr>
 			</table>
 		</div>
@@ -123,7 +125,7 @@ div.song_link div.cell div.song1 img {
 					<td class="label">関連リンク</td>
 				</tr>
 				<tr>
-					<td class="value"><a href="<%=db.getOtherLinkUrl()%>"><%=db.getOtherLinkDescription()%></a></td>
+					<td class="value"><a href="<%=songBean.getOtherLinkUrl()%>"><%=songBean.getOtherLinkDescription()%></a></td>
 				</tr>
 			</table>
 		</div>
@@ -135,39 +137,48 @@ div.song_link div.cell div.song1 img {
 
 		<!-- コメントテーブル -->
 		<div class="comments">
-
-
 			<ul>
-				<%List<DataBox> CommentList = new ArrayList<DataBox>();
-			CommentList = (List<DataBox>) request.getAttribute("CommentList");
-
-			for (DataBox db2 : CommentList) {
-			%>
-
+				<%
+				List<CommentBean> commentList = new ArrayList<CommentBean>();
+				commentList = (List<CommentBean>) request.getAttribute("commentList");
+				for (CommentBean comBean : commentList) {
+				%>
 				<li>
+					<%
+					if ("0".equals(comBean.getType())) {
+					%>
 					<div class="normal">
-						<div class="rating star45"></div>
+						<div class="<%=comBean.getRating()%>"></div>
 						<div class="composer_link">
 							<a
-								href="http://localhost:8080/web/jsp/S00004/<%=db2.getUniqueCode2()%>"><%=db2.getNickname2()%></a>
+								href="http://localhost:8080/web/ja/S00004/<%=comBean.getUniqueCode2()%>"><%=comBean.getNickname2()%></a>
 						</div>
-						<p class="comment"><%=db2.getComment()%></p>
-						<p class="time"><%=db2.getWriteDatetime()%></p>
+						<p class="comment"><%=comBean.getComment()%></p>
+						<p class="time"><%=comBean.getWriteDatetime()%></p>
 					</div> <%
-			}
-			%>
+ } else if ("1".equals(comBean.getType())) {
+ %>
+					<div class="reply">
+						<div class="grater_than">&gt;</div>
+						<div class="<%=comBean.getRating()%>"></div>
+						<div class="composer_link">
+							<a
+								href="http://localhost:8080/web/ja/S00004/<%=comBean.getUniqueCode2()%>"><%=comBean.getNickname2()%></a>
+						</div>
+						<p class="comment"><%=comBean.getComment()%></p>
+						<p class="time"><%=comBean.getWriteDatetime()%></p>
+					</div> <%
+ }
+ %>
 				</li>
+				<%
+				}
+				%>
 			</ul>
-
 		</div>
-
-
-
-
-
 		<!-- ページトップへjavaScript -->
 		<div id="pagetop" hidden>
-			<img alt="ページトップ" src="../images/pagetop.png">
+			<img alt="ページトップ" src="web/images/pagetop.png">
 		</div>
 
 		<!-- フッター -->
