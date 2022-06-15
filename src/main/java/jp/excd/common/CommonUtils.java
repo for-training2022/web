@@ -149,16 +149,145 @@ public class CommonUtils {
 		return resultVal;
 	}
 
-	public static String commentidformat(long a) {
-		return String.valueOf(a);
-	}
-
+	/**
+	 * 評価のString型変換
+	 * @param byte型
+	 * @return String型 
+	 * 	 */
+	
 	public static String ratingformat(byte a) {
 		return String.valueOf(a);
-
 	}
 
+	/**
+	 * IDのString型変換
+	 * @param long型
+	 * @return String型 
+	 * 	 */
+	
 	public static String idformat(long a2) {
 		return String.valueOf(a2);
 	}
+
+	/**
+	 * キーの日本語表記
+	 * @param 数字（テーブル設計書最後のsheetにあるキー変換）
+	 * @return 変換後(String型の日本語表記キー)
+	 */
+	public static String keyName(String a2) {
+		if("1".equals(a2)) {
+			a2 = "Cメジャー";
+		}else if("2".equals(a2)) {
+			a2 = "Cシャープメジャー";
+		}else if("3".equals(a2)) {
+			a2 = "Dフラットメジャー";
+		}else if("4".equals(a2)) {
+			a2 = "Dメジャー";
+		}else if("5".equals(a2)) {
+			a2 = "Dシャープメジャー";
+		}else if("6".equals(a2)) {
+			a2 = "Eフラットメジャー";
+		}else if("7".equals(a2)) {
+			a2 = "Eメジャー";
+		}else if("8".equals(a2)) {
+			a2 = "Fメジャー";
+		}else if("9".equals(a2)) {
+			a2 = "Fシャープメジャー";
+		}else if("10".equals(a2)) {
+			a2 = "Gフラットメジャー";
+		}else if("11".equals(a2)) {
+			a2 = "Gメジャー";
+		}else if("12".equals(a2)) {
+			a2 = "Gシャープメジャー";
+		}else if("13".equals(a2)) {
+			a2 = "Aフラットメジャー";
+		}else if("14".equals(a2)) {
+			a2 = "Aメジャー";
+		}else if("15".equals(a2)) {
+			a2 = "Aシャープメジャー";
+		}else if("16".equals(a2)) {
+			a2 = "Bフラットメジャー";
+		}else if("17".equals(a2)) {
+			a2 = "Bメジャー";
+		}else if("18".equals(a2)) {
+			a2 = "Cマイナー";
+		}else if("19".equals(a2)) {
+			a2 = "Cシャープマイナー";
+		}else if("20".equals(a2)) {
+			a2 = "Dフラットマイナー";
+		}else if("21".equals(a2)) {
+			a2 = "Dマイナー";
+		}else if("22".equals(a2)) {
+			a2 = "Dシャープマイナー";
+		}else if("23".equals(a2)) {
+			a2 = "Eフラットマイナー";
+		}else if("24".equals(a2)) {
+			a2 = "Eマイナー";
+		}else if("25".equals(a2)) {
+			a2 = "Fマイナー";
+		}else if("26".equals(a2)) {
+			a2 = "Fシャープマイナー";
+		}else if("27".equals(a2)) {
+			a2 = "Gフラットマイナー";
+		}else if("28".equals(a2)) {
+			a2 = "Gマイナー";
+		}else if("29".equals(a2)) {
+			a2 = "Gシャープマイナー";
+		}else if("30".equals(a2)) {
+			a2 = "Aフラットマイナー";
+		}else if("31".equals(a2)) {
+			a2 = "Aマイナー";
+		}else if("32".equals(a2)) {
+			a2 = "Aシャープマイナー";
+		}else if("33".equals(a2)) {
+			a2 = "Bフラットマイナー";
+		}else if("34".equals(a2)) {
+			a2 = "Bマイナー";
+		}
+		return a2;
+
+	}
+
+
+	public static String scoreChange(String a3) {
+		
+		if("0".equals(a3)) {
+			a3 = "楽譜通り";
+		}else if("1".equals(a3)) {
+			a3 = "1オクターブ上で表記";
+		}
+		
+		return a3;
+	}
+		
+
+
+
+	public static String starformat(String a4) {
+		if ("5".equals(a4)) {
+			a4 = "rating star50";
+		}else if("4.5".equals(a4)){
+			a4 = "rating star45";
+		}else if("4".equals(a4)){
+			a4 = "rating star40";
+		}else if("3.5".equals(a4)){
+			a4 = "rating star35";
+		}else if("3".equals(a4)){
+			a4 = "rating star30";
+		}else if("2.5".equals(a4)){
+			a4 = "rating star25";
+		}else if("2".equals(a4)){
+			a4 = "rating star20";
+		}else if("1.5".equals(a4)){
+			a4 = "rating star15";
+		}else if("1".equals(a4)){
+			a4 = "rating star10";
+		}else if("0.5".equals(a4)){
+			a4 = "rating star05";
+		}else if("0".equals(a4)){
+			a4 = "rating star00";
+		}
+		return a4;
+	}
+	
 }
