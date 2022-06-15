@@ -22,7 +22,6 @@ public class CommonUtils {
 		}
 	}
 
-
 	/**
 	 * 3桁区切りのフォーマット化
 	 * @param 数字 (#####)
@@ -248,7 +247,12 @@ public class CommonUtils {
 
 	}
 
-
+	/**
+	 * 楽譜表記のフォーマット化
+	 * @param String型の0、または1。
+	 * @return テーブル設計書内で指定された表記方法
+	 */
+	
 	public static String scoreChange(String a3) {
 		
 		if("0".equals(a3)) {
@@ -261,7 +265,11 @@ public class CommonUtils {
 	}
 		
 
-
+	/**
+	 * 評価のフォーマット。ratingによってhmtlのクラスを変更する。
+	 * @param 評価数値（rating）
+	 * @return 評価に応じたクラス名
+	 * */
 
 	public static String starformat(String a4) {
 		if ("5".equals(a4)) {
