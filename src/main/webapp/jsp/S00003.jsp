@@ -17,7 +17,7 @@
 <title>
 	<%
 	SongBean songBean = null;
-	songBean = (SongBean) request.getAttribute("songBean");
+	songBean = (SongBean)request.getAttribute("songBean");
 	out.println(songBean.getTitle());
 	%>
 </title>
@@ -86,12 +86,11 @@ div.song_link div.cell div.song1 img {
 				<div class="image_base">
 					<a href="<%=request.getAttribute("melokoUrl")%>">
 						<div class="image">
-							<img alt = "<%=songBean.getTitle() %>" 
-							src="/web/images/<%=songBean.getImageFileName()%>" 
-							width="<%=songBean.getImageFileWidth() %>" 
-							height="<%=songBean.getImageFileHeight() %>"> 
-							<img alt = "play" class = "play"
-							src="/web/images/play.png">
+							<img alt="<%=songBean.getTitle()%>"
+								src="/web/images/<%=songBean.getImageFileName()%>"
+								width="<%=songBean.getImageFileWidth()%>"
+								height="<%=songBean.getImageFileHeight()%>"> <img
+								alt="play" class="play" src="/web/images/play.png">
 						</div>
 					</a>
 				</div>
