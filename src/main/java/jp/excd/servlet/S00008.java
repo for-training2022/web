@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 public class S00008 extends HttpServlet{
 
 	public void doGet(
@@ -26,7 +27,7 @@ public class S00008 extends HttpServlet{
 		
 		String URI=request.getRequestURI();
 		
-		if(("/web/ja/S00008/back".equals(URI) || "/web/ja/S00008/change".equals(URI))==false) {
+		if(("/web/ja/S00008/S00008.back".equals(URI) || "/web/ja/S00008/S00008.change".equals(URI))==false) {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request,response);
 		}
 		
@@ -74,7 +75,7 @@ public class S00008 extends HttpServlet{
 		
 		
 		//S00007.jspにフォワーディングする
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,response);
+		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,response);
 		
 	}
 	

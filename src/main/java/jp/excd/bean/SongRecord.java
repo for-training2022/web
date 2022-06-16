@@ -9,6 +9,7 @@ public class SongRecord {
 	private String release_datetime;
 	private String image_file_name;
 	private String song_id;
+	private String language_type;
 
 	/**
 	 * @return title
@@ -59,13 +60,13 @@ public class SongRecord {
 		this.total_listen_count = total_listen_count;
 	}
 	/**
-	 * @return release_datetime
+	 * @return release_date
 	 */
 	public String getRelease_datetime() {
 		return release_datetime;
 	}
 	/**
-	 * @param release_datetime セットする release_datetime
+	 * @param release_date セットする release_date
 	 */
 	public void setRelease_datetime(String release_datetime) {
 		this.release_datetime = release_datetime;
@@ -94,5 +95,16 @@ public class SongRecord {
 	public void setSong_id(String song_id) {
 		this.song_id = song_id;
 	}
-
+	/**
+	 * @return language_type
+	 */
+	public String getLanguage_type() {
+		return language_type;
+	}
+	/**
+	 * @param language_type セットする 
+	 */
+	public void setLanguage_type(String language_type) {
+		this.language_type = language_type;
+	}
 }

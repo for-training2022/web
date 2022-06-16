@@ -13,6 +13,7 @@ public class S00006 extends HttpServlet {
 			HttpServletRequest request,
 			HttpServletResponse response)
 			throws IOException, ServletException {
+		
 		// （1）404.jspにフォワーディングする。
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
 	}
@@ -27,7 +28,7 @@ public class S00006 extends HttpServlet {
 		//--------------------------------------------
 		String URI = request.getRequestURI();
 
-		if (("/web/ja/S00006/back".equals(URI) || "/web/ja/S00006/change".equals(URI)) == false) {
+		if (("/web/ja/S00006/S00006.back".equals(URI) || "/web/ja/S00006/S00006.change".equals(URI)) == false) {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
 		}
 
@@ -35,9 +36,9 @@ public class S00006 extends HttpServlet {
 		//  (2) POSTパラメタで以下の値を受け取る
 		//--------------------------------------------
 		request.setCharacterEncoding("UTF-8");
-		String release_date_Radio = request.getParameter("release_date_is_radio");
-		String release_date_from = request.getParameter("release_date_is_from");
-		String release_date_to = request.getParameter("release_date_is_to");
+		String release_date_Radio = request.getParameter("release_date_radio");
+		String release_date_from = request.getParameter("release_date_from");
+		String release_date_to = request.getParameter("release_date_to");
 		String rating_Radio = request.getParameter("rating_radio");
 		String rating_from = request.getParameter("rating_from");
 		String rating_To = request.getParameter("rating_to");
@@ -55,9 +56,9 @@ public class S00006 extends HttpServlet {
 		//--------------------------------------------
 		//  (3) 入力項目(POSTパラメタ)を使って、Requestオブジェクトのアトリビュートの初期化をする。
 		//--------------------------------------------
-		request.setAttribute("release_date_is_radio", release_date_Radio);
-		request.setAttribute("release_date_is_from", release_date_from);
-		request.setAttribute("release_date_is_to", release_date_to);
+		request.setAttribute("release_date_radio", release_date_Radio);
+		request.setAttribute("release_date_from", release_date_from);
+		request.setAttribute("release_date_to", release_date_to);
 		request.setAttribute("rating_radio", rating_Radio);
 		request.setAttribute("rating_from", rating_from);
 		request.setAttribute("rating_to", rating_To);
@@ -73,7 +74,7 @@ public class S00006 extends HttpServlet {
 		request.setAttribute("sort_order", sort_order);
 		
 		// (4) S00005.jspにフォワーディングする。
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00005.jsp").forward(request, response);
+		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request, response);
 	}
 
 }

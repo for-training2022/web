@@ -33,30 +33,22 @@ public class S00007 extends HttpServlet {
 			HttpServletResponse response)
 					throws IOException, ServletException {
 
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request, response);
+		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request, response);
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, 
+			HttpServletResponse response)
 			throws IOException, ServletException {
-
+		
+		Connection con = null;
 		request.setCharacterEncoding("UTF-8");
 
 
-
-
-		// ホスト名
 		String hostName = "localhost";
-
-		// ユーザ
-		String connectUserName = "root";
-
-		// パスワード
+		String connectUserName = "meloko";
 		String connectPassword = "exceed";
-
-		// DB名
 		String dbName = "meloko";
 
-		// timeZone
 		String timeZone = "Asia/Tokyo";
 
 		// コネクション用のSQL
@@ -69,11 +61,8 @@ public class S00007 extends HttpServlet {
 				+ "&allowPublicKeyRetrieval=true"
 				+ "&useSSL=false";
 
-		// コネクション
-		Connection con = null;
-
 		try {
-			// コネクション
+			// (1)DB接続（コネクションの確立）
 			con = DriverManager.getConnection(URL, connectUserName, connectPassword);
 
 			// (2)内部メソッド呼び出し
@@ -98,14 +87,6 @@ public class S00007 extends HttpServlet {
 		}
 	}
 
-	/**
-	 * 
-	 * @param request HTTPリクエスト
-	 * @param response HTTPレスポンス
-	 * @param con
-	 * @throws IOException
-	 * @throws Exception
-	 */
 	private void mainProcessForSearch(HttpServletRequest request, HttpServletResponse response, Connection con)
 			throws IOException, Exception {
 
@@ -186,7 +167,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_001");
 				request.setAttribute("error", s);
 				request.setAttribute("nickname_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp")
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp")
 				.forward(request, response);
 				return;
 			}else{
@@ -206,7 +187,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_002");
 				request.setAttribute("error", s);
 				request.setAttribute("joined_date_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			} else {
@@ -223,7 +204,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_003");
 				request.setAttribute("error", s);
 				request.setAttribute("joined_date_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 			} else {
 				// 処理継続
@@ -238,7 +219,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_004");
 				request.setAttribute("error", s);
 				request.setAttribute("joined_date_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			} else if (joined_date_from == null
@@ -257,7 +238,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_005");
 				request.setAttribute("error", s);
 				request.setAttribute("joined_date_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			}
@@ -272,7 +253,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_006");
 				request.setAttribute("error", s);
 				request.setAttribute("birthday_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			} else {
@@ -291,7 +272,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_007");
 				request.setAttribute("error", s);
 				request.setAttribute("birthday_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 			} else {
 				// 処理継続
@@ -307,7 +288,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_008");
 				request.setAttribute("error", s);
 				request.setAttribute("birthday_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			} else if (birthday_from == null
@@ -327,7 +308,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_009");
 				request.setAttribute("error", s);
 				request.setAttribute("birthday_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			}
@@ -342,7 +323,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_010");
 				request.setAttribute("error", s);
 				request.setAttribute("listener_count_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			} else {
@@ -364,7 +345,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_011");
 				request.setAttribute("error", s);
 				request.setAttribute("listener_count_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			} else {
@@ -385,7 +366,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_012");
 				request.setAttribute("error", s);
 				request.setAttribute("listener_count_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			} else if (listener_count_from == null || "".equals(listener_count_from) && this.isNumber(listener_count_to) == true) {
@@ -411,7 +392,7 @@ public class S00007 extends HttpServlet {
 				String s = this.getDescription(con, "ES00007_013");
 				request.setAttribute("error", s);
 				request.setAttribute("listener_count_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 						response);
 				return;
 			} else {
@@ -429,7 +410,7 @@ public class S00007 extends HttpServlet {
 			String s = this.getDescription(con, "ES00007_014");
 			request.setAttribute("error", s);
 			request.setAttribute("language_type_is_error", "1");
-			getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,
+			getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
 					response);
 			return;
 		}
@@ -459,7 +440,7 @@ public class S00007 extends HttpServlet {
 		} catch (Exception e) {
 			String error = getDescription(con, "ES00007_015");
 			request.setAttribute("error", error);
-			getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request, response);
+			getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request, response);
 			return;
 		}
 		if (results2 == null) {
@@ -471,7 +452,7 @@ public class S00007 extends HttpServlet {
 		if (listSize == 0) {
 			String error = getDescription(con, "ES00007_016");
 			request.setAttribute("error", error);
-			getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request, response);
+			getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request, response);
 			return;
 		}
 
@@ -510,16 +491,10 @@ public class S00007 extends HttpServlet {
 		request.setAttribute("list", resultList);
 
 		// (20) S00008.jsp にフォワーディングする。
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00008.jsp").forward(request, response);
+		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00008.jsp").forward(request, response);
 	}
 
-	/**
-	 * 文言マスタより引数で渡されたkeyをIDにもつレコードを取得
-	 * @param con DBコネクション
-	 * @param description_id 文言ID
-	 * @return 表示文言
-	 * @throws Exception
-	 */
+	//文言マスタより引数で渡されたkeyをIDにもつレコードを取得
 	private String getDescription(Connection con, String description_id)
 			throws Exception {
 		String ret = "";

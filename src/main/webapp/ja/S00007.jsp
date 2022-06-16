@@ -139,17 +139,17 @@
     }
     
         
-	// (12) 以下の項目を元に並び順の入力状態を再現する。
+	// (13) 以下の項目を元に並び順の入力状態を再現する。
 	String sort_order1="";
 	String sort_order2="";
 	String sort_order3="";
 	String sort_order4="";
 	
-	if("02".equals(request.getAttribute("language_type_en"))){
+	if("02".equals(request.getAttribute("sort_order"))){
 		sort_order2 = "selected=\"selected\"";
-	}else if("03".equals(request.getAttribute("language_type_en"))) {
+	}else if("03".equals(request.getAttribute("sort_order"))) {
 		sort_order3 = "selected=\"selected\"";
-	}else if("04".equals(request.getAttribute("language_type_en"))) {
+	}else if("04".equals(request.getAttribute("sort_order"))) {
 		sort_order4 = "selected=\"selected\"";
 	}else{
 		sort_order1 = "selected=\"selected\"";
@@ -160,10 +160,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="keywords"
-	content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ" />
-<meta name="description"
-	content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
+<meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ" />
+<meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
 
 <link rel="stylesheet" type="text/css" href="/web/css/main.css">
 <script type="text/javascript" src="/web/js/jquery-3.3.0.min.js"></script>
@@ -184,8 +182,8 @@
 		<!-- タイトルバー -->
 		<div class="title_bar">
 			<p class="page_title">作曲家検索</p>
-			<a href="#" id="menu_open"> <img alt="メニュー"
-				src="/web/images/menu.png" class="menu-icon" />
+			<a href="#" id="menu_open"> 
+				<img alt="メニュー" src="/web/images/menu.png" class="menu-icon" />
 
 			</a>
 		</div>
@@ -236,7 +234,8 @@
 											value="2" <%=nickname_type_radio2 %>><span
 											class="radio_label">完全一致</span></td>
 									</tr>
-								</table> <input type="text" name="nickname" value="<%=nickname %>">
+								</table>
+								<input type="text" name="nickname" value="<%=nickname %>">
 							</td>
 						</tr>
 					</table>
@@ -264,8 +263,10 @@
 						</tr>
 						<tr>
 							<td class="value"><input type="date" name="joined_date_from"
-								value=<%=joined_date_from %>><span></span> <br />
-								<div class="left_padding1">≀</div> <input type="date"
+								value=<%=joined_date_from %>>
+								 <br />
+								<div class="left_padding1">≀</div> 
+								<input type="date"
 								name="joined_date_to" value=<%=joined_date_to %>></td>
 						</tr>
 					</table>
@@ -337,11 +338,11 @@
 								<table class="radio_base">
 									<tr>
 										<td><input type="radio" name="listener_count_radio"
-											value="1" class="onOffRadio" <%=listener_count_radio1 %>><span
-											class="radio_label">指定</span></td>
+											value="1" class="onOffRadio" <%=listener_count_radio1 %>>
+											<span class="radio_label">指定</span></td>
 										<td><input type="radio" name="listener_count_radio"
-											value="2" class="onOffRadio" <%=listener_count_radio2 %>><span
-											class="radio_label">指定なし</span></td>
+											value="2" class="onOffRadio" <%=listener_count_radio2 %>>
+											<span class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
