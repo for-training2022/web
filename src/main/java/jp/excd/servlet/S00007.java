@@ -38,11 +38,9 @@ public class S00007 extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
+		// コネクション
+  	Connection con = null;
 		request.setCharacterEncoding("UTF-8");
-
-
-
 
 		// ホスト名
 		String hostName = "localhost";
@@ -69,11 +67,9 @@ public class S00007 extends HttpServlet {
 				+ "&allowPublicKeyRetrieval=true"
 				+ "&useSSL=false";
 
-		// コネクション
-		Connection con = null;
-
 		try {
-			// コネクション
+			// (1)DB接続（コネクションの確立）
+
 			con = DriverManager.getConnection(URL, connectUserName, connectPassword);
 
 			// (2)内部メソッド呼び出し
@@ -476,7 +472,7 @@ public class S00007 extends HttpServlet {
 		}
 
 		// (19) 前処理で得られたListを用いて、Requestオブジェクトに値を設定していく。
-		List<ComposerRecord> resultList =  new ArrayList<ComposerRecord>();
+		List<ComposerRecord> newList =  new ArrayList<ComposerRecord>();
 
 		int counter = 0;
 		String hits = null;
@@ -491,15 +487,19 @@ public class S00007 extends HttpServlet {
 				String count = NumberFormat.getNumberInstance().format(counter);
 				hits = count+"件該当します(うち10件を表示しています)。";
 			}
-			
+			newList.add(l);
 		}
-		if (results2.size() < 10) {
-		    resultList.addAll(results2);
+
+		List<ComposerRecord> resultList = new ArrayList<ComposerRecord>();
+
+		if (newList.size() < 10) {
+			resultList.addAll(newList);
 		} else {
-		    for (int i = 0; i < 10; i++) {
-		        resultList.add(results2.get(i));
-		    }
+			for (int i = 0; i < 10; i++) {
+				resultList.add(newList.get(i));
+			}
 		}
+
 		request.setAttribute("hits", hits);
 		request.setAttribute("list", resultList);
 
@@ -672,119 +672,106 @@ public class S00007 extends HttpServlet {
 			} else {
 				// 処理続行
 			}
-			}
+		}
 
 
-			//(8) 誕生日TOのSQLへの連結及びプレイスホルダへの設定
-			if("1".equals(birthday_radio)) {
-				if (birthday_to == null || "".equals(birthday_to)) {
-					//処理続行
-				}
-				if (this.isDateValue(birthday_to)) {
-					if (list.size() == 0) {
-						query = query + sql3;
-					} else {
-						query = query + sql11;
-					}
-					query = query + sql12;
-
-					PlaceHolderInput p = new PlaceHolderInput();
-					p.setType("2");
-					p.setValue(birthday_to);
-					list.add(p);
-				} else {
-					throw new Exception();
-				}
-			} else {
+		//(8) 誕生日TOのSQLへの連結及びプレイスホルダへの設定
+		if("1".equals(birthday_radio)) {
+			if (birthday_to == null || "".equals(birthday_to)) {
 				//処理続行
 			}
-
-
-
-			//(9) リスナー数FROMのSQLへの連結及びプレイスホルダへの設定	
-			if ("1".equals(listener_count_radio)) {
-				if (listener_count_from == null || "".equals(listener_count_from)) {
-					//処理続行
-				}
-				if (this.isNumber(listener_count_from)) {
-					if (list.size() == 0) {
-						query = query + sql3;
-					} else {
-						query = query + sql13;
-					}
-					query = query + sql14;
-
-					PlaceHolderInput p = new PlaceHolderInput();
-					p.setType("1");
-					p.setValue(listener_count_from);
-					list.add(p);
+			if (this.isDateValue(birthday_to)) {
+				if (list.size() == 0) {
+					query = query + sql3;
 				} else {
-					throw new Exception();
+					query = query + sql11;
 				}
+				query = query + sql12;
+
+				PlaceHolderInput p = new PlaceHolderInput();
+				p.setType("2");
+				p.setValue(birthday_to);
+				list.add(p);
 			} else {
+				throw new Exception();
+			}
+		} else {
+			//処理続行
+		}
+
+
+
+		//(9) リスナー数FROMのSQLへの連結及びプレイスホルダへの設定	
+		if ("1".equals(listener_count_radio)) {
+			if (listener_count_from == null || "".equals(listener_count_from)) {
 				//処理続行
 			}
-
-			//(10) リスナー数TOのSQLへの連結及びプレイスホルダへの設定
-
-			if ("1".equals(listener_count_radio)) {
-				if (listener_count_to == null || "".equals(listener_count_to)) {
-					//処理続行
-				}
-				if (this.isNumber(listener_count_to)) {
-					if (list.size() == 0) {
-						query = query + sql3;
-					} else {
-						query = query + sql15;
-					}
-					query = query + sql16;
-
-					PlaceHolderInput p = new PlaceHolderInput();
-					p.setType("1");
-					p.setValue(listener_count_to);
-					list.add(p);
-
+			if (this.isNumber(listener_count_from)) {
+				if (list.size() == 0) {
+					query = query + sql3;
 				} else {
-					throw new Exception();
+					query = query + sql13;
 				}
+				query = query + sql14;
+
+				PlaceHolderInput p = new PlaceHolderInput();
+				p.setType("1");
+				p.setValue(listener_count_from);
+				list.add(p);
 			} else {
+				throw new Exception();
+			}
+		} else {
+			//処理続行
+		}
+
+		//(10) リスナー数TOのSQLへの連結及びプレイスホルダへの設定
+
+		if ("1".equals(listener_count_radio)) {
+			if (listener_count_to == null || "".equals(listener_count_to)) {
 				//処理続行
 			}
-
-			//(11) 言語のSQLへの連結及びプレイスホルダへの設定
-			if ("002".equals(language_type_jp)) {
-				if ("001".equals(language_type_en)) {
-					if (list.size() == 0) {
-						query = query + sql3;
-					} else {
-						query = query + sql17;
-					}
-					query = query + sql19;
-
-					PlaceHolderInput p1 = new PlaceHolderInput();
-					p1.setType("2");
-					
-					p1.setValue(language_type_en);
-					list.add(p1);					
-					
-					PlaceHolderInput p2 = new PlaceHolderInput();
-					p2.setType("2");
-					p2.setValue(language_type_jp);
-					list.add(p2);
+			if (this.isNumber(listener_count_to)) {
+				if (list.size() == 0) {
+					query = query + sql3;
 				} else {
-					if (list.size() == 0) {
-						query = query + sql3;
-					} else {
-						query = query + sql17;
-					}
-					query = query + sql18;
-
-					PlaceHolderInput p = new PlaceHolderInput();
-					p.setType("2");
-					p.setValue(language_type_jp);
-					list.add(p);
+					query = query + sql15;
 				}
-			} else if ("001".equals(language_type_en)){
+				query = query + sql16;
+
+				PlaceHolderInput p = new PlaceHolderInput();
+				p.setType("1");
+				p.setValue(listener_count_to);
+				list.add(p);
+
+			} else {
+				throw new Exception();
+			}
+		} else {
+			//処理続行
+		}
+
+		//(11) 言語のSQLへの連結及びプレイスホルダへの設定
+		if ("002".equals(language_type_jp)) {
+			if ("001".equals(language_type_en)) {
+				if (list.size() == 0) {
+					query = query + sql3;
+				} else {
+					query = query + sql17;
+				}
+				query = query + sql19;
+
+				PlaceHolderInput p1 = new PlaceHolderInput();
+				p1.setType("2");
+
+				p1.setValue(language_type_en);
+				list.add(p1);					
+
+				PlaceHolderInput p2 = new PlaceHolderInput();
+				p2.setType("2");
+				p2.setValue(language_type_jp);
+				list.add(p2);
+			} else {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
@@ -794,159 +781,167 @@ public class S00007 extends HttpServlet {
 
 				PlaceHolderInput p = new PlaceHolderInput();
 				p.setType("2");
-				p.setValue(language_type_en);
+				p.setValue(language_type_jp);
 				list.add(p);
-			} else {
-				throw new Exception();	
 			}
-
-			//(12) ニックネームのSQLへの連結及びプレイスホルダへの設定
-
-			if("1".equals(nickname_radio)) {
-				if(nickname == null || "".equals(nickname)) {
-					//処理続行
-				} else {
-					if(list.size() == 0) {
-						query = query + sql3;
-					} else {
-						query = query + sql20;
-					}
-					if("1".equals(nickname_type_radio)) {
-						query = query + sql21 + "'%" + nickname + "%' ";
-					} else if(! "1".equals(nickname_type_radio)) {
-						query = query + sql22 + "'" + nickname + "' ";
-
-					} else {
-						throw new Exception();
-					}
-				}
+		} else if ("001".equals(language_type_en)){
+			if (list.size() == 0) {
+				query = query + sql3;
 			} else {
+				query = query + sql17;
+			}
+			query = query + sql18;
+
+			PlaceHolderInput p = new PlaceHolderInput();
+			p.setType("2");
+			p.setValue(language_type_en);
+			list.add(p);
+		} else {
+			throw new Exception();	
+		}
+
+		//(12) ニックネームのSQLへの連結及びプレイスホルダへの設定
+
+		if("1".equals(nickname_radio)) {
+			if(nickname == null || "".equals(nickname)) {
 				//処理続行
-			}
-
-			// (13) 並び順の値に従って、ORDER BY句を連結する。
-			if ("01".equals(sort_order)) {
-				query = query + sql23;
-			} else if ("02".equals(sort_order)) {
-				query = query + sql24;
-			} else if ("03".equals(sort_order)) {
-				query = query + sql25;
-			} else if ("04".equals(sort_order)) {
-				query = query + sql26;
 			} else {
-				throw new Exception();
-			}
-
-			query = query + sql27;
-
-			// (14) PreparedStatementのインスタンスを得る。
-			PreparedStatement pstmt = con.prepareStatement(query);
-			
-
-
-
-			// (15) Where句の連結があれば、(4)で生成したプレイスホルダ用のListの内容をすべて、プレイスホルダに設定する。
-			for (int i = 0; i < list.size(); i++) {
-				PlaceHolderInput option = list.get(i);
-				String type = option.getType();
-				if ("1".equals(type)) {
-					pstmt.setString(i + 1, option.getStringValue());
-				} else if ("2".equals(type)) {
-					pstmt.setString(i + 1, option.getStringValue());
-
+				if(list.size() == 0) {
+					query = query + sql3;
+				} else {
+					query = query + sql20;
+				}
+				if("1".equals(nickname_type_radio)) {
+					query = query + sql21 + "'%" + nickname + "%' ";
+				} else if(! "1".equals(nickname_type_radio)) {
+					query = query + sql22 + "'" + nickname + "' ";
+				} else {
+					throw new Exception();
 				}
 			}
+		} else {
+			//処理続行
+		}
 
-			// (16) executeQueryを実行し、結果の「ResultSet」を得る。
-			ResultSet rs = pstmt.executeQuery();
+		// (13) 並び順の値に従って、ORDER BY句を連結する。
+		if ("01".equals(sort_order)) {
+			query = query + sql23;
+		} else if ("02".equals(sort_order)) {
+			query = query + sql24;
+		} else if ("03".equals(sort_order)) {
+			query = query + sql25;
+		} else if ("04".equals(sort_order)) {
+			query = query + sql26;
+		} else {
+			throw new Exception();
+		}
 
-			List<ComposerRecord> composerList = new ArrayList<ComposerRecord>();
+		query = query + sql27;
 
-			while (rs.next()) {
-				ComposerRecord record = new ComposerRecord();
-				
+		// (14) PreparedStatementのインスタンスを得る。
+		PreparedStatement pstmt = con.prepareStatement(query);
 
-				//ユニークコード
-				String Unique_code = rs.getString("unique_code");
-				record.setUniqueCode(Unique_code);
-				//ニックネーム
-				String Nickname = rs.getString("nickname");
-				record.setNickname(Nickname);
-				//登録日
-				String Joined_date = CommonUtils.dateformat(rs.getString("Joined_date"));
-				record.setJoined_date(Joined_date);
-				//性別
-				String Gender = rs.getString("gender");
-				C0005 C5 = C0005.getById(Gender);
-				if(C5 != null) {
+
+		// (15) Where句の連結があれば、(4)で生成したプレイスホルダ用のListの内容をすべて、プレイスホルダに設定する。
+		for (int i = 0; i < list.size(); i++) {
+			PlaceHolderInput option = list.get(i);
+			String type = option.getType();
+			if ("1".equals(type)) {
+				pstmt.setString(i + 1, option.getStringValue());
+			} else if ("2".equals(type)) {
+				pstmt.setString(i + 1, option.getStringValue());
+
+			}
+		}
+
+		// (16) executeQueryを実行し、結果の「ResultSet」を得る。
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ComposerRecord> composerList = new ArrayList<ComposerRecord>();
+
+		while (rs.next()) {
+			ComposerRecord record = new ComposerRecord();
+			CommonUtils c = new CommonUtils();
+
+			//ユニークコード
+			String Unique_code = rs.getString("unique_code");
+			record.setUniqueCode(Unique_code);
+			//ニックネーム
+			String Nickname = rs.getString("nickname");
+			record.setNickname(Nickname);
+			//登録日
+			String Joined_date = CommonUtils.dateformat(rs.getString("Joined_date"));
+			record.setJoined_date(Joined_date);
+			//性別
+			String Gender = rs.getString("gender");
+			C0005 C5 = C0005.getById(Gender);
+			if(C5 != null) {
 				record.setGender(C5.getLabel());
-				}else {
+			}else {
 				record.setGender("");
-				}
-				//誕生日
-				String Birthday = CommonUtils.dateformat(rs.getString("birthday"));
-				record.setBirthday(Birthday);
-				//リスナー数
-				String Listener_count = CommonUtils.valueformat(rs.getLong("listener_count"));
-				record.setListener_count(Listener_count);
-				//言語
-				String Language_type = rs.getString("language_type");
-				C0001 C1 = C0001.getById(Language_type);
-				if(C1 !=null) {
+			}
+			//誕生日
+			String Birthday = CommonUtils.dateformat(rs.getString("birthday"));
+			record.setBirthday(Birthday);
+			//リスナー数
+			String Listener_count = CommonUtils.valueformat(rs.getLong("listener_count"));
+			record.setListener_count(Listener_count);
+			//言語
+			String Language_type = rs.getString("language_type");
+			C0001 C1 = C0001.getById(Language_type);
+			if(C1 !=null) {
 				record.setLanguage_type(C1.getLabel());
-				}
-				
-
-				composerList.add(record);
 			}
 
-			request.setAttribute("list", composerList);
-
-			// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
-			pstmt.close();
-
-			// (18) 前処理で生成したListを呼び出し元に返却する。
-			return composerList;
-		
-
+			composerList.add(record);
 		}
 
-		private boolean isNumber(String listener_count_from) {
-			try {
-				Integer.parseInt(listener_count_from);
-				return true;
-			} catch (NumberFormatException e) {
-				return false; // エラーにならないように、とりあえずダミー
-			}
-		}
+		request.setAttribute("list", composerList);
 
-		private boolean isDouble(String num) {
-			try {
-				Double.parseDouble(num);
-				return true;
-			} catch (NumberFormatException e) {
-				return false; // エラーにならないように、とりあえずダミー
-			}
-		}
+		// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
+		pstmt.close();
 
-		private boolean isDateValue(String value) {
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-			try {
-				format.parse(value);
-				return true;
-			} catch (ParseException e) {
-				return false;
-			}
-		}
-
-		private long getDateValue(String value) throws ParseException {
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			Date dt = format.parse(value);
-			long miliTime = dt.getTime();
-			long retValue = (miliTime / 1000);
-			return retValue;
-		}
+		// (18) 前処理で生成したListを呼び出し元に返却する。
+		return composerList;
 
 
 	}
+
+	private boolean isNumber(String listener_count_from) {
+		try {
+			Integer.parseInt(listener_count_from);
+			return true;
+		} catch (NumberFormatException e) {
+			return false; // エラーにならないように、とりあえずダミー
+		}
+	}
+
+	private boolean isDouble(String num) {
+		try {
+			Double.parseDouble(num);
+			return true;
+		} catch (NumberFormatException e) {
+			return false; // エラーにならないように、とりあえずダミー
+		}
+	}
+
+	private boolean isDateValue(String value) {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+		try {
+			format.parse(value);
+			return true;
+		} catch (ParseException e) {
+			return false;
+		}
+	}
+
+	private long getDateValue(String value) throws ParseException {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date dt = format.parse(value);
+		long miliTime = dt.getTime();
+		long retValue = (miliTime / 1000);
+		return retValue;
+	}
+
+}

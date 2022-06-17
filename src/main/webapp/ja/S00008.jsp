@@ -34,10 +34,7 @@
     </div>
 
     <!-- メニューの起点 -->
-    <div id="menu_marker">
-    </div>
-
-      
+    <div id="menu_marker"></div>
 
     <!-- 検索結果表示 -->
     <div class="message_with_right_button">
@@ -127,11 +124,7 @@
 		<input name="language_type_en" type="hidden" value="<%= request.getAttribute("language_type_en") %>">
 		<input name="sort_order" type="hidden" value="<%= request.getAttribute("sort_order") %>">
 	</form>
-	
-	
-	
-	
-	
+
     <!-- ページトップへjavaScript -->
     <div id="pagetop" hidden>
       <img alt="ページトップ" src="/web/images/pagetop.png">
