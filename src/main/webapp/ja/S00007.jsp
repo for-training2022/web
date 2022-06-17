@@ -141,11 +141,11 @@
 	String sort_order2="";
 	String sort_order3="";
 	String sort_order4="";
-	if("02".equals(request.getAttribute("language_type_en"))) {
+	if("02".equals(request.getAttribute("sort_order2"))) {
 		sort_order2 = "selected=\"selected\"";
-	}else if("03".equals(request.getAttribute("language_type_en"))) {
+	}else if("03".equals(request.getAttribute("sort_order3"))) {
 		sort_order3 = "selected=\"selected\"";
-	}else if("04".equals(request.getAttribute("language_type_en"))) {
+	}else if("04".equals(request.getAttribute("sort_order4"))) {
 		sort_order4 = "selected=\"selected\"";
 	}else{
 		sort_order1 = "selected=\"selected\"";
@@ -158,14 +158,12 @@
 	<meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ" />
 	<meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
 
-	<link rel="stylesheet" type="text/css" href="/web/css/main.css">
-	 
- 	<script src="/web/js/jquery-3.3.0.min.js"></script>
- 	<script src="/web/js/util.js"></script>
+<link rel="stylesheet" type="text/css" href="/web/css/main.css">
+<script type="text/javascript" src="/web/js/jquery-3.3.0.min.js"></script>
+<script type="text/javascript" src="/web/js/util.js"></script>
+<script type="text/javascript" src="/web/js/input.js"></script>
 	
-	<script>
-	
-	</script>
+
 	
 	<title>作曲家検索</title>
 

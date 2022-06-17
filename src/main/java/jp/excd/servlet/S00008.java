@@ -74,7 +74,7 @@ public class S00008 extends HttpServlet{
 		
 		
 		//S00007.jspにフォワーディングする
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,response);
+		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,response);
 		
 	}
 	
