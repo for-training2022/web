@@ -17,7 +17,6 @@
  <script src="/web/js/jquery-3.3.0.min.js"></script>
  <script src="/web/js/util.js"></script>
 </head>
-
 <body>
   <!-- メニューのキャンセルレイヤの起点 -->
   <div id="layer_marker">
@@ -55,8 +54,7 @@
         <li>
           <div class="list">
           <hr>
-            <div class="person_name">
-           	 <a href="/web/ja/S00004/<%=record.getUniqueCode()%>"><%=record.getNickname() %></a>
+            <div class="person_name"><a href="/web/ja/S00004/<%=record.getUniqueCode()%>"><%=record.getNickname() %></a>
             </div>
 
             <div class="detail">
@@ -88,7 +86,7 @@
     
     
     <!-- フォーム -->
-	<form id="formBack" method="POST" action="/web/ja/S00008/S00008.back">
+	<form id="formBack" method="POST" action="/web/ja/S00008/back">
 		<input name="nickname_radio" type="hidden" value="<%= request.getAttribute("nickname_radio") %>">
 		<input name="nickname_type_radio" type="hidden" value="<%= request.getAttribute("nickname_type_radio") %>">
 		<input name="nickname" type="hidden" value="<%= request.getAttribute("nickname") %>">
@@ -107,7 +105,7 @@
 		<input name="language_type_en" type="hidden" value="<%= request.getAttribute("language_type_en") %>">
 		<input name="sort_order" type="hidden" value="<%= request.getAttribute("sort_order") %>">
 	</form>
-	<form id="formChange" method="POST" action="/web/ja/S00008/S00008.change">
+	<form id="formChange" method="POST" action="/web/ja/S00008/change">
 		<input name="nickname_radio" type="hidden" value="<%= request.getAttribute("nickname_radio") %>">
 		<input name="nickname_type_radio" type="hidden" value="<%= request.getAttribute("nickname_type_radio") %>">
 		<input name="nickname" type="hidden" value="<%= request.getAttribute("nickname") %>">
@@ -126,11 +124,7 @@
 		<input name="language_type_en" type="hidden" value="<%= request.getAttribute("language_type_en") %>">
 		<input name="sort_order" type="hidden" value="<%= request.getAttribute("sort_order") %>">
 	</form>
-	
-	
-	
-	
-	
+
     <!-- ページトップへjavaScript -->
     <div id="pagetop" hidden>
       <img alt="ページトップ" src="/web/images/pagetop.png">

@@ -132,5 +132,47 @@
 	
 
 
+	<servlet>
+		<servlet-name>search</servlet-name>
+		<servlet-class>jp.excd.servlet.S00007</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/ja/S00007/search</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>back</servlet-name>
+		<servlet-class>jp.excd.servlet.S00008</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>back</servlet-name>
+		<url-pattern>/ja/S00008/back</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>change</servlet-name>
+		<servlet-class>jp.excd.servlet.S00008</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>change</servlet-name>
+		<url-pattern>/ja/S00008/change</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
 

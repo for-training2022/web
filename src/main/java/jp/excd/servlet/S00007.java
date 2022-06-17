@@ -36,19 +36,25 @@ public class S00007 extends HttpServlet {
 		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request, response);
 	}
 
-	public void doPost(HttpServletRequest request, 
-			HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
-		Connection con = null;
+		// コネクション
+  	Connection con = null;
 		request.setCharacterEncoding("UTF-8");
 
-
+		// ホスト名
 		String hostName = "localhost";
+
+		// ユーザ
 		String connectUserName = "meloko";
+
+		// パスワード
 		String connectPassword = "exceed";
+
+		// DB名
 		String dbName = "meloko";
 
+		// timeZone
 		String timeZone = "Asia/Tokyo";
 
 		// コネクション用のSQL
@@ -63,6 +69,7 @@ public class S00007 extends HttpServlet {
 
 		try {
 			// (1)DB接続（コネクションの確立）
+
 			con = DriverManager.getConnection(URL, connectUserName, connectPassword);
 
 			// (2)内部メソッド呼び出し
@@ -87,6 +94,14 @@ public class S00007 extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 
+	 * @param request HTTPリクエスト
+	 * @param response HTTPレスポンス
+	 * @param con
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	private void mainProcessForSearch(HttpServletRequest request, HttpServletResponse response, Connection con)
 			throws IOException, Exception {
 
@@ -485,8 +500,6 @@ public class S00007 extends HttpServlet {
 			}
 		}
 
-
-		String count = NumberFormat.getNumberInstance().format(counter);
 		request.setAttribute("hits", hits);
 		request.setAttribute("list", resultList);
 
@@ -494,7 +507,13 @@ public class S00007 extends HttpServlet {
 		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00008.jsp").forward(request, response);
 	}
 
-	//文言マスタより引数で渡されたkeyをIDにもつレコードを取得
+	/**
+	 * 文言マスタより引数で渡されたkeyをIDにもつレコードを取得
+	 * @param con DBコネクション
+	 * @param description_id 文言ID
+	 * @return 表示文言
+	 * @throws Exception
+	 */
 	private String getDescription(Connection con, String description_id)
 			throws Exception {
 		String ret = "";
@@ -924,6 +943,5 @@ public class S00007 extends HttpServlet {
 		long retValue = (miliTime / 1000);
 		return retValue;
 	}
-
 
 }
