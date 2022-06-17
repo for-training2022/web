@@ -39,7 +39,7 @@ public class S00006 extends HttpServlet {
 		String release_date_Radio = request.getParameter("release_date_radio");
 		String release_date_from = request.getParameter("release_date_from");
 		String release_date_to = request.getParameter("release_date_to");
-		String rating_Radio = request.getParameter("rating_radio");
+		String rating_radio = request.getParameter("rating_radio");
 		String rating_from = request.getParameter("rating_from");
 		String rating_To = request.getParameter("rating_to");
 		String rating_average_radio = request.getParameter("rating_average_radio");
@@ -59,7 +59,7 @@ public class S00006 extends HttpServlet {
 		request.setAttribute("release_date_radio", release_date_Radio);
 		request.setAttribute("release_date_from", release_date_from);
 		request.setAttribute("release_date_to", release_date_to);
-		request.setAttribute("rating_radio", rating_Radio);
+		request.setAttribute("rating_radio", rating_radio);
 		request.setAttribute("rating_from", rating_from);
 		request.setAttribute("rating_to", rating_To);
 		request.setAttribute("rating_average_radio", rating_average_radio);

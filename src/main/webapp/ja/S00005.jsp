@@ -24,6 +24,13 @@ if ("1".equals(request.getAttribute("release_date_radio"))) {
 String release_date_from = (String) request.getAttribute("release_date_from");
 String release_date_to = (String) request.getAttribute("release_date_to");
 
+if (release_date_from == null) {
+	release_date_from = "";	
+}
+if (release_date_to == null) {
+	release_date_to = "";	
+}
+
 // (4) 「感動指数_エラー状態(rating_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String rating_is_error = "";
 if ("1".equals(request.getAttribute("rating_is_error"))) {
@@ -53,9 +60,9 @@ if ("1".equals(request.getAttribute("rating_average_is_error"))) {
 String rating_average_radio1 = "";
 String rating_average_radio2 = "";
 if ("1".equals(request.getAttribute("rating_average_radio"))) {
-	rating_radio1 = "checked=\"checked\"";
+	rating_average_radio1 = "checked=\"checked\"";
 }else{
-	rating_radio2 = "checked=\"checked\"";
+	rating_average_radio2 = "checked=\"checked\"";
 }
 String rating_average_from = (String) request.getAttribute("rating_average_from");
 if (rating_average_from == null) rating_average_from = "1.0";
@@ -230,8 +237,8 @@ if("02".equals(request.getAttribute("sort_order"))){
 									<table class="radio_base">
 										<tr>
 											<td><input type="radio" name="rating_radio" value="1"
-												class="onOffRadio" <%=rating_radio1 %>> <span
-												class="radio_label">指定</span></td>
+												class="onOffRadio" <%=rating_radio1 %>>
+												<span class="radio_label">指定</span></td>
 											<td><input type="radio" name="rating_radio" value="2"
 												class="onOffRadio" <%=rating_radio2 %>> <span
 												class="radio_label">指定なし</span></td>
@@ -261,12 +268,9 @@ if("02".equals(request.getAttribute("sort_order"))){
 									<td class="value">
 										<table class="radio_base">
 											<tr>
-												<td><input type="radio" name="rating_average_radio"
-													value="1" class="onOffRadio" <%=rating_average_radio1 %>>
+												<td><input type="radio" name="rating_average_radio" value="1" <%=rating_average_radio1 %> class="onOffRadio" >
 													<span class="radio_label">指定</span></td>
-												<td><input type="radio" name="rating_average_radio"
-													value="2" class="onOffRadio" <%=rating_average_radio2 %>><span
-													class="radio_label">指定なし</span></td>
+												<td><input type="radio" name="rating_average_radio" value="2" <%=rating_average_radio2 %> class="onOffRadio" ><span>指定なし</span></td>
 											</tr>
 										</table>
 									</td>
@@ -392,7 +396,7 @@ if("02".equals(request.getAttribute("sort_order"))){
 							<tr>
 								<td class="value"><input type="text" name="views_from"
 									value=<%=views_from %>> <br /> ～ <br /> <input
-									type="text" name="views_to" value=""></td>
+									type="text" name="views_to" value=<%=views_to %>></td>
 							</tr>
 						</table>
 					</div>
@@ -421,10 +425,10 @@ if("02".equals(request.getAttribute("sort_order"))){
 									<td class="value">
 										<table class="radio_base">
 											<tr>
-												<td><input type="radio" name="title_type_radio1"
+												<td><input type="radio" name="title_type_radio"
 													value="1" <%=title_type_radio1 %>> <span
 													class="radio_label">あいまい</span></td>
-												<td><input type="radio" name="title_type_radio2"
+												<td><input type="radio" name="title_type_radio"
 													value="2" <%=title_type_radio2 %>> <span
 													class="radio_label">完全一致</span></td>
 											</tr>

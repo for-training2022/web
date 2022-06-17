@@ -4,7 +4,7 @@ public class SongRecord {
 
 	private String title;
 	private String rating_total;
-	private double rating_average;
+	private String rating_average;
 	private String total_listen_count;
 	private String release_datetime;
 	private String image_file_name;
@@ -38,13 +38,13 @@ public class SongRecord {
 	/**
 	 * @return rating_average
 	 */
-	public double getRating_average() {
+	public String getRating_average() {
 		return rating_average;
 	}
 	/**
-	 * @param rating_average セットする rating_average
+	 * @param rating_average2 セットする rating_average
 	 */
-	public void setRating_average(double rating_average) {
+	public void setRating_average(String rating_average) {
 		this.rating_average = rating_average;
 	}
 	/**

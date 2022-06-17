@@ -121,10 +121,10 @@ public class S00005 extends HttpServlet {
 
 		//初期化
 		request.setAttribute("error", null);
-		request.setAttribute("release_date_is_error", null);
-		request.setAttribute("release_date_is_radio", release_date_radio);
-		request.setAttribute("release_date_is_from", release_date_from);
-		request.setAttribute("release_date_is_to", release_date_to);
+		request.setAttribute("release_date_error", null);
+		request.setAttribute("release_date_radio", release_date_radio);
+		request.setAttribute("release_date_from", release_date_from);
+		request.setAttribute("release_date_to", release_date_to);
 		request.setAttribute("rating_is_error", null);
 		request.setAttribute("rating_radio", rating_radio);
 		request.setAttribute("rating_from", rating_from);
@@ -851,7 +851,7 @@ public class S00005 extends HttpServlet {
 			String Rating_total = NumberFormat.getNumberInstance().format(rs.getLong("rating_total"));
 			record.setRating_total(Rating_total);
 			//平均評価数
-			double Rating_average = rs.getDouble("rating_average");
+			String Rating_average = CommonUtils.averageformat(rs.getDouble("rating_average"));
 			record.setRating_average(Rating_average);
 			//再生回数
 			String Total_listen_count = NumberFormat.getNumberInstance().format(rs.getLong("Total_listen_count"));
