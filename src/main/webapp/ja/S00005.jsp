@@ -447,14 +447,14 @@ if("02".equals(request.getAttribute("sort_order"))){
 								<tr>
 									<td class="label">並び順</td>
 									<td class="value"><select name="sort_order" tabindex="10">
-											<option value="01" selected="selected">新しい順</option>
-											<option value="02">古い順</option>
-											<option value="03">感動指数が多い順</option>
-											<option value="04">感動指数が少ない順</option>
-											<option value="05">平均感動指数が高い順</option>
-											<option value="06">平均感動指数が低い順</option>
-											<option value="07">再生回数が多い順</option>
-											<option value="08">再生回数が少ない順</option>
+											<option value="01" <%=sort_order1 %>>新しい順</option>
+											<option value="02" <%=sort_order2 %>>古い順</option>
+											<option value="03" <%=sort_order3 %>>感動指数が多い順</option>
+											<option value="04" <%=sort_order4 %>>感動指数が少ない順</option>
+											<option value="05" <%=sort_order5 %>>平均感動指数が高い順</option>
+											<option value="06" <%=sort_order6 %>>平均感動指数が低い順</option>
+											<option value="07" <%=sort_order7 %>>再生回数が多い順</option>
+											<option value="08" <%=sort_order8 %>>再生回数が少ない順</option>
 									</select></td>
 								</tr>
 							</table>
