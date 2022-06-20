@@ -220,7 +220,7 @@ public class S00004 extends HttpServlet  {
 			
 			while(rs.next()) {
 				totalRatingFormated = CommonUtils.valueformat(rs.getLong("total_rating")); //総感動指数合計(フォーマットも)
-				averageRatingFormated = CommonUtils.valueformat(rs.getLong("average_rating")); //総感動指数平均(フォーマットも)
+				averageRatingFormated = CommonUtils.averageformat(rs.getDouble("average_rating")); //総感動指数平均(フォーマットも)
 			}
 			
 			//総再生回数の計算
@@ -258,7 +258,7 @@ public class S00004 extends HttpServlet  {
 			composerBean.setJoinedDateFormated(joinedDateFormated); //登録日
 			composerBean.setSongTotal(songTotal); //作品数
 			composerBean.setTotalRatingFormated(totalRatingFormated); //感動指数合計
-			composerBean.setAverageRatingFormated(averageRatingFormated); //感動指数合計
+			composerBean.setAverageRatingFormated(averageRatingFormated); //総感動指数平均
 			composerBean.setTotalListenFormated(totalListenFormated); //総再生回数
 			composerBean.setOtherLinkUrl(cr.otherLinkUrl); //関連リンクURL
 			composerBean.setOtherLinkDecription(cr.otherLinkDecription); //関連リンク文字列
