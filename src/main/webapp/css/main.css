@@ -249,7 +249,7 @@ div.main_button input {
 /******************************************************************************/
 footer {
   font-size: 0.8em;
-  text-align: right;
+  text-align: center;
   border-top: thin solid #666666;
   margin-top: 1.0em;
   padding-top: 0.5em;
@@ -726,9 +726,9 @@ div.top_banner p {
 }
 div.top_banner img.to_download_page_arrow {
   position:absolute;
-  height: 60px;
+  height: 30px;
   width: 30px;
-  top: 4px;
+  top: 39px;
   right: 4px;
 }
 
@@ -784,7 +784,7 @@ div.top_tab ul li.tab1 {
   width: 80px;
   top: 0px;
   left: 0px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 28px;
   text-align:center;
 }
@@ -794,7 +794,7 @@ div.top_tab ul li.tab2 {
   width: 80px;
   top: 0px;
   left: 80px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 28px;
   text-align:center;
 }
@@ -804,7 +804,7 @@ div.top_tab ul li.tab3 {
   width: 80px;
   top: 0px;
   left: 160px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 28px;
   text-align:center;
 }
@@ -814,7 +814,7 @@ div.top_tab ul li.tab4 {
   width: 80px;
   top: 0px;
   left: 240px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 28px;
   text-align:center;
 }
@@ -830,14 +830,14 @@ div.top_tab ul li a {
 /******************************************************************************/
 /* ■■トップ告知                                                           */
 /******************************************************************************/
-div.top_notice:active {
+div.top_notice{
   /* absoluteの起点 */
   position:relative;
   width: 100%;
   background-color: #ffff00;
 }
-div.top_notice:not(:active){
-	visibility:none;
+div.no_view{
+	display: none
 }
 div.top_notice p.top_notice_title {
   position:absolute;
@@ -845,7 +845,7 @@ div.top_notice p.top_notice_title {
   width: 80px;
   top: 0px;
   left: 6px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 14px;
   text-align: left;
   padding-top: 8px;
