@@ -13,16 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class SampleServlet extends HttpServlet {
+
 	public void doPost(
 			HttpServletRequest request,
 			HttpServletResponse response)
 			throws IOException, ServletException {
-		//  404.jspにフォワーディングする。
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
-		return;
-	}
-
-
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
+				return;
+			}
 
 	public void doGet(
 			HttpServletRequest request,
