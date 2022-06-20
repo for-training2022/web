@@ -106,9 +106,9 @@ public class S00003 extends HttpServlet{
 				+ "    song.id = ?";
 
 		// コメント＋評価
-		String commentSql = "select "
-				+ "comment.id "
-				+ ", comment.song_id"
+		String commentSql ="select "
+				+ "comment.id"
+				+ ",comment.song_id"
 				+ ", comment.sequence"
 				+ ", comment.composer_id"
 				+ ", comment.comment"
@@ -119,13 +119,13 @@ public class S00003 extends HttpServlet{
 				+ ", composer.unique_code"
 				+ ", composer.nickname "
 				+ "from "
-				+ "((rating left join comment "
-				+ "on rating.composer_id = comment.composer_id "
-				+ "and rating.song_id = comment.song_id) "
-				+ "left join composer "
-				+ "on rating.composer_id = composer.id) "
+				+ "((comment"
+				+ " left join rating"
+				+ " on comment.song_id = rating.song_id"
+				+ " and rating.composer_id = comment.composer_id) "
+				+ " left join composer "
+				+ " on comment.composer_id = composer.id)"
 				+ "where comment.song_id = ? "
-				+ "and comment.comment is not null "
 				+ "and comment.type = ?"
 				+ "order by comment.sequence asc";
 
@@ -204,7 +204,7 @@ public class S00003 extends HttpServlet{
 			parBean.setComment(rs.getString("comment"));
 			parBean.setType(rs.getString("type"));
 			parBean.setWriteDatetime(CommonUtils.epoch(rs.getDouble("write_datetime")));
-			parBean.setRating(CommonUtils.starformat(CommonUtils.ratingformat(rs.getByte("rating"))));
+			parBean.setRating(CommonUtils.starformat(rs.getString("rating")));
 			parBean.setNickname2(rs.getString("nickname"));
 			parBean.setUniqueCode2(rs.getString("unique_code"));
 			String commentId = rs.getString("id");
@@ -229,7 +229,7 @@ public class S00003 extends HttpServlet{
 				comBean.setComment(rs.getString("comment"));
 				comBean.setType(rs.getString("type"));
 				comBean.setWriteDatetime(CommonUtils.epoch(rs.getDouble("write_datetime")));
-				comBean.setRating(CommonUtils.starformat(CommonUtils.ratingformat(rs.getByte("rating"))));
+				comBean.setRating(CommonUtils.starformat(rs.getString("rating")));
 				comBean.setNickname2(rs.getString("nickname"));
 				comBean.setUniqueCode2(rs.getString("unique_code"));
 				ParentBean data = parentMap.get(toCommentId);

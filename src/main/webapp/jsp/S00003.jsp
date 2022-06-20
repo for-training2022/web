@@ -37,7 +37,7 @@
 			<a href="#" id="menu_open"> <img alt="メニュー"
 				src="/web/images/menu.png" class="menu-icon" />
 			</a>
-			<%@ include file = "Menuin.jsp" %>
+			<%@ include file="Menuin.jsp"%>
 		</div>
 
 		<!-- メニューの起点 -->
@@ -60,9 +60,9 @@
 		</div>
 
 		<!-- メッセージ -->
-		<% 
-		if("".equals(songBean.getMessage())){
-		}else{
+		<%
+		if ("".equals(songBean.getMessage())) {
+		} else {
 		%>
 		<div class="message_table">
 			<table>
@@ -74,49 +74,49 @@
 				</tr>
 			</table>
 		</div>
-		<% 
+		<%
 		}
 		%>
 
 		<!-- 曲画像リンク -->
 		<div class="song_link">
-		<ul>
-		<li style = "list-style: none !important;">
-			<div class="cell">
-				<div class="image_base">
-					<a href="<%=request.getAttribute("melokoUrl")%>">
-						<div class="image">
-							<%
-							if (!"".equals(songBean.getImageFileName())) {
-								if(songBean.getCutLength() != 0){
+			<ul>
+				<li style="list-style: none !important;">
+					<div class="cell">
+						<div class="image_base">
+							<a href="<%=request.getAttribute("melokoUrl")%>">
+								<div class="image">
+									<%
+									if (!"".equals(songBean.getImageFileName())) {
+										if (songBean.getCutLength() != 0) {
 									%>
 									<img alt="<%=songBean.getTitle()%>"
-									src="/web/images/<%=songBean.getImageFileName() %>"
-									style = "
-										height : <%=songBean.getImageFileHeight() %>px !important;
-										top : -<%=songBean.getCutLength() %>px !important;
+										src="/web/images/<%=songBean.getImageFileName()%>"
+										style="
+										height : <%=songBean.getImageFileHeight()%>px !important;
+										top : -<%=songBean.getCutLength()%>px !important;
 										position:relative ! important;
-									">		
+									">
 									<%
-								}else{
-							%>
-							<img alt="<%=songBean.getTitle()%>"
-								src="/web/images/<%=songBean.getImageFileName() %>">
-							<%
-								}
-							}else {
-							%>
-							<img alt="Noimage" src="/web/images/noimage.png" width="275"
-								height="160">
-							<%
-							}
-							%>
-							<img alt="play" class="play" src="/web/images/play.png">
+									} else {
+									%>
+									<img alt="<%=songBean.getTitle()%>"
+										src="/web/images/<%=songBean.getImageFileName()%>">
+									<%
+									}
+									} else {
+									%>
+									<img alt="Noimage" src="/web/images/noimage.png" width="275"
+										height="160">
+									<%
+									}
+									%>
+									<img alt="play" class="play" src="/web/images/play.png">
+								</div>
+							</a>
 						</div>
-					</a>
-				</div>
-			</div>
-			</li>
+					</div>
+				</li>
 			</ul>
 		</div>
 
@@ -143,7 +143,7 @@
 		<!-- 関連リンク -->
 		<%
 		if ("".equals(songBean.getOtherLinkDescription())) {
-		}else{
+		} else {
 		%>
 		<div class="link">
 			<table>
@@ -168,15 +168,37 @@
 		<!-- コメントテーブル -->
 		<div class="comments">
 			<ul>
-				<%
-				List<CommentBean> commentList = new ArrayList<CommentBean>();
-				commentList = (List<CommentBean>) request.getAttribute("commentList");
-				int i = 1;
-				for (CommentBean comBean : commentList) {
-				%>
 				<li>
 					<%
-					if ("0".equals(comBean.getType())) {
+					List<CommentBean> commentList = new ArrayList<CommentBean>();
+					commentList = (List<CommentBean>) request.getAttribute("commentList");
+					int i = 1;
+					for (CommentBean comBean : commentList) {
+						if(comBean.getRating() == null){
+							if ("0".equals(comBean.getType())) {
+					%>
+					<div class="normal">
+						<div class="composer_link_no_rating">
+							<a
+								href="http://localhost:8080/web/ja/S00004/<%=comBean.getUniqueCode2()%>"><%=comBean.getNickname2()%></a>
+						</div><br>
+						<p class="comment"><%=comBean.getComment()%></p>
+						<p class="time"><%=comBean.getWriteDatetime()%></p>
+					</div> <%
+							 } else if ("1".equals(comBean.getType())) {
+ %>
+					<div class="reply">
+						<div class="grater_than"></div>
+						<div class="composer_link_no_rating">
+							<a
+								href="http://localhost:8080/web/ja/S00004/<%=comBean.getUniqueCode2()%>"><%=comBean.getNickname2()%></a>
+						</div><br>
+						<p class="comment"><%=comBean.getComment()%></p>
+						<p class="time"><%=comBean.getWriteDatetime()%></p>
+					</div><% 
+							}
+						}else{
+							if ("0".equals(comBean.getType())) {
 					%>
 					<div class="normal">
 						<div class="<%=comBean.getRating()%>"></div>
@@ -187,7 +209,7 @@
 						<p class="comment"><%=comBean.getComment()%></p>
 						<p class="time"><%=comBean.getWriteDatetime()%></p>
 					</div> <%
- } else if ("1".equals(comBean.getType())) {
+							 } else if ("1".equals(comBean.getType())) {
  %>
 					<div class="reply">
 						<div class="grater_than">&gt;</div>
@@ -199,17 +221,15 @@
 						<p class="comment"><%=comBean.getComment()%></p>
 						<p class="time"><%=comBean.getWriteDatetime()%></p>
 					</div> <%
- }
+ 							}
+						}
+						i = i + 1;
+ 						if (i > 100) {
+						 	break;
+ 						}
+ 					}
  %>
 				</li>
-				<%
-				i = i + 1;
-
-				if (i > 100) {
-					break;
-				}
-				}
-				%>
 			</ul>
 		</div>
 		<!-- ページトップへjavaScript -->

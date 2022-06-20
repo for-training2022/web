@@ -13,7 +13,7 @@ public class CommonUtils {
 	 * */
 	public static String dateformat(String a) {
 
-		if(a==null) {
+		if(a.equals(null)) {
 			String date="";
 			return date;
 		}else {
@@ -271,31 +271,35 @@ public class CommonUtils {
 	 * @return 評価に応じたクラス名
 	 * */
 
-	public static String starformat(String a4) {
-		if ("5".equals(a4)) {
-			a4 = "rating star50";
-		}else if("4.5".equals(a4)){
-			a4 = "rating star45";
-		}else if("4".equals(a4)){
-			a4 = "rating star40";
-		}else if("3.5".equals(a4)){
-			a4 = "rating star35";
-		}else if("3".equals(a4)){
-			a4 = "rating star30";
-		}else if("2.5".equals(a4)){
-			a4 = "rating star25";
-		}else if("2".equals(a4)){
-			a4 = "rating star20";
-		}else if("1.5".equals(a4)){
-			a4 = "rating star15";
-		}else if("1".equals(a4)){
-			a4 = "rating star10";
-		}else if("0.5".equals(a4)){
-			a4 = "rating star05";
-		}else if("0".equals(a4)){
-			a4 = "rating star00";
+	public static String starformat(String str5) {
+		
+		String rating =null;
+		
+		if ("5" .equals (str5)) {
+			rating = "rating star50";
+		}else if("4.5" .equals (str5)){
+			rating = "rating star45";
+		}else if("4" .equals (str5)){
+			rating = "rating star40";
+		}else if("3.5" .equals (str5)){
+			rating = "rating star35";
+		}else if("3" .equals (str5)){
+			rating = "rating star30";
+		}else if("2.5" .equals (str5)){
+			rating = "rating star25";
+		}else if("2" .equals (str5)){
+			rating = "rating star20";
+		}else if("1.5" .equals (str5)){
+			rating = "rating star15";
+		}else if("1" .equals (str5)){
+			rating = "rating star10";
+		}else if("0.5" .equals (str5)){
+			rating = "rating star05";
+		}else if("0" .equals (str5)){
+			rating = "rating star00";
 		}
-		return a4;
+		
+		return rating;
 	}
 	
 	public static double imageHeightformat(int width , int height) {
