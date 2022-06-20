@@ -17,23 +17,13 @@
 <title>
 	<%
 	SongBean songBean = null;
-	songBean = (SongBean)request.getAttribute("songBean");
+	songBean = (SongBean) request.getAttribute("songBean");
 	out.println(songBean.getTitle());
 	%>
 </title>
 <link rel="stylesheet" href="/web/css/main.css" />
 <script src="/web/js/jquery-3.3.0.min.js"></script>
 <script src="/web/js/util.js"></script>
-<!-- 画像の圧縮表示設定 -->
-<style>
-div.song_link div.cell div.song1 img {
-	position: relative;
-	left: 0px;
-	top: -11px;
-	width: 275px;
-	height: 182px;
-}
-</style>
 </head>
 <body>
 	<!-- メニューのキャンセルレイヤの起点 -->
@@ -45,8 +35,9 @@ div.song_link div.cell div.song1 img {
 		<div class="title_bar">
 			<p class="page_title"><%=songBean.getTitle()%></p>
 			<a href="#" id="menu_open"> <img alt="メニュー"
-				src="/images/menu.png" class="menu-icon" />
+				src="/web/images/menu.png" class="menu-icon" />
 			</a>
+			<%@ include file = "Menuin.jsp" %>
 		</div>
 
 		<!-- メニューの起点 -->
@@ -69,7 +60,11 @@ div.song_link div.cell div.song1 img {
 		</div>
 
 		<!-- メッセージ -->
-		<div class="single_row_table">
+		<% 
+		if("".equals(songBean.getMessage())){
+		}else{
+		%>
+		<div class="message_table">
 			<table>
 				<tr>
 					<td class="label">メッセージ</td>
@@ -79,22 +74,50 @@ div.song_link div.cell div.song1 img {
 				</tr>
 			</table>
 		</div>
+		<% 
+		}
+		%>
 
 		<!-- 曲画像リンク -->
 		<div class="song_link">
+		<ul>
+		<li style = "list-style: none !important;">
 			<div class="cell">
 				<div class="image_base">
 					<a href="<%=request.getAttribute("melokoUrl")%>">
 						<div class="image">
+							<%
+							if (!"".equals(songBean.getImageFileName())) {
+								if(songBean.getCutLength() != 0){
+									%>
+									<img alt="<%=songBean.getTitle()%>"
+									src="/web/images/<%=songBean.getImageFileName() %>"
+									style = "
+										height : <%=songBean.getImageFileHeight() %>px !important;
+										top : -<%=songBean.getCutLength() %>px !important;
+										position:relative ! important;
+									">		
+									<%
+								}else{
+							%>
 							<img alt="<%=songBean.getTitle()%>"
-								src="/web/images/<%=songBean.getImageFileName()%>"
-								width="<%=songBean.getImageFileWidth()%>"
-								height="<%=songBean.getImageFileHeight()%>"> <img
-								alt="play" class="play" src="/web/images/play.png">
+								src="/web/images/<%=songBean.getImageFileName() %>">
+							<%
+								}
+							}else {
+							%>
+							<img alt="Noimage" src="/web/images/noimage.png" width="275"
+								height="160">
+							<%
+							}
+							%>
+							<img alt="play" class="play" src="/web/images/play.png">
 						</div>
 					</a>
 				</div>
 			</div>
+			</li>
+			</ul>
 		</div>
 
 		<!-- 情報 -->
@@ -118,16 +141,24 @@ div.song_link div.cell div.song1 img {
 		</div>
 
 		<!-- 関連リンク -->
-		<div class="single_row_table">
+		<%
+		if ("".equals(songBean.getOtherLinkDescription())) {
+		}else{
+		%>
+		<div class="link">
 			<table>
 				<tr>
 					<td class="label">関連リンク</td>
 				</tr>
 				<tr>
-					<td class="value"><a href="<%=songBean.getOtherLinkUrl()%>"><%=songBean.getOtherLinkDescription()%></a></td>
+					<td class="value"><a
+						href="https://<%=songBean.getOtherLinkUrl()%>/"><%=songBean.getOtherLinkDescription()%></a></td>
 				</tr>
 			</table>
 		</div>
+		<%
+		}
+		%>
 
 		<!-- コメントテーブルのヘッダー -->
 		<div class="sub_header">
@@ -140,6 +171,7 @@ div.song_link div.cell div.song1 img {
 				<%
 				List<CommentBean> commentList = new ArrayList<CommentBean>();
 				commentList = (List<CommentBean>) request.getAttribute("commentList");
+				int i = 1;
 				for (CommentBean comBean : commentList) {
 				%>
 				<li>
@@ -171,13 +203,18 @@ div.song_link div.cell div.song1 img {
  %>
 				</li>
 				<%
+				i = i + 1;
+
+				if (i > 100) {
+					break;
+				}
 				}
 				%>
 			</ul>
 		</div>
 		<!-- ページトップへjavaScript -->
 		<div id="pagetop" hidden>
-			<img alt="ページトップ" src="web/images/pagetop.png">
+			<img alt="ページトップ" src="/web/images/pagetop.png">
 		</div>
 
 		<!-- フッター -->

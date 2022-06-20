@@ -39,6 +39,7 @@ public class S00003 extends HttpServlet{
 			mainSongSearch(request, response, con, pstmt, rs);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			getServletConfig().getServletContext().getRequestDispatcher("/jsp/500.jsp").forward(request, response);
 		}finally{
 
 			try {
@@ -52,7 +53,8 @@ public class S00003 extends HttpServlet{
 					con.close();
 				}
 			} catch (SQLException e) {
-				throw new ServletException();
+				e.printStackTrace();
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/500.jsp").forward(request, response);
 			}
 		}
 	}
@@ -159,8 +161,11 @@ public class S00003 extends HttpServlet{
 			songBean.setScoreType(CommonUtils.scoreChange(rs.getString("score_type")));
 			songBean.setBpm(rs.getString("bpm"));
 			songBean.setImageFileName(rs.getString("image_file_name"));
-			songBean.setImageFileHeight(rs.getInt("image_file_height"));
+			int width = rs.getInt("image_file_width");
+			int height = rs.getInt("image_file_height");
+			songBean.setImageFileHeight(CommonUtils.imageHeightformat(width , height));
 			songBean.setImageFileWidth(rs.getInt("image_file_width"));
+			songBean.setCutLength(CommonUtils.cutLength(songBean.getImageFileHeight()));
 			songBean.setOtherLinkUrl(rs.getString("other_link_url"));
 			songBean.setOtherLinkDescription(rs.getString("other_link_description"));
 			songBean.setNickname1(rs.getString("nickname"));
@@ -197,7 +202,6 @@ public class S00003 extends HttpServlet{
 		while(rs.next()) {
 			ParentBean parBean = new ParentBean();
 			parBean.setComment(rs.getString("comment"));
-			parBean.setComposerId(CommonUtils.idformat(rs.getLong("composer_id")));
 			parBean.setType(rs.getString("type"));
 			parBean.setWriteDatetime(CommonUtils.epoch(rs.getDouble("write_datetime")));
 			parBean.setRating(CommonUtils.starformat(CommonUtils.ratingformat(rs.getByte("rating"))));
@@ -223,7 +227,6 @@ public class S00003 extends HttpServlet{
 			if(parentMap.containsKey(toCommentId)) {
 				CommentBean comBean = new CommentBean();
 				comBean.setComment(rs.getString("comment"));
-				comBean.setComposerId(CommonUtils.idformat(rs.getLong("composer_id")));
 				comBean.setType(rs.getString("type"));
 				comBean.setWriteDatetime(CommonUtils.epoch(rs.getDouble("write_datetime")));
 				comBean.setRating(CommonUtils.starformat(CommonUtils.ratingformat(rs.getByte("rating"))));
@@ -247,7 +250,6 @@ public class S00003 extends HttpServlet{
 			//その後cbをcommentListに格納する。
 			CommentBean cb = new CommentBean();
 			cb.setComment(pb.getComment());
-			cb.setSequence(pb.getSequence());
 			cb.setType(pb.getType());
 			cb.setToCommentId(pb.getToCommentId());
 			cb.setWriteDatetime(pb.getWriteDatetime());
@@ -288,9 +290,10 @@ public class S00003 extends HttpServlet{
 		String ratingTotal= null;
 
 		//(24)それぞれの値を（20）で宣言した変数に追加。
-		ratingAverage = CommonUtils.averageformat(rs.getDouble("rating_average"));
-		ratingTotal = CommonUtils.valueformat(rs.getLong("rating_total"));
-
+		while(rs.next()) {
+			ratingAverage = CommonUtils.averageformat(rs.getDouble("rating_average"));
+			ratingTotal = CommonUtils.valueformat(rs.getLong("rating_total"));
+		}
 		//（25）取得した値（変数）をsetAttributeする。
 		request.setAttribute("rating_average", ratingAverage);
 		request.setAttribute("rating_total", ratingTotal);

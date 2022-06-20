@@ -121,11 +121,11 @@ div.song_list {
 }
 
 div.song_list ul {
-	list-style: none;
 	width: 100%;
 }
 
 div.song_list ul li {
+	list-style: none !important;
 	width: 100%;
 }
 
@@ -470,6 +470,8 @@ div.single_row_table table {
 	width: 100%;
 }
 
+
+
 div.single_row_table table tr td.label {
 	display: block;
 	box-sizing: border-box;
@@ -522,6 +524,139 @@ div.single_row_table table tr td.value a {
 	font-size: 14px;
 	color: #000080;
 }
+
+div.link {
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 95%;
+}
+
+div.link table {
+	width: 100%;
+}
+
+
+
+div.link table tr td.label {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: 28px;
+	line-height: 28px;
+	font-size: 14px;
+	background-color: #afeeee;
+	border-top: thin solid #333333;
+	border-left: thin solid #333333;
+	border-bottom: thin solid #333333;
+	border-right: thin solid #333333;
+	text-align: center;
+}
+
+div.link table tr td.value {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: #ffffff;
+	border-bottom: thin solid #333333;
+	border-left: thin solid #333333;
+	border-right: thin solid #333333;
+	text-align: left;
+	padding-top: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+}
+
+div.link table tr td.value span.label {
+	font-size: 9px;
+	color: #000080;
+	padding-left: 8px;
+}
+
+div.link table tr td.value span.label_top {
+	font-size: 9px;
+	color: #000080;
+	padding-left: 0px;
+}
+
+div.link table tr td.value span.value {
+	font-size: 14px;
+	color: #333333;
+	padding-left: 2px;
+}
+
+div.link table tr td.value a {
+	font-size: 14px;
+	color: #000080;
+}
+
+
+div.message_table {
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 95%;
+}
+
+div.message_table table {
+	width: 100%;
+}
+
+
+
+div.message_table table tr td.label {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: 28px;
+	line-height: 28px;
+	font-size: 14px;
+	background-color: #afeeee;
+	border-top: thin solid #333333;
+	border-left: thin solid #333333;
+	border-bottom: thin solid #333333;
+	border-right: thin solid #333333;
+	text-align: center;
+}
+
+div.message_table table tr td.value {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: #ffffff;
+	border-bottom: thin solid #333333;
+	border-left: thin solid #333333;
+	border-right: thin solid #333333;
+	text-align: left;
+	padding-top: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	padding-bottom: 4px;
+}
+
+div.message_table table tr td.value span.label {
+	font-size: 9px;
+	color: #000080;
+	padding-left: 8px;
+}
+
+div.message_table table tr td.value span.label_top {
+	font-size: 9px;
+	color: #000080;
+	padding-left: 0px;
+}
+
+div.message_table table tr td.value span.value {
+	font-size: 14px;
+	color: #333333;
+	padding-left: 2px;
+}
+
+div.message_table table tr td.value a {
+	font-size: 14px;
+	color: #000080;
+}
 /******************************************************************************/
 /* ■■サブヘッダー                                                               */
 /******************************************************************************/
@@ -547,7 +682,7 @@ div.sub_header p {
 /* ■■レイティング                                                           */
 /******************************************************************************/
 div.rating {
-	background-image: url("/web/images/starlevels.gif"); /*星画像*/
+	background-image: url("/web/images/starlevels.gif") !important; /*星画像*/
 	background-repeat: no-repeat; /* 繰り返しはナシ */
 	width: 75px; /* 横幅は星５つ分 */
 	height: 21px; /* 高さは星１つ分 + 上下余白3pxずつ*/

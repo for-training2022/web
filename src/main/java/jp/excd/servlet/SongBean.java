@@ -14,12 +14,13 @@ public class SongBean {
 	String scoreType;
 	String bpm;
 	String imageFileName;
-	int imageFileHeight;
+	double imageFileHeight;
 	int imageFileWidth;
 	String otherLinkUrl;
 	String otherLinkDescription;
 	String nickname1;
 	String uniqueCode1;
+	double cutLength;
 
 	public void setTitle(String str1) {
 		title = str1;
@@ -54,8 +55,8 @@ public class SongBean {
 	public void setImageFileName(String str11) {
 		imageFileName = str11;
 	}
-	public void setImageFileHeight(int int1) {
-		imageFileHeight = int1;
+	public void setImageFileHeight(double d) {
+		imageFileHeight = d;
 	}
 	public void setImageFileWidth(int int2) {
 		imageFileWidth = int2;
@@ -110,7 +111,7 @@ public class SongBean {
 		return imageFileName;
 	}
 
-	public int getImageFileHeight() {
+	public double getImageFileHeight() {
 		return imageFileHeight;
 	}
 
@@ -137,6 +138,13 @@ public class SongBean {
 
 	public String getUniqueCode1() {
 		return uniqueCode1;
+	}
+	public void setCutLength(double d) {
+		cutLength = d;
+		
+	}
+	public double getCutLength() {
+		return cutLength;
 	}
 	
 

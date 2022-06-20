@@ -298,4 +298,23 @@ public class CommonUtils {
 		return a4;
 	}
 	
+	public static double imageHeightformat(int width , int height) {
+		double formatHeight = height;
+		double width1 =width;
+		if(width != 275) {
+			double widthRate= 275/width1;
+			formatHeight = (widthRate*formatHeight);
+		}
+		
+		return formatHeight;
+		
+	}
+	
+	public static double cutLength(double d1) {
+		double imageLength = 0;
+		if(d1 != 160) {
+			imageLength = (d1-160)/2;
+		}
+		return imageLength;
+	}
 }
