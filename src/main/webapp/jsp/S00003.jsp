@@ -188,7 +188,7 @@
 							 } else if ("1".equals(comBean.getType())) {
  %>
 					<div class="reply">
-						<div class="grater_than"></div>
+						<div class="grater_than">&gt;</div>
 						<div class="composer_link_no_rating">
 							<a
 								href="http://localhost:8080/web/ja/S00004/<%=comBean.getUniqueCode2()%>"><%=comBean.getNickname2()%></a>
