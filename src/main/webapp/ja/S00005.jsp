@@ -5,7 +5,8 @@
 <%
 // (1) 「エラー情報(error)」が設定されている場合は、画面に「エラー情報(error)」を表示する。
 String errorMessage = (String) request.getAttribute("error");
-if (errorMessage == null) errorMessage = "";
+if (errorMessage == null)
+	errorMessage = "";
 
 // (2) 「公開日_エラー状態(release_date_is_error)」= "1"の場合
 String release_date_is_error = "";
@@ -18,17 +19,17 @@ String release_date_radio1 = "";
 String release_date_radio2 = "";
 if ("1".equals(request.getAttribute("release_date_radio"))) {
 	release_date_radio1 = "checked=\"checked\"";
-}else{
+} else {
 	release_date_radio2 = "checked=\"checked\"";
 }
 String release_date_from = (String) request.getAttribute("release_date_from");
 String release_date_to = (String) request.getAttribute("release_date_to");
 
 if (release_date_from == null) {
-	release_date_from = "";	
+	release_date_from = "";
 }
 if (release_date_to == null) {
-	release_date_to = "";	
+	release_date_to = "";
 }
 
 // (4) 「感動指数_エラー状態(rating_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
@@ -42,13 +43,15 @@ String rating_radio1 = "";
 String rating_radio2 = "";
 if ("1".equals(request.getAttribute("rating_radio"))) {
 	rating_radio1 = "checked=\"checked\"";
-}else{
+} else {
 	rating_radio2 = "checked=\"checked\"";
 }
 String rating_from = (String) request.getAttribute("rating_from");
-if (rating_from == null) rating_from = "";
+if (rating_from == null)
+	rating_from = "";
 String rating_to = (String) request.getAttribute("rating_to");
-if (rating_to == null) rating_to = "";
+if (rating_to == null)
+	rating_to = "";
 
 // (6) 「平均感動指数_エラー状態(rating_average_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String rating_average_is_error = "";
@@ -61,13 +64,15 @@ String rating_average_radio1 = "";
 String rating_average_radio2 = "";
 if ("1".equals(request.getAttribute("rating_average_radio"))) {
 	rating_average_radio1 = "checked=\"checked\"";
-}else{
+} else {
 	rating_average_radio2 = "checked=\"checked\"";
 }
 String rating_average_from = (String) request.getAttribute("rating_average_from");
-if (rating_average_from == null) rating_average_from = "1.0";
+if (rating_average_from == null)
+	rating_average_from = "1.0";
 String rating_average_to = (String) request.getAttribute("rating_average_to");
-if (rating_average_to == null) rating_average_to = "1.0";
+if (rating_average_to == null)
+	rating_average_to = "1.0";
 
 // (8) 「再生回数_エラー状態(views_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String views_is_error = "";
@@ -80,13 +85,15 @@ String views_radio1 = "";
 String views_radio2 = "";
 if ("1".equals(request.getAttribute("views_radio"))) {
 	views_radio1 = "checked=\"checked\"";
-}else{
-	views_radio2 = "checked=\"checked\"";	
+} else {
+	views_radio2 = "checked=\"checked\"";
 }
 String views_from = (String) request.getAttribute("views_from");
-if (views_from == null) views_from = "";
+if (views_from == null)
+	views_from = "";
 String views_to = (String) request.getAttribute("views_to");
-if (views_to == null) views_to = "";
+if (views_to == null)
+	views_to = "";
 
 // (10) 「曲名_エラー状態(title_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String title_is_error = "";
@@ -99,50 +106,49 @@ String title_radio1 = "";
 String title_radio2 = "";
 if ("1".equals(request.getAttribute("title_radio"))) {
 	title_radio1 = "checked=\"checked\"";
-}else{
-	title_radio2 = "checked=\"checked\"";	
+} else {
+	title_radio2 = "checked=\"checked\"";
 }
 
 String title_type_radio1 = "";
 String title_type_radio2 = "";
 if ("1".equals(request.getAttribute("title_type_radio"))) {
 	title_type_radio1 = "checked=\"checked\"";
-}else{
+} else {
 	title_type_radio2 = "checked=\"checked\"";
 }
 
 String title = (String) request.getAttribute("title");
-if (title == null) title = "";
-
+if (title == null)
+	title = "";
 
 // (12) 以下の項目を元に並び順の入力状態を再現する。
-String sort_order1 ="";
-String sort_order2 ="";
-String sort_order3 ="";
-String sort_order4 ="";
-String sort_order5 ="";
-String sort_order6 ="";
-String sort_order7 ="";
-String sort_order8 ="";
+String sort_order1 = "";
+String sort_order2 = "";
+String sort_order3 = "";
+String sort_order4 = "";
+String sort_order5 = "";
+String sort_order6 = "";
+String sort_order7 = "";
+String sort_order8 = "";
 
-if("02".equals(request.getAttribute("sort_order"))){
+if ("02".equals(request.getAttribute("sort_order"))) {
 	sort_order2 = "selected=\"selected\"";
-}else if("03".equals(request.getAttribute("sort_order"))) {
+} else if ("03".equals(request.getAttribute("sort_order"))) {
 	sort_order3 = "selected=\"selected\"";
-}else if("04".equals(request.getAttribute("sort_order"))) {
+} else if ("04".equals(request.getAttribute("sort_order"))) {
 	sort_order4 = "selected=\"selected\"";
-}else if("05".equals(request.getAttribute("sort_order"))) {
+} else if ("05".equals(request.getAttribute("sort_order"))) {
 	sort_order5 = "selected=\"selected\"";
-}else if("06".equals(request.getAttribute("sort_order"))) {
+} else if ("06".equals(request.getAttribute("sort_order"))) {
 	sort_order6 = "selected=\"selected\"";
-}else if("07".equals(request.getAttribute("sort_order"))) {
+} else if ("07".equals(request.getAttribute("sort_order"))) {
 	sort_order7 = "selected=\"selected\"";
-}else if("08".equals(request.getAttribute("sort_order"))) {
+} else if ("08".equals(request.getAttribute("sort_order"))) {
 	sort_order8 = "selected=\"selected\"";
-}else {
+} else {
 	sort_order1 = "selected=\"selected\"";
-}	
-	
+}
 %>
 <head>
 <meta charset="utf-8">
@@ -172,8 +178,8 @@ if("02".equals(request.getAttribute("sort_order"))){
 		<!-- タイトルバー -->
 		<div class="title_bar">
 			<p class="page_title">作品検索</p>
-			<a href="#" id="menu_open"> 
-			<img alt="メニュー" src="/web/images/menu.png" class="menu-icon" />
+			<a href="#" id="menu_open"> <img alt="メニュー"
+				src="/web/images/menu.png" class="menu-icon" />
 
 			</a>
 		</div>
@@ -207,10 +213,10 @@ if("02".equals(request.getAttribute("sort_order"))){
 								<table class="radio_base">
 									<tr>
 										<td><input type="radio" name="release_date_radio"
-											value="1" class="onOffRadio" <%=release_date_radio1 %>><span
+											value="1" class="onOffRadio" <%=release_date_radio1%>><span
 											class="radio_label">指定</span></td>
 										<td><input type="radio" name="release_date_radio"
-											value="2" class="onOffRadio" <%=release_date_radio2 %>><span
+											value="2" class="onOffRadio" <%=release_date_radio2%>><span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
@@ -218,8 +224,7 @@ if("02".equals(request.getAttribute("sort_order"))){
 						</tr>
 						<tr>
 							<td class="value"><input type="date"
-								name="release_date_from" value=<%=release_date_from %>>
-								<br />
+								name="release_date_from" value=<%=release_date_from%>> <br />
 								<div class="left_padding1">≀</div> <input type="date"
 								name="release_date_to" value=<%=release_date_to%>></td>
 						</tr>
@@ -237,10 +242,10 @@ if("02".equals(request.getAttribute("sort_order"))){
 									<table class="radio_base">
 										<tr>
 											<td><input type="radio" name="rating_radio" value="1"
-												class="onOffRadio" <%=rating_radio1 %>>
-												<span class="radio_label">指定</span></td>
+												class="onOffRadio" <%=rating_radio1%>> <span
+												class="radio_label">指定</span></td>
 											<td><input type="radio" name="rating_radio" value="2"
-												class="onOffRadio" <%=rating_radio2 %>> <span
+												class="onOffRadio" <%=rating_radio2%>> <span
 												class="radio_label">指定なし</span></td>
 										</tr>
 									</table>
@@ -248,10 +253,9 @@ if("02".equals(request.getAttribute("sort_order"))){
 							</tr>
 							<tr>
 								<td class="value"><input type="text" name="rating_from"
-									value=<%=rating_from %>> <br />
-									<div class="left_padding2">≀</div>
-									<input type="text" name="rating_to" value=<%=rating_to %>>
-								</td>
+									maxlength="8" value=<%=rating_from%>> <br />
+									<div class="left_padding2">≀</div> <input type="text"
+									name="rating_to" maxlength="8" value=<%=rating_to%>></td>
 							</tr>
 						</table>
 					</div>
@@ -268,16 +272,18 @@ if("02".equals(request.getAttribute("sort_order"))){
 									<td class="value">
 										<table class="radio_base">
 											<tr>
-												<td><input type="radio" name="rating_average_radio" value="1" <%=rating_average_radio1 %> class="onOffRadio" >
+												<td><input type="radio" name="rating_average_radio"
+													value="1" <%=rating_average_radio1%> class="onOffRadio">
 													<span class="radio_label">指定</span></td>
-												<td><input type="radio" name="rating_average_radio" value="2" <%=rating_average_radio2 %> class="onOffRadio" ><span>指定なし</span></td>
+												<td><input type="radio" name="rating_average_radio"
+													value="2" <%=rating_average_radio2%> class="onOffRadio"><span>指定なし</span></td>
 											</tr>
 										</table>
 									</td>
 								</tr>
 								<tr>
 									<td class="value"><select name="rating_average_from"
-										tabindex="1" <%=rating_average_from %>>
+										tabindex="1" <%=rating_average_from%>>
 
 
 
@@ -323,8 +329,9 @@ if("02".equals(request.getAttribute("sort_order"))){
 											<option value="4.9">4.9</option>
 											<option value="5.0">5.0</option>
 
-									</select> <br /> ～ <br /> <select name="rating_average_to"
-										tabindex="2" <%=rating_average_to %>>
+									</select>
+										<div class="left_padding3">≀</div><select
+										name="rating_average_to" tabindex="2" <%=rating_average_to%>>
 
 											<option value="1.0">1.0</option>
 											<option value="1.1">1.1</option>
@@ -384,19 +391,20 @@ if("02".equals(request.getAttribute("sort_order"))){
 									<table class="radio_base">
 										<tr>
 											<td><input type="radio" name="views_radio" value="1"
-												class="onOffRadio" <%=views_radio1 %>> <span
+												class="onOffRadio" <%=views_radio1%>> <span
 												class="radio_label">指定</span></td>
 											<td><input type="radio" name="views_radio" value="2"
-												class="onOffRadio" <%=views_radio2 %>> <span
+												class="onOffRadio" <%=views_radio2%>> <span
 												class="radio_label">指定なし</span></td>
 										</tr>
 									</table>
 								</td>
 							</tr>
 							<tr>
-								<td class="value"><input type="text" name="views_from"
-									value=<%=views_from %>> <br /> ～ <br /> <input
-									type="text" name="views_to" value=<%=views_to %>></td>
+								<td class="value"><input type="text" name="views_from" maxlength="8" 
+									value=<%=views_from%>>
+									<div class="left_padding2">≀</div><input type="text"
+									name="views_to" maxlength="8"  value=<%=views_to%>></td>
 							</tr>
 						</table>
 					</div>
@@ -412,10 +420,10 @@ if("02".equals(request.getAttribute("sort_order"))){
 										<table class="radio_base">
 											<tr>
 												<td><input type="radio" name="title_radio" value="1"
-													class="onOffRadio" <%=title_radio1 %>> <span
+													class="onOffRadio" <%=title_radio1%>> <span
 													class="radio_label">指定</span></td>
 												<td><input type="radio" name="title_radio" value="2"
-													class="onOffRadio" <%=title_radio2 %>> <span
+													class="onOffRadio" <%=title_radio2%>> <span
 													class="radio_label">指定なし</span></td>
 											</tr>
 										</table>
@@ -426,20 +434,21 @@ if("02".equals(request.getAttribute("sort_order"))){
 										<table class="radio_base">
 											<tr>
 												<td><input type="radio" name="title_type_radio"
-													value="1" <%=title_type_radio1 %>> <span
+													value="1" <%=title_type_radio1%>> <span
 													class="radio_label">あいまい</span></td>
 												<td><input type="radio" name="title_type_radio"
-													value="2" <%=title_type_radio2 %>> <span
+													value="2" <%=title_type_radio2%>> <span
 													class="radio_label">完全一致</span></td>
 											</tr>
-										</table> <input type="text" name="title" value=<%=title %>>
+										</table> <input type="text" name="title" maxlength="255"
+										value=<%=title%>>
 									</td>
 								</tr>
 							</table>
 						</div>
 					</div>
-					
-			
+
+
 					<!-- 並び順 -->
 					<div id="jouken_sort_order" class="jouken">
 						<div class="input_table">
@@ -447,14 +456,14 @@ if("02".equals(request.getAttribute("sort_order"))){
 								<tr>
 									<td class="label">並び順</td>
 									<td class="value"><select name="sort_order" tabindex="10">
-											<option value="01" <%=sort_order1 %>>新しい順</option>
-											<option value="02" <%=sort_order2 %>>古い順</option>
-											<option value="03" <%=sort_order3 %>>感動指数が多い順</option>
-											<option value="04" <%=sort_order4 %>>感動指数が少ない順</option>
-											<option value="05" <%=sort_order5 %>>平均感動指数が高い順</option>
-											<option value="06" <%=sort_order6 %>>平均感動指数が低い順</option>
-											<option value="07" <%=sort_order7 %>>再生回数が多い順</option>
-											<option value="08" <%=sort_order8 %>>再生回数が少ない順</option>
+											<option value="01" <%=sort_order1%>>新しい順</option>
+											<option value="02" <%=sort_order2%>>古い順</option>
+											<option value="03" <%=sort_order3%>>感動指数が多い順</option>
+											<option value="04" <%=sort_order4%>>感動指数が少ない順</option>
+											<option value="05" <%=sort_order5%>>平均感動指数が高い順</option>
+											<option value="06" <%=sort_order6%>>平均感動指数が低い順</option>
+											<option value="07" <%=sort_order7%>>再生回数が多い順</option>
+											<option value="08" <%=sort_order8%>>再生回数が少ない順</option>
 									</select></td>
 								</tr>
 							</table>

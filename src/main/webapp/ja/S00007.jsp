@@ -241,7 +241,7 @@
 											class="radio_label">完全一致</span></td>
 									</tr>
 								</table>
-								<input type="text" name="nickname" value="<%=nickname %>">
+								<input type="text" name="nickname" maxlength="255" value="<%=nickname %>">
 							</td>
 						</tr>
 					</table>
@@ -355,10 +355,10 @@
 						</tr>
 						<tr>
 							<td class="value"><input type="text"
-								name="listener_count_from" value=<%= listener_count_from%>>
+								name="listener_count_from" maxlength="8" value=<%= listener_count_from%>>
 								<br />
 								<div class="left_padding2">≀</div> <input type="text"
-								name="listener_count_to" value=<%= listener_count_to%>>
+								name="listener_count_to" maxlength="8" value=<%= listener_count_to%>>
 							</td>
 						</tr>
 					</table>
