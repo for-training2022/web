@@ -11,29 +11,30 @@
     String nickname_is_error ="";
     if ("1".equals(request.getAttribute("nickname_is_error"))) {
     	nickname_is_error = ", error";
-    } 
+    }
+
 
     // (3) 以下の項目を元にニックネーム名の入力状態を再現する。
     String nickname_radio1 = "";
     String nickname_radio2 = "";
-    
+
     if ("1".equals(request.getAttribute("nickname_radio"))) {
     	nickname_radio1 = "checked=\"checked\"";
 	}else{
 		nickname_radio2 = "checked=\"checked\"";
-	}
-    
+	}		
 	String nickname_type_radio1 = "";
 	String nickname_type_radio2 = "";
-	
+
 	if ("1".equals(request.getAttribute("nickname_type_radio"))) {
 		nickname_type_radio1 = "checked=\"checked\"";
 	}else{
 		nickname_type_radio2 = "checked=\"checked\"";
 	}
-	
 	String nickname = (String)request.getAttribute("nickname");
-	if (nickname == null) nickname = "";		
+	if (nickname == null){
+		nickname = "";		
+	}
 	
 	// (4) 「登録日_エラー状態(joined_date_is_error)」= "1"の場合
 	String joined_date_is_error = "";
@@ -49,6 +50,7 @@
     }else{
 		joined_date_radio2 = "checked=\"checked\"";
 	}
+
 	String joined_date_from = (String)request.getAttribute("joined_date_from");
 	String joined_date_to = (String)request.getAttribute("joined_date_to");		
 	
@@ -64,15 +66,15 @@
 		gender_radio2 = "checked=\"checked\"";
 	}
 	
-	String gender1="";
-	String gender2="";
+	String gender1 = "";
+	String gender2 = "";
+
 	if("2".equals(request.getAttribute("gender"))){
 		gender2 = "selected=\"selected\"";
 	}else{
 		gender1 = "selected=\"selected\"";
 	}
-	
-	
+
 	// (7) 「誕生日_エラー状態(birthday_is_error)」= "1"の場合
 	String birthday_is_error = "";
 	if ("1".equals(request.getAttribute("birthday_is_error"))) {
@@ -81,18 +83,17 @@
 	
 	// (8) 以下の項目を元に誕生日の入力状態を再現する。
 	String 	birthday_radio1 = "";
-	String 	birthday_radio2 = "";
+	String birthday_radio2 = "";
+
     if ("1".equals(request.getAttribute("birthday_radio"))) {
     	birthday_radio1 = "checked=\"checked\"";
     }else{
 		birthday_radio2 = "checked=\"checked\"";
 	}
-	
-	String birthday_from = (String)request.getAttribute("birthday_from");
-	if(birthday_from == null) {
+    String birthday_from = (String)request.getAttribute("birthday_from");
+	if (birthday_from == null) {
 		birthday_from = "2015-10-29";
 	}
-	
 	String birthday_to = (String)request.getAttribute("birthday_to");
 	if (birthday_to == null) {
 		birthday_to = "2015-10-29";
@@ -106,7 +107,8 @@
 	
 	// (10) 以下の項目を元にリスナー数の入力状態を再現する。
 	String 	listener_count_radio1 = "";
-	String listener_count_radio2 = "";
+	String  listener_count_radio2 = "";
+
     if ("1".equals(request.getAttribute("listener_count_radio"))) {
     	listener_count_radio1 = "checked=\"checked\"";
     }else{
@@ -114,10 +116,11 @@
 	}
 	
 	String listener_count_from = (String)request.getAttribute("listener_count_from");
-	if(listener_count_from == null) listener_count_from = "";
+
+	if (listener_count_from == null) listener_count_from = "";
 	String listener_count_to = (String)request.getAttribute("listener_count_to");
 	if (listener_count_to == null) listener_count_to = "";
-	
+
 	// (11) 「言語_エラー状態 (language_type_is_error)」= "1"の場合
 	String language_type_is_error = "";
 	if ("1".equals(request.getAttribute("language_type_is_error"))) {
@@ -140,21 +143,22 @@
     
         
 	// (13) 以下の項目を元に並び順の入力状態を再現する。
+
 	String sort_order1="";
 	String sort_order2="";
 	String sort_order3="";
 	String sort_order4="";
-	
+
 	if("02".equals(request.getAttribute("sort_order"))){
 		sort_order2 = "selected=\"selected\"";
 	}else if("03".equals(request.getAttribute("sort_order"))) {
 		sort_order3 = "selected=\"selected\"";
 	}else if("04".equals(request.getAttribute("sort_order"))) {
+
 		sort_order4 = "selected=\"selected\"";
 	}else{
 		sort_order1 = "selected=\"selected\"";
-	}
-	
+	}	
 %>
 <head>
 <meta charset="utf-8">
@@ -163,12 +167,14 @@
 <meta name="keywords" content="作曲アプリ,Meloko,楽譜,iPhone,iPad,iOS,MIDI,メロコ,作詞,作曲,コミュニティー,スマホ" />
 <meta name="description" content="「メロコ」はiPhone,iPadで動作する作曲アプリです。思いついたメロディーをどんどん曲として保存していきましょう。">
 
+
 <link rel="stylesheet" type="text/css" href="/web/css/main.css">
 <script type="text/javascript" src="/web/js/jquery-3.3.0.min.js"></script>
 <script type="text/javascript" src="/web/js/util.js"></script>
 <script type="text/javascript" src="/web/js/input.js"></script>
 
 <title>作曲家検索</title>
+
 
 </head>
 
@@ -378,19 +384,16 @@
 						</tr>
 					</table>
 				</div>
-
-
-
 				<!-- 並び順 -->
 				<div class="input_table">
 					<table>
 						<tr>
 							<td class="label">並び順</td>
 							<td class="value"><select name="sort_order" tabindex="1">
-									<option value="01" <%=sort_order1 %>>新しい順</option>
-									<option value="02" <%=sort_order2 %>>古い順</option>
-									<option value="03" <%=sort_order3 %>>リスナー数が多い順</option>
-									<option value="04" <%=sort_order4 %>>リスナー数が少ない順</option>
+								<option value="01" <%=sort_order1 %>>新しい順</option>
+								<option value="02" <%=sort_order2 %>>古い順</option>
+								<option value="03" <%=sort_order3 %>>リスナー数が多い順</option>
+								<option value="04" <%=sort_order4 %>>リスナー数が少ない順</option>
 							</select></td>
 						</tr>
 					</table>
@@ -406,10 +409,6 @@
 		</form>
 	</div>
 
-
-
-
-
 	<!-- ページトップへjavaScript -->
 	<div id="pagetop" hidden>
 		<img alt="ページトップ" src="/web/images/pagetop.png">
@@ -420,7 +419,6 @@
 		Copyright <a href="https://www.excd.jp/">&copy; EXCEED Co., Ltd.</a>
 		All Rights Reserved.
 	</footer>
-
 
 </body>
 
