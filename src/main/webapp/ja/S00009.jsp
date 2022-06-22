@@ -29,14 +29,14 @@
 			
 		<!-- メロコのリンクアイコンのdiv -->
 		<div class = "melokolink">
-			<a href = "https://itunes.apple.com/jp/app/id1440134774?mt=8">
+			<a href = "https://itunes.apple.com/jp/app/id1440134774?mt=8" target="_blank" rel="noopener">
 			<img alt = "メロコリンクアイコン" src ="../images/melokoIcon.png"><br>
 			</a>
 		</div>
 		
 		<!-- appstoreのリンクアイコンのdiv -->
 		<div class = "appstorelink">
-			<a href = "https://itunes.apple.com/jp/app/id1440134774?mt=8">
+			<a href = "https://itunes.apple.com/jp/app/id1440134774?mt=8" target="_blank" rel="noopener">
 			<img alt = "appstoreリンクアイコン" src = "../images/applestore.png">
 			</a>
 		</div>
