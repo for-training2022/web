@@ -221,7 +221,6 @@ div.main_button a {
   color: #000080;
   text-decoration: none;
 }
-
 div.main_button input {
   display: block;
   box-sizing: border-box;
@@ -235,6 +234,7 @@ div.main_button input {
   color: #000080;
   text-decoration: none;
 }
+
 /******************************************************************************/
 /* ■■ページトップボタン                                                     */
 /******************************************************************************/
@@ -348,6 +348,7 @@ div.left_padding2{
 div.left_padding3{
   padding-left: 13px;
 }
+
 /******************************************************************************/
 /* ■■■指定ラジオ                                                           */
 /******************************************************************************/
@@ -493,6 +494,7 @@ div.single_row_table table tr td.value a {
   font-size: 14px;
   color: #000080;
 }
+
 /******************************************************************************/
 /* ■■サブヘッダー                                                               */
 /******************************************************************************/
@@ -687,8 +689,13 @@ div.menu_base ul li a p.to_excd {
 div.menu_base ul li a img.pop_up {
   box-sizing: border-box;
   margin-top: 7px;
+<<<<<<< HEAD
+  width: 28px;
+  height: 28px;
+=======
   width: 35px;
   height: 35px;
+>>>>>>> master
   clear: left;
 }
 
@@ -1098,8 +1105,7 @@ div.person_list ul li div.list div span.value {
   padding-top: 4px;
   padding-left: 8px;
 }
-  
-}
+
 div.person_list ul li div.list div span.composer_link a {
   font-size: 14px;
   color: #000080;
@@ -1111,3 +1117,4 @@ div.person_list ul li div.list div.detail {
   padding-bottom: 4px;
   padding-left: 8px;
 }
+

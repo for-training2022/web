@@ -222,4 +222,25 @@ public class CommonUtils {
 		}
 		return resultVal;
 	}
+
+	//画像サイズの調整
+	public static double imageHeightformat(int width , int height) {
+		double formatHeight = height; //ダブル型に変換
+		double width1 =width; //ダブル型に変換
+		if(width != 275) { //横幅が275px固定なので、もし違う場合は拡大・縮小しなければならない
+			double widthRate= 275/width1; //この計算で高さを何倍させれば良いか出す
+			formatHeight = (widthRate*formatHeight); //調整後の高さ
+		}
+		
+		return formatHeight;
+		
+	}
+	
+	public static double cutLength(double d1) {
+		double imageLength = 0;
+		if(d1 != 160) { //高さを160にしなければならない
+			imageLength = (d1-160)/2; //高さから160を引き、それを2で割ると、画像をどれだけカットすれば良いか分かる
+		}
+		return imageLength;
+	}
 }
