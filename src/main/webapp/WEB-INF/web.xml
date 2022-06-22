@@ -4,47 +4,140 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	version="4.0">
 	
-	<welcome-file-list>
-		<welcome-file>ja/Sample</welcome-file>
-	</welcome-file-list>
-	
 	<servlet>
 		<servlet-name>Init</servlet-name>
 		<servlet-class>jp.excd.servlet.MySQLSetting</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
+	<error-page>
+	    <error-code>404</error-code>
+	    <location>/jsp/404.jsp</location>
+    </error-page>
+
+	<!--S00005-->
 	<servlet>
-		<servlet-name>Sample</servlet-name>
-		<servlet-class>jp.excd.servlet.SampleServlet</servlet-class>	
+		<servlet-name>S00005</servlet-name>
+		<servlet-class>jp.excd.servlet.S00005</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>S00005</servlet-name>
+		<url-pattern>/ja/S00005/*</url-pattern>
+	</servlet-mapping>
+
+	<!--S00006-->
+	<servlet>
+		<servlet-name>S00006.back</servlet-name>
+		<servlet-class>jp.excd.servlet.S00006</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>S00006.back</servlet-name>
+		<url-pattern>/ja/S00006/S00006.back</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>S00006</servlet-name>
+		<servlet-class>jp.excd.servlet.S00006</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>S00006</servlet-name>
+		<url-pattern>/ja/S00006/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>S00006.change</servlet-name>
+		<servlet-class>jp.excd.servlet.S00006</servlet-class>
+		<init-param>
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>S00006.change</servlet-name>
+		<url-pattern>/ja/S00006/S00006.change</url-pattern>
+	</servlet-mapping>
+	
+	<!--S00007-->
+	<servlet>
+		<servlet-name>S00007</servlet-name>
+		<servlet-class>jp.excd.servlet.S00007</servlet-class>	
 		<init-param>
 			<param-name>javaEncoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</servlet>
 	
-	<servlet>		
-		<servlet-name>S00004</servlet-name>	
-		<servlet-class>jp.excd.servlet.S00004</servlet-class>	
-		<init-param>	
-			<param-name>javaEncoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>	
-	</servlet>		
-	<servlet-mapping>		
-		<servlet-name>S00004</servlet-name>	
-		<url-pattern>/ja/S00004/*</url-pattern>	
+	<servlet-mapping>
+		<servlet-name>S00007</servlet-name>
+		<url-pattern>/ja/S00007/search</url-pattern>
 	</servlet-mapping>
-
+	
+	
+	<!--S00008-->
+	
+	<servlet>
+		<servlet-name>S00008.back</servlet-name>
+		<servlet-class>jp.excd.servlet.S00008</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>Sample</servlet-name>
-		<url-pattern>/ja/Sample/*</url-pattern>
+		<servlet-name>S00008.back</servlet-name>
+		<url-pattern>/ja/S00008/S00008.back</url-pattern>
 	</servlet-mapping>
 	
-	<error-page>
-    <error-code>404</error-code>
-    <location>/jsp/404.jsp</location>
-    </error-page>
+	<servlet>
+		<servlet-name>S00008.change</servlet-name>
+		<servlet-class>jp.excd.servlet.S00008</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>S00008.change</servlet-name>
+		<url-pattern>/ja/S00008/S00008.change</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>back</servlet-name>
+		<servlet-class>jp.excd.servlet.S00008</servlet-class>
+		<init-param>	
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>	
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>back</servlet-name>
+		<url-pattern>/ja/S00008/back</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>change</servlet-name>
+		<servlet-class>jp.excd.servlet.S00008</servlet-class>
+		<init-param>
+		<param-name>javaEncoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>change</servlet-name>
+		<url-pattern>/ja/S00008/change</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
+
