@@ -273,7 +273,7 @@ public class S00004 extends HttpServlet  {
 		request.setAttribute("composerBean", composerBean);
 		request.setAttribute("songList", songList);
 		getServletConfig().getServletContext().
-		getRequestDispatcher("/jsp/S00004.jsp" ).
+		getRequestDispatcher("/ja/S00004.jsp" ).
 		forward( request, response );
 		
 	}
