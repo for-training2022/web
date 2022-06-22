@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 public class S00008 extends HttpServlet{
 
 	public void doGet(
@@ -74,7 +75,7 @@ public class S00008 extends HttpServlet{
 		
 		
 		//S00007.jspにフォワーディングする
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/S00007.jsp").forward(request,response);
+		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,response);
 		
 	}
 	

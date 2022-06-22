@@ -68,5 +68,12 @@ public class PlaceHolderInput {
 	public void setValue(String value) {
 		this.setStringValue(value);
 	}
-	
+
+	public int getValue(int intvalue) {
+		return getIntValue();
+	}
+	public double getValue(double value) {
+		return getValue(intValue);
+	}
+
 }

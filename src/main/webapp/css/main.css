@@ -124,10 +124,11 @@ div.song_list ul li div.cell{
   border: thin solid #1e90ff;
 }
 div.song_list ul li div.cell div.song_title {
-  font-size: 18px;
+  font-size: 23px;
   color: #333333;
   padding-top: 4px;
   padding-left: 8px;
+  font-weight: bold;
 }
 div.song_list ul li div.cell div.composer {
   padding-top: 0px;
@@ -343,6 +344,9 @@ div.left_padding1{
 }
 div.left_padding2{
   padding-left: 90px;
+}
+div.left_padding3{
+  padding-left: 13px;
 }
 /******************************************************************************/
 /* ■■■指定ラジオ                                                           */
