@@ -222,7 +222,7 @@ public class CommonUtils {
 		}
 		return resultVal;
 	}
-	
+
 	//画像サイズの調整
 	public static double imageHeightformat(int width , int height) {
 		double formatHeight = height; //ダブル型に変換
