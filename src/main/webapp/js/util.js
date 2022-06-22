@@ -92,7 +92,7 @@ var Util = {
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="localhost:8080/web/ja/S00005l">'
+      + '      <a href="localhost:8080/web/ja/S00005">'
       + '        <p>作品検索</p>'
       + '        <img alt="作品検索" class="right_arrow" src="/web/images/right_arrow.png" />'
       + '      </a>'
