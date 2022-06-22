@@ -124,10 +124,11 @@ div.song_list ul li div.cell{
   border: thin solid #1e90ff;
 }
 div.song_list ul li div.cell div.song_title {
-  font-size: 18px;
+  font-size: 23px;
   color: #333333;
   padding-top: 4px;
   padding-left: 8px;
+  font-weight: bold;
 }
 div.song_list ul li div.cell div.composer {
   padding-top: 0px;
@@ -249,7 +250,7 @@ div.main_button input {
 /******************************************************************************/
 footer {
   font-size: 0.8em;
-  text-align: right;
+  text-align: center;
   border-top: thin solid #666666;
   margin-top: 1.0em;
   padding-top: 0.5em;
@@ -343,6 +344,9 @@ div.left_padding1{
 }
 div.left_padding2{
   padding-left: 90px;
+}
+div.left_padding3{
+  padding-left: 13px;
 }
 /******************************************************************************/
 /* ■■■指定ラジオ                                                           */
@@ -726,9 +730,9 @@ div.top_banner p {
 }
 div.top_banner img.to_download_page_arrow {
   position:absolute;
-  height: 60px;
+  height: 30px;
   width: 30px;
-  top: 4px;
+  top: 39px;
   right: 4px;
 }
 
@@ -784,7 +788,7 @@ div.top_tab ul li.tab1 {
   width: 80px;
   top: 0px;
   left: 0px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 28px;
   text-align:center;
 }
@@ -794,7 +798,7 @@ div.top_tab ul li.tab2 {
   width: 80px;
   top: 0px;
   left: 80px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 28px;
   text-align:center;
 }
@@ -804,7 +808,7 @@ div.top_tab ul li.tab3 {
   width: 80px;
   top: 0px;
   left: 160px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 28px;
   text-align:center;
 }
@@ -814,7 +818,7 @@ div.top_tab ul li.tab4 {
   width: 80px;
   top: 0px;
   left: 240px;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 28px;
   text-align:center;
 }
@@ -830,14 +834,14 @@ div.top_tab ul li a {
 /******************************************************************************/
 /* ■■トップ告知                                                           */
 /******************************************************************************/
-div.top_notice:active {
+div.top_notice{
   /* absoluteの起点 */
   position:relative;
   width: 100%;
   background-color: #ffff00;
 }
-div.top_notice:not(:active){
-	visibility:none;
+div.no_view{
+	display: none
 }
 div.top_notice p.top_notice_title {
   position:absolute;
@@ -845,7 +849,7 @@ div.top_notice p.top_notice_title {
   width: 80px;
   top: 0px;
   left: 6px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 14px;
   text-align: left;
   padding-top: 8px;
