@@ -153,7 +153,7 @@ public class S00003 extends HttpServlet{
 		//(8)while文を通してSongListに追加。
 		while(rs.next()) {
 			songBean.setTitle(rs.getString("title"));
-			songBean.setTotal_listen_count_formated(CommonUtils.valueformat(rs.getLong("total_listen_count")));
+			songBean.setTotalListenCount(CommonUtils.valueformat(rs.getLong("total_listen_count")));
 			songBean.setRatingTotal(CommonUtils.valueformat(rs.getLong("composer_id")));
 			songBean.setReleaseDatetime(CommonUtils.epoch(rs.getDouble("release_datetime")));
 			songBean.setLastUpdateDatetime(CommonUtils.epoch(rs.getDouble("last_update_datetime")));
