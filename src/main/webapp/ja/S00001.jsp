@@ -7,15 +7,10 @@
 <html>
 
 	<%--fromが無い場合は表示しない(つまり、一件目から表示する) --%>
-	<% 
-		String val = null;
-		int from = (int)request.getAttribute("from");
-		if (from == 0 || "".equals(from)) {
-			val = "";
-		} else {
-			val= "from=" + from; 
-		} 
-	%>
+
+
+
+
 	
 	<%--categoryの値がない場合は「新着」にする。 --%>
 	<%--タブがタッチされると同時に、その箇所の色も変える --%>
@@ -26,17 +21,17 @@
 		String choice3 = null;
 		String choice4 = null;
 		String category = (String)request.getAttribute("category");
-		if (category .equals("1")) {
-			val2 = "category=" + category;
+		if ("1".equals(category)) {
+			val2 = "category=1";
 			choice1 = "selected";
-		} else if(category .equals("2")) {
-			val2 = "category=" + category;
+		} else if("2".equals(category)) {
+			val2 = "category=2";
 			choice2 = "selected";
-		} else if(category .equals("3")) {
-			val2 = "category=" + category;
+		} else if("3".equals(category)) {
+			val2 = "category=3";
 			choice3 = "selected";
-		} else if(category .equals("4")) {
-			val2 = "category=" + category;
+		} else if("4".equals(category)) {
+			val2 = "category=4";
 			choice4 = "selected";
 		} else if(category == null || "".equals(category)) {
 			val2 = "category=1";
@@ -68,7 +63,8 @@
 	<div class="top_banner">
 	<a href="https://itunes.apple.com/jp/app/id1440134774?mt=8">
 			<img alt="メロコ～iPhone用作曲アプリアイコン" src="../images/melokoIcon.png" class="icon" />
-			<p>作曲アプリ「メロコ」。歌モノに特化したアプリです。このサイトの曲はすべてこのアプリで作成されています。</p>
+			<% String appMessage = (String)request.getAttribute("appMessage"); %>
+			<p><%= appMessage %></p>
 			<img alt="メロコ～専用アプリダウンロード画面へのリンク" src="../images/right_blue_arrow.png" class="to_download_page_arrow" />
 	</a>
 	</div>
@@ -87,23 +83,23 @@
 	<!-- トップタブ -->
 	<div class="top_tab">
 		<ul>
-			<li class="tab1 <%= choice1 %>"><a href="http://localhost:8080/web/ja/S00001?<%= val2 %>&<%= val %>">新着</a></li>
-			<li class="tab2 <%= choice2 %>"><a href="http://localhost:8080/web/ja/S00001?<%= val2 %>&<%= val %>">人気</a></li>
-			<li class="tab3 <%= choice3 %>"><a href="http://localhost:8080/web/ja/S00001?<%= val2 %>&<%= val %>">高評価</a></li>
-			<li class="tab4 <%= choice4 %>"><a href="http://localhost:8080/web/ja/S00001?<%= val2 %>&<%= val %>">名作</a></li>
+			<li class="tab1 <%= choice1 %>"><a href="http://localhost:8080/web/ja/S00001?category=1"><div name="category" value="1">新着</div></a></li>
+			<li class="tab2 <%= choice2 %>"><a href="http://localhost:8080/web/ja/S00001?category=2"><div name="category" value="2">人気</div></a></li>
+			<li class="tab3 <%= choice3 %>"><a href="http://localhost:8080/web/ja/S00001?category=3"><div name="category" value="3">高評価</div></a></li>
+			<li class="tab4 <%= choice4 %>"><a href="http://localhost:8080/web/ja/S00001?category=4"><div name="category" value="4">名作</div></a></li>
 		</ul>
 		
 	</div>
 
 	<!-- トップ告知(内容が無い時にはこの領域自体を非表示にする) -->
 	<% String notice = (String)request.getAttribute("notice"); %>
-	<% if (notice != null) { %>
+	<% if (notice != null && notice != "") { %>
 		<div class="top_notice">
 			<p class="top_notice_title">告知</p>
 			<p class="top_notice_body"><%= notice %></p>
 		</div>
 	<% } %>
-	↑↑↑↑
+	
 	<!-- ソングテーブル -->
 	<% List<SongComposerBean> list = (List<SongComposerBean>)request.getAttribute("displayList"); %>
 	<div class="song_list">
@@ -113,16 +109,22 @@
 			<li>
 				<div class="cell">
 					<div class="song_title">
+						<%= record.getTitle() %>
 					</div>
 					<div class="composer">
-						<span class="label_top">作曲： </span>
-						<span class="composer_link"><a href="http://localhost:8080/web/ja/S00004/<%= record.getUniqueCode()%>"></a></span>
+						<span class="label_top">
+					
+					作曲：</span>
+						<span class="composer_link">
+						<a href="http://localhost:8080/web/ja/S00004/<%= record.getUniqueCode() %>">
+						<%= record.getNickname() %> 
+						</a></span>
 					</div>
 					<div class="image_base">
 						<a href="http://localhost:8080/web/ja/S00003/<%= record.getId()%>">
 							<div class="image song1">
-								<img alt="<%= record.getTitle() %>" src="<%= record.getImage_file_name() %>" />
-								<img alt= "play" class="play" src="<%= record.getImage_file_name() %>" />
+								<img alt="<%= record.getTitle() %>" src="/web/images/<%= record.getImage_file_name() %>" />
+								<img alt= "play" class="play" src="/web/images/play.png" />
 							</div>
 						</a>
 					</div>
@@ -145,12 +147,18 @@
 	<!-- メインボタン(さらに読み込むボタン) -->
 <%-- 	<% category nextCategory = new category() %> --%>
 
+
+<%
+		int nextFrom = (int)request.getAttribute("nextFrom");
+		
+	%>
+
 	<% int hit = (int)request.getAttribute("hits"); %>
-<%-- 	<% if(hit > nextFrom){ %> --%>
+	<% if(hit > nextFrom){ %> 
 	<div class="main_button">
-		<a href="http://localhost:8080/web/ja/S00001?<%= val2 %>&<%= val %>">さらに読み込む</a>
+		<a href="http://localhost:8080/web/ja/S00001?<%= val2 %>&from=<%= nextFrom %>">さらに読み込む</a>
 	</div>
-<%--     <% } %> --%>
+  <% } %> 
    
 	<!-- ページトップへjavaScript -->
 	<div id="pagetop">
