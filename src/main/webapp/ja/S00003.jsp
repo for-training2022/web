@@ -58,7 +58,7 @@
 			<span class="label">作者：</span><span class="link"> <a
 				href="http://localhost:8080/web/ja/S00004/<%=songBean.getUniqueCode1()%>"><%=songBean.getNickname1()%></a></span>
 		</div>
-
+		
 		<!-- メッセージ -->
 		<%
 		if ("".equals(songBean.getMessage())) {
