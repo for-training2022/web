@@ -151,7 +151,7 @@
           <div class="cell">
             <div class="song_title"><%=sb.getTitle() %></div>
             <div class="image_base">
-              <a href="“https://localhost:8080/web/ja/S00003/<%= sb.getSong_id() %>">
+              <a href="http://localhost:8080/web/ja/S00003/<%= sb.getSong_id() %>">
                 <div class="image">
                 	<%if(sb.getImage_file_name() != null && !"".equals(sb.getImage_file_name())){ %>
                  		<img alt="<%= sb.getSong_id() %>" src="/web/images/<%= sb.getImage_file_name() %>" 

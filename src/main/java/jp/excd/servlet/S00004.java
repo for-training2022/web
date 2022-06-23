@@ -144,24 +144,26 @@ public class S00004 extends HttpServlet  {
 			long composerId = cr.getComposerId(); //曲検索用に変数に入れておく
 			
 			//曲情報取得
-			sql = "select"
+			sql = "select "
 					+ "    sum(rating.rating) as rating_total "
 					+ "    , avg(rating.rating) as rating_average "
+					+ "    , song.id "
 					+ "    , song.title "
+					+ "    , song.total_listen_count "
+					+ "    , song.release_datetime "
 					+ "    , song.image_file_name "
 					+ "    , song.image_file_height "
 					+ "    , song.image_file_width "
-					+ "    , song.id "
-					+ "    , song.total_listen_count "
-					+ "    , song.release_datetime "
 					+ "from "
-					+ "    meloko.rating "
-					+ "    left join meloko.song "
-					+ "        on rating.song_id = song.id "
+					+ "    meloko.song "
+					+ "    left join meloko.rating "
+					+ "        on song.id = rating.song_id "
 					+ "where "
 					+ "    song.composer_id = ? "
 					+ "group by "
-					+ "    song.id";
+					+ "    song.id "
+					+ "order by "
+					+ "    song.release_datetime desc ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, composerId); //?に作曲家IDを設定
