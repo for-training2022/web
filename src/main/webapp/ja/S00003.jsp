@@ -36,8 +36,9 @@
 			<p class="page_title"><%=songBean.getTitle()%></p>
 			<a href="#" id="menu_open"> <img alt="メニュー"
 				src="/web/images/menu.png" class="menu-icon" />
-			</a>
 			<%@ include file="Menuin.jsp"%>
+			</a>
+
 		</div>
 
 		<!-- メニューの起点 -->
@@ -56,9 +57,9 @@
 		<!-- 作者へのリンク -->
 		<div class="label_and_link">
 			<span class="label">作者：</span><span class="link"> <a
-				href="http://localhost:8080/web/jsp/S00004/<%=songBean.getUniqueCode1()%>"><%=songBean.getNickname1()%></a></span>
+				href="http://localhost:8080/web/ja/S00004/<%=songBean.getUniqueCode1()%>"><%=songBean.getNickname1()%></a></span>
 		</div>
-
+		
 		<!-- メッセージ -->
 		<%
 		if ("".equals(songBean.getMessage())) {
