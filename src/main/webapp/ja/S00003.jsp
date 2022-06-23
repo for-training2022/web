@@ -37,7 +37,6 @@
 			<a href="#" id="menu_open"> <img alt="メニュー"
 				src="/web/images/menu.png" class="menu-icon" />
 			</a>
-			<%@ include file="Menuin.jsp"%>
 		</div>
 
 		<!-- メニューの起点 -->
