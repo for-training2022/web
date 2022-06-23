@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.*, jp.excd.servlet.CommentBean,jp.excd.servlet.SongBean"%>
+	import="java.util.*, jp.excd.servlet.CommentBean,jp.excd.bean.SongBean"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

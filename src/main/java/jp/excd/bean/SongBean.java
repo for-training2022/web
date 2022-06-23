@@ -1,4 +1,4 @@
-package jp.excd.servlet;
+package jp.excd.bean;
 
 public class SongBean {
 
