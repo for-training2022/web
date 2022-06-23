@@ -36,7 +36,9 @@
 			<p class="page_title"><%=songBean.getTitle()%></p>
 			<a href="#" id="menu_open"> <img alt="メニュー"
 				src="/web/images/menu.png" class="menu-icon" />
+			<%@ include file="Menuin.jsp"%>
 			</a>
+
 		</div>
 
 		<!-- メニューの起点 -->
