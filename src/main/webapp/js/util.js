@@ -98,7 +98,7 @@ var Util = {
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="localhost:8080/web/ja/S00007">'
+      + '      <a href="/web/ja/S00007">'
       + '        <p>作曲家検索</p>'
       + '        <img alt="作曲家検索" class="right_arrow" src="/web/images/right_arrow.png" />'
       + '      </a>'
