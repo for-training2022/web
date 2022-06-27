@@ -38,7 +38,6 @@
 				src="/web/images/menu.png" class="menu-icon" />
 			<%@ include file="Menuin.jsp"%>
 			</a>
-
 		</div>
 
 		<!-- メニューの起点 -->
