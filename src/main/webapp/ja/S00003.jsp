@@ -143,7 +143,7 @@
 
 		<!-- 関連リンク -->
 		<%
-		if ("".equals(songBean.getOtherLinkDescription())) {
+		if (null ==(songBean.getOtherLinkDescription()) || songBean.getOtherLinkDescription().isEmpty()) {
 		} else {
 		%>
 		<div class="link">
