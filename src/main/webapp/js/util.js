@@ -193,3 +193,76 @@ $(function() {
         Util.addMenuEventHandller();
     });
 });
+//-----------------------------------------------------------------------------
+//ニックネームの入力の活性・非活性・タイプボタンの切り替え
+//-----------------------------------------------------------------------------
+	function nicknamechange(){
+		
+		var element;
+		if(document.getElementById("nickname_radio1").checked){
+			element=document.getElementById("nickname");
+			element.disabled=false;
+			element=document.getElementById("nickname_type_radio1");
+			element.checked=true;
+		}else if(document.getElementById("nickname_radio2").checked){
+			element=document.getElementById("nickname");
+			element.disabled=true;
+		}
+	}
+//-----------------------------------------------------------------------------
+//入力の活性・非活性
+//-----------------------------------------------------------------------------
+	function change(id){
+		
+		var element;
+		if(document.getElementById(id+"_radio1").checked){
+			element=document.getElementById(id+"_from");
+			element.disabled=false;
+			element=document.getElementById(id+"_to");
+			element.disabled=false;
+			
+		}else if(document.getElementById(id+"_radio2").checked){
+			element=document.getElementById(id+"_from");
+			element.disabled=true;
+			element=document.getElementById(id+"_to");
+			element.disabled=true;
+		}else if(document.getElementById(id+"_radio3").checked){
+			element=document.getElementById(id);
+			element.disabled=false;
+		}else if(document.getElementById(id+"_radio4").checked){
+			element=document.getElementById(id);
+			element.disabled=true;
+			
+		}
+	}
+//-----------------------------------------------------------------------------
+//性別の入力の活性・非活性
+//-----------------------------------------------------------------------------
+	function genderchange(id){
+		
+		var element;
+		if(document.getElementById(id+"_radio1").checked){
+			element=document.getElementById(id);
+			element.disabled=false;
+			
+		}else if(document.getElementById(id+"_radio2").checked){
+			element=document.getElementById(id);
+			element.disabled=true;
+		}
+	}
+//-----------------------------------------------------------------------------
+//ニックネームの入力の活性・非活性・タイプボタンの切り替え
+//-----------------------------------------------------------------------------
+	function load(){
+		
+		var element;
+		if(document.getElementById("nickname_radio1").checked){
+			element=document.getElementById("nickname");
+			element.disabled=false;
+			element=document.getElementById("nickname_type_radio1");
+			element.checked=true;
+		}else if(document.getElementById("nickname_radio2").checked){
+			element=document.getElementById("nickname");
+			element.disabled=true;
+		}
+	}
