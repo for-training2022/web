@@ -75,6 +75,8 @@ public class CommonUtils {
 	public static String averageformat(Double a) {
 		
 		DecimalFormat df = new DecimalFormat("#.#");
+		df.setMinimumFractionDigits(1);
+		df.setMaximumFractionDigits(1);
 		String average = df.format(a);
 		return average;
 	}
