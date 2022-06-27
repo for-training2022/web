@@ -343,7 +343,7 @@ public class CommonUtils {
 		
 		return a3;
 	}
-		
+
 	/**
 	 * 評価のフォーマット。ratingによってhmtlのクラスを変更する。
 	 * @param 評価数値（rating）
@@ -454,6 +454,4 @@ public class CommonUtils {
 			return false;
 		}
 	}
-
-
 }
