@@ -454,4 +454,12 @@ public class CommonUtils {
 			return false;
 		}
 	}
+
+	public static boolean isBlank(String value) {
+		if ("".equals(value) || value == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
