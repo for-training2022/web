@@ -39,7 +39,7 @@ public class S00007 extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		// コネクション
-  	Connection con = null;
+		Connection con = null;
 		request.setCharacterEncoding("UTF-8");
 
 		// ホスト名
@@ -245,17 +245,21 @@ public class S00007 extends HttpServlet {
 			}
 		}
 
-		// (7) 登録日FROM、登録日TOについてエラー判定を行う。
+		// (7) 登録日FROM、登録日TOについてエラー判定を行う。(逆転チェック）
 		if ("1".equals(joined_date_radio)) {
-			int checkResult = joined_date_radio.compareTo(joined_date_from);
-			if (checkResult > 0 ){
-				// エラー
-				String s = this.getDescription(con, "ES00007_005");
-				request.setAttribute("error", s);
-				request.setAttribute("joined_date_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
-						response);
-				return;
+			if(CommonUtils.isBlank(joined_date_from) == false && CommonUtils.isBlank(joined_date_to) == false) {
+				SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+				Date dateFrom = sdformat.parse(joined_date_from);
+				Date dateTo = sdformat.parse(joined_date_to);
+				if (dateFrom.compareTo(dateTo) > 0) {
+					// エラー					
+					String s = this.getDescription(con, "ES00007_005");
+					request.setAttribute("error", s);
+					request.setAttribute("joined_date_is_error", "1");
+					getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
+							response);
+					return;
+				}
 			}
 		}
 
@@ -317,15 +321,19 @@ public class S00007 extends HttpServlet {
 
 		//(11) 誕生日FROM、誕生日TOについてエラー判定を行う。
 		if ("1".equals(birthday_radio)) {
-			int checkResult = birthday_radio.compareTo(birthday_from);
-			if (checkResult > 0 ){
-				// エラー
-				String s = this.getDescription(con, "ES00007_009");
-				request.setAttribute("error", s);
-				request.setAttribute("birthday_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
-						response);
-				return;
+			if(CommonUtils.isBlank(birthday_from) == false && CommonUtils.isBlank(birthday_to) == false) {
+				SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+				Date dateFrom = sdformat.parse(birthday_from);
+				Date dateTo = sdformat.parse(birthday_to);
+				if (dateFrom.compareTo(dateTo) > 0) {
+					// エラー
+					String s = this.getDescription(con, "ES00007_009");
+					request.setAttribute("error", s);
+					request.setAttribute("birthday_is_error", "1");
+					getServletConfig().getServletContext().getRequestDispatcher("/ja/S00007.jsp").forward(request,
+							response);
+					return;
+				}
 			}
 		}
 
@@ -333,7 +341,7 @@ public class S00007 extends HttpServlet {
 		if ("1".equals(listener_count_radio)) {
 			if (listener_count_from == null || "".equals(listener_count_from)) {
 				// 処理継続
-			} else if (this.isNumber(listener_count_from) == false) {
+			} else if (CommonUtils.isWholeNumber(listener_count_from) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00007_010");
 				request.setAttribute("error", s);
@@ -386,7 +394,7 @@ public class S00007 extends HttpServlet {
 				return;
 			} else if (listener_count_from == null || "".equals(listener_count_from) && this.isNumber(listener_count_to) == true) {
 				//処理続行
-			} else if (this.isNumber(listener_count_from)) {
+			} else if (CommonUtils.isNumber(listener_count_from)) {
 				//処理続行
 			}
 		if (!("1".equals(listener_count_radio))) {
@@ -506,6 +514,7 @@ public class S00007 extends HttpServlet {
 		// (20) S00008.jsp にフォワーディングする。
 		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00008.jsp").forward(request, response);
 	}
+
 
 	/**
 	 * 文言マスタより引数で渡されたkeyをIDにもつレコードを取得

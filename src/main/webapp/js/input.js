@@ -5,6 +5,7 @@ $(function(){
     //--------------------------------------------------------------------------
     // ラジオラベルが押下された場合の処理
     //--------------------------------------------------------------------------
+    //---$(target).on('event',callback)
     $("span.radio_label").on("click", function() {
         
         // 該当ラベルのjQueryオブジェクト化
@@ -16,6 +17,7 @@ $(function(){
         // ラジオのチェック
         _radioOrSelect$.prop('checked', true);
         
+        //
         if (_radioOrSelect$.hasClass("onOffRadio")) {
           // テーブルの色替え
           Util.changeTabelStatus(_radioOrSelect$);
@@ -31,8 +33,10 @@ $(function(){
         var _this$ = $(this);
         
         // 兄弟の取得
+        //prev()で前の要素を取る
         var _radioOrSelect$ =  _this$.prev();
         
+        //prop()で属性を取得する
         var isChecked = _radioOrSelect$.prop("checked");
         if (isChecked) {
           _radioOrSelect$.prop('checked', false);

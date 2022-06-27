@@ -246,10 +246,12 @@
 						</tr>
 					</table>
 				</div>
+				</div>
 
 
 
 				<!--登録日-->
+				<div id="jouken_date" class="jouken<%= joined_date_is_error %>">
 				<div class="input_table">
 					<table>
 						<tr>
@@ -276,6 +278,7 @@
 								name="joined_date_to" value=<%=joined_date_to %>></td>
 						</tr>
 					</table>
+				</div>
 				</div>
 
 
@@ -309,6 +312,7 @@
 
 
 				<!-- 誕生日 -->
+				<div id="jouken_date" class="jouken<%= birthday_is_error %>">
 				<div class="input_table">
 					<table>
 						<tr>
@@ -334,8 +338,10 @@
 						</tr>
 					</table>
 				</div>
+				</div>
 
 				<!-- リスナー数 -->
+				<div id="jouken_date" class="jouken<%= listener_count_is_error %>">
 				<div class="input_table">
 					<table>
 						<tr>
@@ -363,8 +369,10 @@
 						</tr>
 					</table>
 				</div>
+				</div>
 
 				<!-- 言語 -->
+				<div id="jouken_date" class="jouken<%= language_type_is_error %>">
 				<div class="input_table">
 					<table>
 						<tr>
@@ -384,6 +392,8 @@
 						</tr>
 					</table>
 				</div>
+				</div>
+				
 				<!-- 並び順 -->
 				<div class="input_table">
 					<table>
@@ -405,7 +415,7 @@
 					<input type="submit" value="検索">
 				</div>
 
-			</div>
+			
 		</form>
 	</div>
 
