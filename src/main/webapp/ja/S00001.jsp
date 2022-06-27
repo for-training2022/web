@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="jp.excd.servlet.SongComposerBean" %>
+<%@ page import="jp.excd.bean.SongComposerBean" %>
 <!DOCTYPE html>
 <html>
 
