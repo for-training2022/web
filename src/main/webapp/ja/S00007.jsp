@@ -51,11 +51,14 @@
 		joined_date_radio2 = "checked=\"checked\"";
 	}
 
-	String joined_date_from = (String)request.getAttribute("joined_date_from");
-	String joined_date_to = (String)request.getAttribute("joined_date_to");		
-	
-	if (joined_date_from == null) joined_date_from = "";	
-	if (joined_date_to == null) joined_date_to = "";	
+	String joined_date_from = (String)request.getAttribute("joined_date_from");	
+	if (joined_date_from == null) {
+		joined_date_from = "2015-10-29";
+	}
+	String joined_date_to = (String)request.getAttribute("joined_date_to");	
+	if (joined_date_to == null) {
+		joined_date_to = "2015-10-29";
+	}
 	
 	// (6) 以下の項目を元に性別の選択状態を再現する。
 	String gender_radio1 = "";
@@ -173,6 +176,7 @@
 <script type="text/javascript" src="/web/js/util.js"></script>
 <script type="text/javascript" src="/web/js/input.js"></script>
 
+
 <title>作曲家検索</title>
 
 
@@ -219,11 +223,11 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="nickname_radio" value="1"
-											class="onOffRadio" <%= nickname_radio1 %>><span
+										<td><input type="radio" id="nickname_radio1" name="nickname_radio" value="1"
+											class="onOffRadio" <%= nickname_radio1 %> onclick="nicknamechange()"><span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="nickname_radio" value="2"
-											class="onOffRadio" <%= nickname_radio2 %>><span
+										<td><input type="radio" id="nickname_radio2"name="nickname_radio" value="2"
+											class="onOffRadio" <%= nickname_radio2 %> onclick="nicknamechange()"><span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
@@ -233,7 +237,7 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="nickname_type_radio"
+										<td><input type="radio" id="nickname_type_radio1"name="nickname_type_radio"
 											value="1" <%=nickname_type_radio1 %>><span
 											class="radio_label">あいまい</span></td>
 										<td><input type="radio" name="nickname_type_radio"
@@ -241,7 +245,8 @@
 											class="radio_label">完全一致</span></td>
 									</tr>
 								</table>
-								<input type="text" name="nickname" maxlength="255" value="<%=nickname %>">
+								<input type="text" id="nickname" name="nickname"  maxlength="255" value="<%=nickname %>" disabled >
+								
 							</td>
 						</tr>
 					</table>
@@ -257,23 +262,23 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="joined_date_radio"
-											value="1" class="onOffRadio" <%= joined_date_radio1 %>><span
+										<td><input type="radio" id="joined_date_radio1"name="joined_date_radio"
+											value="1" class="onOffRadio" <%= joined_date_radio1 %> ><span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="joined_date_radio"
-											value="2" class="onOffRadio" <%= joined_date_radio2 %>><span
+										<td><input type="radio" id="joined_date_radio2"name="joined_date_radio"
+											value="2" class="onOffRadio" <%= joined_date_radio2 %> ><span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><input type="date" name="joined_date_from"
-								value=<%=joined_date_from %>>
+							<td class="value"><input type="date" id="joined_date_from"name="joined_date_from"
+								value=<%=joined_date_from %> >
 								 <br />
 								<div class="left_padding1">≀</div> 
 								<input type="date"
-								name="joined_date_to" value=<%=joined_date_to %>></td>
+								id="joined_date_to"name="joined_date_to" value=<%=joined_date_to %>></td>
 						</tr>
 					</table>
 				</div>
@@ -287,18 +292,18 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="gender_radio" value="1"
-											class="onOffRadio" <%= gender_radio1 %>><span
+										<td><input type="radio" id="gender_radio1"name="gender_radio" value="1"
+											class="onOffRadio" <%= gender_radio1 %> ><span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="gender_radio" value="2"
-											class="onOffRadio" <%=gender_radio2 %>><span
+										<td><input type="radio" id="gender_radio2"name="gender_radio" value="2"
+											class="onOffRadio" <%=gender_radio2 %> ><span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><select name="gender" tabindex="10">
+							<td class="value"><select id="gender"name="gender" tabindex="10">
 									<option value="1" <%=gender1 %>>男</option>
 									<option value="2" <%=gender2 %>>女</option>
 							</select></td>
@@ -316,21 +321,21 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="birthday_radio" value="1"
-											class="onOffRadio" <%=birthday_radio1 %>><span
+										<td><input type="radio" id="birthday_radio1"name="birthday_radio" value="1"
+											class="onOffRadio" <%=birthday_radio1 %> ><span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="birthday_radio" value="2"
-											class="onOffRadio" <%=birthday_radio2 %>><span
+										<td><input type="radio" id="birthday_radio2"name="birthday_radio" value="2"
+											class="onOffRadio" <%=birthday_radio2 %> ><span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><input type="date" name="birthday_from"
+							<td class="value"><input type="date" id="birthday_from"name="birthday_from"
 								value=<%=birthday_from %>> <br />
 								<div class="left_padding1">≀</div> <input type="date"
-								name="birthday_to" value=<%=birthday_to %>></td>
+								id="birthday_to"name="birthday_to" value=<%=birthday_to %>></td>
 						</tr>
 					</table>
 				</div>
@@ -343,11 +348,11 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="listener_count_radio"
-											value="1" class="onOffRadio" <%=listener_count_radio1 %>>
+										<td><input type="radio" id="listener_count_radio1"name="listener_count_radio"
+											value="1" class="onOffRadio" <%=listener_count_radio1 %> >
 											<span class="radio_label">指定</span></td>
-										<td><input type="radio" name="listener_count_radio"
-											value="2" class="onOffRadio" <%=listener_count_radio2 %>>
+										<td><input type="radio" id="listener_count_radio2"name="listener_count_radio"
+											value="2" class="onOffRadio" <%=listener_count_radio2 %> >
 											<span class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
@@ -355,10 +360,10 @@
 						</tr>
 						<tr>
 							<td class="value"><input type="text"
-								name="listener_count_from" maxlength="8" value=<%= listener_count_from%>>
+								id="listener_count_from"name="listener_count_from" maxlength="8" value=<%= listener_count_from%>>
 								<br />
 								<div class="left_padding2">≀</div> <input type="text"
-								name="listener_count_to" maxlength="8" value=<%= listener_count_to%>>
+								id="listener_count_to"name="listener_count_to" maxlength="8" value=<%= listener_count_to%>>
 							</td>
 						</tr>
 					</table>
@@ -419,6 +424,20 @@
 		Copyright <a href="https://www.excd.jp/">&copy; EXCEED Co., Ltd.</a>
 		All Rights Reserved.
 	</footer>
+	
+	<script>
+	window.addEventListener('load',function(){
+		var element;
+		if(document.getElementById("nickname_radio1").checked){
+			element=document.getElementById("nickname");
+			element.disabled=false;
+			element=document.getElementById("nickname_type_radio1");
+			element.checked=true;
+		}else if(document.getElementById("nickname_radio2").checked){
+			element=document.getElementById("nickname");
+			element.disabled=true;
+		}
+	});</script>
 
 </body>
 
