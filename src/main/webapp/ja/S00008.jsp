@@ -7,6 +7,44 @@
 <%
 	List<ComposerRecord> ComposerList = (List<ComposerRecord>)request.getAttribute("list");
 	%>
+<% 
+	String nickname = (String)request.getAttribute("nickname");
+	if(nickname == null){
+		nickname="";
+	}
+
+	String joined_date_from = (String)request.getAttribute("joined_date_from");	
+	if (joined_date_from == null) {
+		joined_date_from = "";
+	}
+	
+	String joined_date_to = (String)request.getAttribute("joined_date_to");	
+	if (joined_date_to == null) {
+		joined_date_to = "";
+	}
+	
+	String birthday_from = (String)request.getAttribute("birthday_from");
+	if (birthday_from == null) {
+		birthday_from = "";
+	}
+	
+	String birthday_to = (String)request.getAttribute("birthday_to");
+	if (birthday_to == null) {
+		birthday_to = "";
+	}
+	
+	String listener_count_from = (String)request.getAttribute("listener_count_from");
+	if (listener_count_from == null){
+		listener_count_from = "";
+	}
+	
+	String listener_count_to = (String)request.getAttribute("listener_count_to");
+	if (listener_count_to == null) {
+		listener_count_to = "";
+	}
+	
+	
+	%>
 <head>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -89,18 +127,18 @@
 	<form id="formBack" method="POST" action="/web/ja/S00008/back">
 		<input name="nickname_radio" type="hidden" value="<%= request.getAttribute("nickname_radio") %>">
 		<input name="nickname_type_radio" type="hidden" value="<%= request.getAttribute("nickname_type_radio") %>">
-		<input name="nickname" type="hidden" value="<%= request.getAttribute("nickname") %>">
+		<input name="nickname" type="hidden" value="<%=nickname%>">
 		<input name="joined_date_radio" type="hidden" value="<%= request.getAttribute("joined_date_radio") %>">
-		<input name="joined_date_from" type="hidden" value="<%= request.getAttribute("joined_date_from") %>">
-		<input name="joined_date_to" type="hidden" value="<%= request.getAttribute("joined_date_to") %>">
+		<input name="joined_date_from" type="hidden" value="<%= joined_date_from%>">
+		<input name="joined_date_to" type="hidden" value="<%= joined_date_to %>">
 		<input name="gender_radio" type="hidden" value="<%= request.getAttribute("gender_radio") %>">
 		<input name="gender" type="hidden" value="<%= request.getAttribute("gender") %>">
 		<input name="birthday_radio" type="hidden" value="<%= request.getAttribute("birthday_radio") %>">
-		<input name="birthday_from" type="hidden" value="<%= request.getAttribute("birthday_from") %>">
-		<input name="birthday_to" type="hidden" value="<%= request.getAttribute("birthday_to") %>">
+		<input name="birthday_from" type="hidden" value="<%= birthday_from%>">
+		<input name="birthday_to" type="hidden" value="<%= birthday_to %>">
 		<input name="listener_count_radio" type="hidden" value="<%= request.getAttribute("listener_count_radio") %>">
-		<input name="listener_count_from" type="hidden" value="<%= request.getAttribute("listener_count_from") %>">
-		<input name="listener_count_to" type="hidden" value="<%= request.getAttribute("listener_count_to") %>">
+		<input name="listener_count_from" type="hidden" value="<%= listener_count_from%>">
+		<input name="listener_count_to" type="hidden" value="<%= listener_count_to%>">
 		<input name="language_type_jp" type="hidden" value="<%= request.getAttribute("language_type_jp") %>">
 		<input name="language_type_en" type="hidden" value="<%= request.getAttribute("language_type_en") %>">
 		<input name="sort_order" type="hidden" value="<%= request.getAttribute("sort_order") %>">
@@ -108,18 +146,18 @@
 	<form id="formChange" method="POST" action="/web/ja/S00008/change">
 		<input name="nickname_radio" type="hidden" value="<%= request.getAttribute("nickname_radio") %>">
 		<input name="nickname_type_radio" type="hidden" value="<%= request.getAttribute("nickname_type_radio") %>">
-		<input name="nickname" type="hidden" value="<%= request.getAttribute("nickname") %>">
+		<input name="nickname" type="hidden" value="<%=nickname%>">
 		<input name="joined_date_radio" type="hidden" value="<%= request.getAttribute("joined_date_radio") %>">
-		<input name="joined_date_from" type="hidden" value="<%= request.getAttribute("joined_date_from") %>">
-		<input name="joined_date_to" type="hidden" value="<%= request.getAttribute("joined_date_to") %>">
+		<input name="joined_date_from" type="hidden" value="<%= joined_date_from%>">
+		<input name="joined_date_to" type="hidden" value="<%= joined_date_to %>">
 		<input name="gender_radio" type="hidden" value="<%= request.getAttribute("gender_radio") %>">
 		<input name="gender" type="hidden" value="<%= request.getAttribute("gender") %>">
 		<input name="birthday_radio" type="hidden" value="<%= request.getAttribute("birthday_radio") %>">
-		<input name="birthday_from" type="hidden" value="<%= request.getAttribute("birthday_from") %>">
-		<input name="birthday_to" type="hidden" value="<%= request.getAttribute("birthday_to") %>">
+		<input name="birthday_from" type="hidden" value="<%= birthday_from%>">
+		<input name="birthday_to" type="hidden" value="<%= birthday_to %>">
 		<input name="listener_count_radio" type="hidden" value="<%= request.getAttribute("listener_count_radio") %>">
-		<input name="listener_count_from" type="hidden" value="<%= request.getAttribute("listener_count_from") %>">
-		<input name="listener_count_to" type="hidden" value="<%= request.getAttribute("listener_count_to") %>">
+		<input name="listener_count_from" type="hidden" value="<%= listener_count_from%>">
+		<input name="listener_count_to" type="hidden" value="<%= listener_count_to%>">
 		<input name="language_type_jp" type="hidden" value="<%= request.getAttribute("language_type_jp") %>">
 		<input name="language_type_en" type="hidden" value="<%= request.getAttribute("language_type_en") %>">
 		<input name="sort_order" type="hidden" value="<%= request.getAttribute("sort_order") %>">

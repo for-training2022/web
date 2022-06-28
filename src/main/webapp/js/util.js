@@ -194,18 +194,18 @@ $(function() {
     });
 });
 //-----------------------------------------------------------------------------
-//ニックネームの入力の活性・非活性・タイプボタンの切り替え
+//ニックネーム・タイトルの入力の活性・非活性・タイプボタンの切り替え
 //-----------------------------------------------------------------------------
-	function nicknamechange(){
+	function namechange(id){
 		
 		var element;
-		if(document.getElementById("nickname_radio1").checked){
-			element=document.getElementById("nickname");
+		if(document.getElementById(id+"_radio1").checked){
+			element=document.getElementById(id);
 			element.disabled=false;
-			element=document.getElementById("nickname_type_radio1");
+			element=document.getElementById(id+"_type_radio1");
 			element.checked=true;
-		}else if(document.getElementById("nickname_radio2").checked){
-			element=document.getElementById("nickname");
+		}else if(document.getElementById(id+"_radio2").checked){
+			element=document.getElementById(id);
 			element.disabled=true;
 		}
 	}
@@ -226,12 +226,6 @@ $(function() {
 			element.disabled=true;
 			element=document.getElementById(id+"_to");
 			element.disabled=true;
-		}else if(document.getElementById(id+"_radio3").checked){
-			element=document.getElementById(id);
-			element.disabled=false;
-		}else if(document.getElementById(id+"_radio4").checked){
-			element=document.getElementById(id);
-			element.disabled=true;
 			
 		}
 	}
@@ -247,22 +241,6 @@ $(function() {
 			
 		}else if(document.getElementById(id+"_radio2").checked){
 			element=document.getElementById(id);
-			element.disabled=true;
-		}
-	}
-//-----------------------------------------------------------------------------
-//ニックネームの入力の活性・非活性・タイプボタンの切り替え
-//-----------------------------------------------------------------------------
-	function load(){
-		
-		var element;
-		if(document.getElementById("nickname_radio1").checked){
-			element=document.getElementById("nickname");
-			element.disabled=false;
-			element=document.getElementById("nickname_type_radio1");
-			element.checked=true;
-		}else if(document.getElementById("nickname_radio2").checked){
-			element=document.getElementById("nickname");
 			element.disabled=true;
 		}
 	}
