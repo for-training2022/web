@@ -86,26 +86,42 @@
 					<div class="cell">
 						<div class="image_base">
 							<a href="<%=request.getAttribute("melokoUrl")%>">
-								<div class="image">
 									<%
 									if ((songBean.getImageFileName()) == null ||
 											(songBean.getImageFileName().isEmpty())) {
 									%>	
+								<div class="image">
 									<img alt="Noimage" src="/web/images/noimage.png" width="275"
 										height="160"><%
 									} else {
-										if (songBean.getCutLength() != 0) {
+										if (songBean.getCutLength() < 0) {
 										%>
+								<div class="image"
+									style ="height : <%=songBean.getImageFileHeight()%>px !important;
+											position:relative ! important;
+										">
 									<img alt="<%=songBean.getTitle()%>"
 										src="/web/images/<%=songBean.getImageFileName()%>"
 										style="
 										height : <%=songBean.getImageFileHeight()%>px !important;
-										top : -<%=songBean.getCutLength()%>px !important;
 										position:relative ! important;
 									">
 									<%
-										} else {
+										} else if(songBean.getCutLength() > 0) {
 									%>
+								<div class="image" >
+									<img alt="<%=songBean.getTitle()%>"
+										src="/web/images/<%=songBean.getImageFileName()%>"
+										style="
+										height : <%=songBean.getImageFileHeight()%>px !important;
+										top : -<%=songBean.getCutLength() %>px!important;
+										position:relative ! important;
+									">
+									<%
+										}else{
+									%>
+									
+									<div class="image">
 									<img alt="<%=songBean.getTitle()%>"
 										src="/web/images/<%=songBean.getImageFileName()%>">
 									<%
