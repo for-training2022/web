@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="/web/css/main.css">
 <script src="/web/js/jquery-3.3.0.min.js" ></script>
 <script type="text/javascript" src="/web/js/util.js"></script>
 </head>
@@ -18,7 +18,7 @@
 	<div class="wrapper">
 
 	<a href="#" id="menu_open">
-	<img alt="メニュー" src="../images/menu.png" class="menu-icon" />
+	<img alt="メニュー" src="/web/images/menu.png" class="menu-icon" />
 	</a>
       
    <!-- メニューの起点 -->

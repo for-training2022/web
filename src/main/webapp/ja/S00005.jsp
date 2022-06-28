@@ -459,21 +459,21 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="release_date_radio"
-											value="1" class="onOffRadio" <%=release_date_radio1%>><span
+										<td><input type="radio" id="release_date_radio1"name="release_date_radio"
+											value="1" class="onOffRadio" <%=release_date_radio1%> onclick="change('release_date')"><span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="release_date_radio"
-											value="2" class="onOffRadio" <%=release_date_radio2%>><span
+										<td><input type="radio" id="release_date_radio2"name="release_date_radio"
+											value="2" class="onOffRadio" <%=release_date_radio2%>onclick="change('release_date')"><span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><input type="date"
-								name="release_date_from" value=<%=release_date_from%>> <br />
-								<div class="left_padding1">≀</div> <input type="date"
-								name="release_date_to" value=<%=release_date_to%>></td>
+							<td class="value"><input type="date"id="release_date_from"
+								name="release_date_from" value="<%=release_date_from%>" disabled> <br />
+								<div class="left_padding1">≀</div> <input type="date" id="release_date_to"
+								name="release_date_to" value="<%=release_date_to%>"disabled></td>
 						</tr>
 					</table>
 				</div>
@@ -489,21 +489,21 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="rating_radio" value="1"
-											class="onOffRadio" <%=rating_radio1%>> <span
+										<td><input type="radio" id="rating_radio1"name="rating_radio" value="1"
+											class="onOffRadio" <%=rating_radio1%> onclick="change('rating')"> <span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="rating_radio" value="2"
-											class="onOffRadio" <%=rating_radio2%>> <span
+										<td><input type="radio" id="rating_radio2"name="rating_radio" value="2"
+											class="onOffRadio" <%=rating_radio2%> onclick="change('rating')"> <span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><input type="text" name="rating_from"
-								maxlength="8" value=<%=rating_from%>> <br />
-								<div class="left_padding2">≀</div> <input type="text"
-								name="rating_to" maxlength="8" value=<%=rating_to%>></td>
+							<td class="value"><input type="text" id="rating_from"name="rating_from"
+								maxlength="8" value="<%=rating_from%>"disabled> <br />
+								<div class="left_padding2">≀</div> <input type="text"id="rating_to"
+								name="rating_to" maxlength="8" value="<%=rating_to%>"disabled></td>
 						</tr>
 					</table>
 				</div>
@@ -521,11 +521,11 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="rating_average_radio"
-											value="1" <%=rating_average_radio1%> class="onOffRadio">
+										<td><input type="radio" id="rating_average_radio1"name="rating_average_radio"
+											value="1" <%=rating_average_radio1%> class="onOffRadio"onclick="change(rating_average)">
 											<span class="radio_label">指定</span></td>
-										<td><input type="radio" name="rating_average_radio"
-											value="2" <%=rating_average_radio2%> class="onOffRadio"><span>指定なし</span></td>
+										<td><input type="radio" id="rating_average_radio2"name="rating_average_radio"
+											value="2" <%=rating_average_radio2%> class="onOffRadio" onclick="change(rating_average)"><span>指定なし</span></td>
 									</tr>
 								</table>
 							</td>
@@ -621,7 +621,6 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 									<option value="4.8" <%=rating_average_to39%>>4.8</option>
 									<option value="4.9" <%=rating_average_to40%>>4.9</option>
 									<option value="5.0" <%=rating_average_to41%>>5.0</option>
-
 							</select></td>
 						</tr>
 					</table>
@@ -638,21 +637,21 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="views_radio" value="1"
-											class="onOffRadio" <%=views_radio1%>> <span
+										<td><input type="radio" id="views_radio1"name="views_radio" value="1"
+											class="onOffRadio" <%=views_radio1%> onclick="change('views')"> <span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="views_radio" value="2"
-											class="onOffRadio" <%=views_radio2%>> <span
+										<td><input type="radio" id="views_radio2"name="views_radio" value="2"
+											class="onOffRadio" <%=views_radio2%> onclick="change('views')"> <span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><input type="text" name="views_from"
-								maxlength="8" value=<%=views_from%>>
-								<div class="left_padding2">≀</div> <input type="text"
-								name="views_to" maxlength="8" value=<%=views_to%>></td>
+							<td class="value"><input type="text" id="views_from"name="views_from"
+								maxlength="8" value="<%=views_from%>"disabled>
+								<div class="left_padding2">≀</div> <input type="text"id="views_to"
+								name="views_to" maxlength="8" value="<%=views_to%>"disabled></td>
 						</tr>
 					</table>
 				</div>
@@ -668,11 +667,11 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="title_radio" value="1"
-											class="onOffRadio" <%=title_radio1%>> <span
+										<td><input type="radio" id="title_radio1"name="title_radio" value="1"
+											class="onOffRadio" <%=title_radio1%> onclick="namechange('title')"> <span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="title_radio" value="2"
-											class="onOffRadio" <%=title_radio2%>> <span
+										<td><input type="radio" id="title_radio2"name="title_radio" value="2"
+											class="onOffRadio" <%=title_radio2%> onclick="namechange('title')"> <span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
@@ -682,13 +681,13 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="title_type_radio" value="1"
+										<td><input type="radio" id="title_type_radio1"name="title_type_radio" value="1"
 											<%=title_type_radio1%>> <span class="radio_label">あいまい</span></td>
-										<td><input type="radio" name="title_type_radio" value="2"
+										<td><input type="radio" id="title_type_radio2"name="title_type_radio" value="2"
 											<%=title_type_radio2%>> <span class="radio_label">完全一致</span></td>
 									</tr>
-								</table> <input type="text" name="title" maxlength="255"
-								value=<%=title%>>
+								</table> <input type="text" id="title"name="title" maxlength="255"
+								value="<%=title%>"disabled>
 							</td>
 						</tr>
 					</table>
@@ -747,6 +746,14 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 		All Rights Reserved.
 	</footer>
 
+	<script>
+	window.addEventListener('load',function(){
+		namechange('title')
+		change('release_date')
+		change('rating')
+		change('rating_average')
+		change('views')
+	});</script>
 </body>
 
 </HTML>
