@@ -63,6 +63,7 @@
     <% } %>
 
     <!-- プロフィール -->
+    <% if((composerBean.getGenderResult() != null && !"".equals(composerBean.getGenderResult())) || (composerBean.getBirthday_formated() != null && !"".equals(composerBean.getBirthday_formated())) || (composerBean.getFbLink() != null && !"".equals(composerBean.getFbLink())) || (composerBean.getTwLink() != null && !"".equals(composerBean.getTwLink()))){%>
     <div class="single_row_table">
       <table>
         <tr>
@@ -100,6 +101,7 @@
         </tr>
       </table>
     </div>
+    <% } %>
 
     <!-- 情報 -->
     <div class="single_row_table">
