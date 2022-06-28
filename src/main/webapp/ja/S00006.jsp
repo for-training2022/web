@@ -7,6 +7,52 @@
 <%
 List<SongRecord> SongList = (List<SongRecord>) request.getAttribute("list");
 %>
+<% 
+String title = (String)request.getAttribute("title");
+if(title == null){
+	title="";
+}
+
+String release_date_from = (String)request.getAttribute("release_date_from");	
+if (release_date_from == null) {
+	release_date_from = "";
+}
+
+String release_date_to = (String)request.getAttribute("release_date_to");	
+if (release_date_to == null) {
+	release_date_to = "";
+}
+
+String rating_from = (String)request.getAttribute("rating_from");
+if (rating_from == null) {
+	rating_from = "";
+}
+
+String rating_to = (String)request.getAttribute("rating_to");
+if (rating_to == null) {
+	rating_to = "";
+}
+
+String rating_average_from = (String)request.getAttribute("rating_average_from");
+if (rating_average_from == null){
+	rating_average_from = "";
+}
+
+String rating_average_to = (String)request.getAttribute("rating_average_to");
+if (rating_average_to == null) {
+	rating_average_to = "";
+}
+
+String views_from = (String)request.getAttribute("views_from");
+if (views_from == null){
+	views_from = "";
+}
+
+String views_to = (String)request.getAttribute("views_to");
+if (views_to == null) {
+	views_to = "";
+}
+%>
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -90,20 +136,20 @@ List<SongRecord> SongList = (List<SongRecord>) request.getAttribute("list");
 
 	<form id="formBack" method="POST" action="/web/ja/S00006/S00006.back">
 			<input name="release_date_radio" type="hidden" value="<%=request.getAttribute("release_date_radio")%>">
-			<input name="release_date_from" type="hidden" value="<%=request.getAttribute("release_date_from")%>">
-			<input name="release_date_to" type="hidden" value="<%=request.getAttribute("release_date_to")%>">
+			<input name="release_date_from" type="hidden" value="<%=release_date_from%>">
+			<input name="release_date_to" type="hidden" value="<%=release_date_to%>">
 			<input name="rating_radio" type="hidden" value="<%=request.getAttribute("rating_radio")%>">
-			<input name="rating_from" type="hidden" value="<%=request.getAttribute("rating_from")%>">
-			<input name="rating_to" type="hidden" value="<%=request.getAttribute("rating_to")%>">
+			<input name="rating_from" type="hidden" value="<%=rating_from%>">
+			<input name="rating_to" type="hidden" value="<%=rating_to%>">
 			<input name="rating_average_radio" type="hidden" value="<%=request.getAttribute("rating_average_radio")%>">
-			<input name="rating_average_from" type="hidden" value="<%=request.getAttribute("rating_average_from")%>">
-			<input name="rating_average_to" type="hidden" value="<%=request.getAttribute("rating_average_to")%>">
+			<input name="rating_average_from" type="hidden" value="<%=rating_average_from%>">
+			<input name="rating_average_to" type="hidden" value="<%=rating_average_to%>">
 			<input name="views_radio" type="hidden" value="<%=request.getAttribute("views_radio")%>">
-			<input name="views_from" type="hidden" value="<%=request.getAttribute("views_from")%>">
-			<input name="views_to" type="hidden" value="<%=request.getAttribute("views_to")%>">
+			<input name="views_from" type="hidden" value="<%=views_from%>">
+			<input name="views_to" type="hidden" value="<%=views_to%>">
 			<input name="title_radio" type="hidden" value="<%=request.getAttribute("title_radio")%>">
 			<input name="title_type_radio" type="hidden" value="<%=request.getAttribute("title_type_radio")%>">
-			<input name="title" type="hidden" value="<%=request.getAttribute("title")%>">
+			<input name="title" type="hidden" value="<%=title%>">
 			<input name="sort_order" type="hidden" value="<%=request.getAttribute("sort_order")%>">
 	</form>
 	<form id="formChange" method="POST" action="/web/ja/S00006/S00006.change">
