@@ -86,31 +86,31 @@ var Util = {
       + '  </div>'
       + '  <ul>'
       + '    <li>'
-      + '      <a href="/web/ja/S00001">'
+      + '      <a href="S00001.html">'
       + '        <p>HOME</p>'
       + '        <img alt="HOME" class="right_arrow" src="/web/images/right_arrow.png" />'
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="/web/ja/S00005">'
+      + '      <a href="S00005.html">'
       + '        <p>作品検索</p>'
       + '        <img alt="作品検索" class="right_arrow" src="/web/images/right_arrow.png" />'
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="/web/ja/S00007/search">'
+      + '      <a href="S00007.html">'
       + '        <p>作曲家検索</p>'
       + '        <img alt="作曲家検索" class="right_arrow" src="/web/images/right_arrow.png" />'
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="/web/ja/S00009.jsp">'
+      + '      <a href="S00009.html">'
       + '        <p>専用アプリダウンロード</p>'
       + '        <img alt="専用アプリダウンロード" class="right_arrow" src="/web/images/right_arrow.png" />'
       + '      </a>'
       + '    </li>'
       + '    <li>'
-      + '      <a href="https://excd.jp/"target="_blank" rel="noopener">'
+      + '      <a href="https://excd.jp/">'
       + '        <p class="to_excd">運営会社</p>'
       + '        <img alt="運営会社" class="pop_up" src="/web/images/return.png" />'
       + '      </a>'
@@ -193,76 +193,3 @@ $(function() {
         Util.addMenuEventHandller();
     });
 });
-//-----------------------------------------------------------------------------
-//ニックネームの入力の活性・非活性・タイプボタンの切り替え
-//-----------------------------------------------------------------------------
-	function nicknamechange(){
-		
-		var element;
-		if(document.getElementById("nickname_radio1").checked){
-			element=document.getElementById("nickname");
-			element.disabled=false;
-			element=document.getElementById("nickname_type_radio1");
-			element.checked=true;
-		}else if(document.getElementById("nickname_radio2").checked){
-			element=document.getElementById("nickname");
-			element.disabled=true;
-		}
-	}
-//-----------------------------------------------------------------------------
-//入力の活性・非活性
-//-----------------------------------------------------------------------------
-	function change(id){
-		
-		var element;
-		if(document.getElementById(id+"_radio1").checked){
-			element=document.getElementById(id+"_from");
-			element.disabled=false;
-			element=document.getElementById(id+"_to");
-			element.disabled=false;
-			
-		}else if(document.getElementById(id+"_radio2").checked){
-			element=document.getElementById(id+"_from");
-			element.disabled=true;
-			element=document.getElementById(id+"_to");
-			element.disabled=true;
-		}else if(document.getElementById(id+"_radio3").checked){
-			element=document.getElementById(id);
-			element.disabled=false;
-		}else if(document.getElementById(id+"_radio4").checked){
-			element=document.getElementById(id);
-			element.disabled=true;
-			
-		}
-	}
-//-----------------------------------------------------------------------------
-//性別の入力の活性・非活性
-//-----------------------------------------------------------------------------
-	function genderchange(id){
-		
-		var element;
-		if(document.getElementById(id+"_radio1").checked){
-			element=document.getElementById(id);
-			element.disabled=false;
-			
-		}else if(document.getElementById(id+"_radio2").checked){
-			element=document.getElementById(id);
-			element.disabled=true;
-		}
-	}
-//-----------------------------------------------------------------------------
-//ニックネームの入力の活性・非活性・タイプボタンの切り替え
-//-----------------------------------------------------------------------------
-	function load(){
-		
-		var element;
-		if(document.getElementById("nickname_radio1").checked){
-			element=document.getElementById("nickname");
-			element.disabled=false;
-			element=document.getElementById("nickname_type_radio1");
-			element.checked=true;
-		}else if(document.getElementById("nickname_radio2").checked){
-			element=document.getElementById("nickname");
-			element.disabled=true;
-		}
-	}

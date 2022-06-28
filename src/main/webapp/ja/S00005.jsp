@@ -56,7 +56,7 @@ if (rating_to == null)
 // (6) 「平均感動指数_エラー状態(rating_average_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String rating_average_is_error = "";
 if ("1".equals(request.getAttribute("rating_average_is_error"))) {
-	rating_is_error = ", error";
+	rating_average_is_error = ", error";
 }
 
 // (7) 以下の項目を元に平均感動指数の入力状態を再現する。
@@ -230,259 +230,261 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 						</tr>
 					</table>
 				</div>
+			</div>
 
 
-				<div id="jouken_rating" class="jouken<%=rating_is_error%>">
-					<div class="input_table">
-						<table>
-							<tr>
-								<td class="label" rowspan=2>感動指数</td>
+			<div id="jouken_rating" class="jouken<%=rating_is_error%>">
+				<div class="input_table">
+					<table>
+						<tr>
+							<td class="label" rowspan=2>感動指数</td>
 
-								<td class="value">
-									<table class="radio_base">
-										<tr>
-											<td><input type="radio" name="rating_radio" value="1"
-												class="onOffRadio" <%=rating_radio1%>> <span
-												class="radio_label">指定</span></td>
-											<td><input type="radio" name="rating_radio" value="2"
-												class="onOffRadio" <%=rating_radio2%>> <span
-												class="radio_label">指定なし</span></td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td class="value"><input type="text" name="rating_from"
-									maxlength="8" value=<%=rating_from%>> <br />
-									<div class="left_padding2">≀</div> <input type="text"
-									name="rating_to" maxlength="8" value=<%=rating_to%>></td>
-							</tr>
-						</table>
-					</div>
-
-
-
-					<!-- 平均感動指数 -->
-					<div id="jouken_ratingAverage"
-						class="jouken<%=rating_average_is_error%>">
-						<div class="input_table">
-							<table>
-								<tr>
-									<td class="label" rowspan=2>平均感動指数</td>
-									<td class="value">
-										<table class="radio_base">
-											<tr>
-												<td><input type="radio" name="rating_average_radio"
-													value="1" <%=rating_average_radio1%> class="onOffRadio">
-													<span class="radio_label">指定</span></td>
-												<td><input type="radio" name="rating_average_radio"
-													value="2" <%=rating_average_radio2%> class="onOffRadio"><span>指定なし</span></td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td class="value"><select name="rating_average_from"
-										tabindex="1" <%=rating_average_from%>>
-
-
-
-											<option value="1.0">1.0</option>
-											<option value="1.1">1.1</option>
-											<option value="1.2">1.2</option>
-											<option value="1.3">1.3</option>
-											<option value="1.4">1.4</option>
-											<option value="1.5">1.5</option>
-											<option value="1.6">1.6</option>
-											<option value="1.7">1.7</option>
-											<option value="1.8">1.8</option>
-											<option value="1.9">1.9</option>
-											<option value="2.0">2.0</option>
-											<option value="2.1">2.1</option>
-											<option value="2.2">2.2</option>
-											<option value="2.3">2.3</option>
-											<option value="2.4">2.4</option>
-											<option value="2.5">2.5</option>
-											<option value="2.6">2.6</option>
-											<option value="2.7">2.7</option>
-											<option value="2.8">2.8</option>
-											<option value="2.9">2.9</option>
-											<option value="3.0">3.0</option>
-											<option value="3.1">3.1</option>
-											<option value="3.2">3.2</option>
-											<option value="3.3">3.3</option>
-											<option value="3.4">3.4</option>
-											<option value="3.5">3.5</option>
-											<option value="3.6">3.6</option>
-											<option value="3.7">3.7</option>
-											<option value="3.8">3.8</option>
-											<option value="3.9">3.9</option>
-											<option value="4.0">4.0</option>
-											<option value="4.1">4.1</option>
-											<option value="4.2">4.2</option>
-											<option value="4.3">4.3</option>
-											<option value="4.4">4.4</option>
-											<option value="4.5">4.5</option>
-											<option value="4.6">4.6</option>
-											<option value="4.7">4.7</option>
-											<option value="4.8">4.8</option>
-											<option value="4.9">4.9</option>
-											<option value="5.0">5.0</option>
-
-									</select>
-										<div class="left_padding3">≀</div><select
-										name="rating_average_to" tabindex="2" <%=rating_average_to%>>
-
-											<option value="1.0">1.0</option>
-											<option value="1.1">1.1</option>
-											<option value="1.2">1.2</option>
-											<option value="1.3">1.3</option>
-											<option value="1.4">1.4</option>
-											<option value="1.5">1.5</option>
-											<option value="1.6">1.6</option>
-											<option value="1.7">1.7</option>
-											<option value="1.8">1.8</option>
-											<option value="1.9">1.9</option>
-											<option value="2.0">2.0</option>
-											<option value="2.1">2.1</option>
-											<option value="2.2">2.2</option>
-											<option value="2.3">2.3</option>
-											<option value="2.4">2.4</option>
-											<option value="2.5">2.5</option>
-											<option value="2.6">2.6</option>
-											<option value="2.7">2.7</option>
-											<option value="2.8">2.8</option>
-											<option value="2.9">2.9</option>
-											<option value="3.0">3.0</option>
-											<option value="3.1">3.1</option>
-											<option value="3.2">3.2</option>
-											<option value="3.3">3.3</option>
-											<option value="3.4">3.4</option>
-											<option value="3.5">3.5</option>
-											<option value="3.6">3.6</option>
-											<option value="3.7">3.7</option>
-											<option value="3.8">3.8</option>
-											<option value="3.9">3.9</option>
-											<option value="4.0">4.0</option>
-											<option value="4.1">4.1</option>
-											<option value="4.2">4.2</option>
-											<option value="4.3">4.3</option>
-											<option value="4.4">4.4</option>
-											<option value="4.5">4.5</option>
-											<option value="4.6">4.6</option>
-											<option value="4.7">4.7</option>
-											<option value="4.8">4.8</option>
-											<option value="4.9">4.9</option>
-											<option value="5.0">5.0</option>
-									</select></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				<!-- 再生回数 -->
-				<div id="jouken_views" class="jouken<%=views_is_error%>">
-					<div class="input_table">
-						<table>
-							<tr>
-								<td class="label" rowspan=2>再生回数</td>
-								<td class="value">
-									<table class="radio_base">
-										<tr>
-											<td><input type="radio" name="views_radio" value="1"
-												class="onOffRadio" <%=views_radio1%>> <span
-												class="radio_label">指定</span></td>
-											<td><input type="radio" name="views_radio" value="2"
-												class="onOffRadio" <%=views_radio2%>> <span
-												class="radio_label">指定なし</span></td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td class="value"><input type="text" name="views_from" maxlength="8" 
-									value=<%=views_from%>>
-									<div class="left_padding2">≀</div><input type="text"
-									name="views_to" maxlength="8"  value=<%=views_to%>></td>
-							</tr>
-						</table>
-					</div>
-
-
-					<!-- 曲名 -->
-					<div id="jouken_song_title" class="jouken<%=title_is_error%>">
-						<div class="input_table">
-							<table>
-								<tr>
-									<td class="label" rowspan=2>曲名</td>
-									<td class="value">
-										<table class="radio_base">
-											<tr>
-												<td><input type="radio" name="title_radio" value="1"
-													class="onOffRadio" <%=title_radio1%>> <span
-													class="radio_label">指定</span></td>
-												<td><input type="radio" name="title_radio" value="2"
-													class="onOffRadio" <%=title_radio2%>> <span
-													class="radio_label">指定なし</span></td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-								<tr>
-									<td class="value">
-										<table class="radio_base">
-											<tr>
-												<td><input type="radio" name="title_type_radio"
-													value="1" <%=title_type_radio1%>> <span
-													class="radio_label">あいまい</span></td>
-												<td><input type="radio" name="title_type_radio"
-													value="2" <%=title_type_radio2%>> <span
-													class="radio_label">完全一致</span></td>
-											</tr>
-										</table> <input type="text" name="title" maxlength="255"
-										value=<%=title%>>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-
-
-					<!-- 並び順 -->
-					<div id="jouken_sort_order" class="jouken">
-						<div class="input_table">
-							<table>
-								<tr>
-									<td class="label">並び順</td>
-									<td class="value"><select name="sort_order" tabindex="10">
-											<option value="01" <%=sort_order1%>>新しい順</option>
-											<option value="02" <%=sort_order2%>>古い順</option>
-											<option value="03" <%=sort_order3%>>感動指数が多い順</option>
-											<option value="04" <%=sort_order4%>>感動指数が少ない順</option>
-											<option value="05" <%=sort_order5%>>平均感動指数が高い順</option>
-											<option value="06" <%=sort_order6%>>平均感動指数が低い順</option>
-											<option value="07" <%=sort_order7%>>再生回数が多い順</option>
-											<option value="08" <%=sort_order8%>>再生回数が少ない順</option>
-									</select></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-
-
-					<!-- メインボタン -->
-					<div class="main_button">
-						<input type="submit" value="検索">
-					</div>
+							<td class="value">
+								<table class="radio_base">
+									<tr>
+										<td><input type="radio" name="rating_radio" value="1"
+											class="onOffRadio" <%=rating_radio1%>> <span
+											class="radio_label">指定</span></td>
+										<td><input type="radio" name="rating_radio" value="2"
+											class="onOffRadio" <%=rating_radio2%>> <span
+											class="radio_label">指定なし</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td class="value"><input type="text" name="rating_from"
+								maxlength="8" value=<%=rating_from%>> <br />
+								<div class="left_padding2">≀</div> <input type="text"
+								name="rating_to" maxlength="8" value=<%=rating_to%>></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 
 
+
+			<!-- 平均感動指数 -->
+			<div id="jouken_ratingAverage"
+				class="jouken<%=rating_average_is_error%>">
+				<div class="input_table">
+					<table>
+						<tr>
+							<td class="label" rowspan=2>平均感動指数</td>
+							<td class="value">
+								<table class="radio_base">
+									<tr>
+										<td><input type="radio" name="rating_average_radio"
+											value="1" <%=rating_average_radio1%> class="onOffRadio">
+											<span class="radio_label">指定</span></td>
+										<td><input type="radio" name="rating_average_radio"
+											value="2" <%=rating_average_radio2%> class="onOffRadio"><span>指定なし</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td class="value"><select name="rating_average_from"
+								tabindex="1" <%=rating_average_from%>>
+
+
+
+									<option value="1.0">1.0</option>
+									<option value="1.1">1.1</option>
+									<option value="1.2">1.2</option>
+									<option value="1.3">1.3</option>
+									<option value="1.4">1.4</option>
+									<option value="1.5">1.5</option>
+									<option value="1.6">1.6</option>
+									<option value="1.7">1.7</option>
+									<option value="1.8">1.8</option>
+									<option value="1.9">1.9</option>
+									<option value="2.0">2.0</option>
+									<option value="2.1">2.1</option>
+									<option value="2.2">2.2</option>
+									<option value="2.3">2.3</option>
+									<option value="2.4">2.4</option>
+									<option value="2.5">2.5</option>
+									<option value="2.6">2.6</option>
+									<option value="2.7">2.7</option>
+									<option value="2.8">2.8</option>
+									<option value="2.9">2.9</option>
+									<option value="3.0">3.0</option>
+									<option value="3.1">3.1</option>
+									<option value="3.2">3.2</option>
+									<option value="3.3">3.3</option>
+									<option value="3.4">3.4</option>
+									<option value="3.5">3.5</option>
+									<option value="3.6">3.6</option>
+									<option value="3.7">3.7</option>
+									<option value="3.8">3.8</option>
+									<option value="3.9">3.9</option>
+									<option value="4.0">4.0</option>
+									<option value="4.1">4.1</option>
+									<option value="4.2">4.2</option>
+									<option value="4.3">4.3</option>
+									<option value="4.4">4.4</option>
+									<option value="4.5">4.5</option>
+									<option value="4.6">4.6</option>
+									<option value="4.7">4.7</option>
+									<option value="4.8">4.8</option>
+									<option value="4.9">4.9</option>
+									<option value="5.0">5.0</option>
+
+							</select>
+								<div class="left_padding3">≀</div> <select
+								name="rating_average_to" tabindex="2" <%=rating_average_to%>>
+
+									<option value="1.0">1.0</option>
+									<option value="1.1">1.1</option>
+									<option value="1.2">1.2</option>
+									<option value="1.3">1.3</option>
+									<option value="1.4">1.4</option>
+									<option value="1.5">1.5</option>
+									<option value="1.6">1.6</option>
+									<option value="1.7">1.7</option>
+									<option value="1.8">1.8</option>
+									<option value="1.9">1.9</option>
+									<option value="2.0">2.0</option>
+									<option value="2.1">2.1</option>
+									<option value="2.2">2.2</option>
+									<option value="2.3">2.3</option>
+									<option value="2.4">2.4</option>
+									<option value="2.5">2.5</option>
+									<option value="2.6">2.6</option>
+									<option value="2.7">2.7</option>
+									<option value="2.8">2.8</option>
+									<option value="2.9">2.9</option>
+									<option value="3.0">3.0</option>
+									<option value="3.1">3.1</option>
+									<option value="3.2">3.2</option>
+									<option value="3.3">3.3</option>
+									<option value="3.4">3.4</option>
+									<option value="3.5">3.5</option>
+									<option value="3.6">3.6</option>
+									<option value="3.7">3.7</option>
+									<option value="3.8">3.8</option>
+									<option value="3.9">3.9</option>
+									<option value="4.0">4.0</option>
+									<option value="4.1">4.1</option>
+									<option value="4.2">4.2</option>
+									<option value="4.3">4.3</option>
+									<option value="4.4">4.4</option>
+									<option value="4.5">4.5</option>
+									<option value="4.6">4.6</option>
+									<option value="4.7">4.7</option>
+									<option value="4.8">4.8</option>
+									<option value="4.9">4.9</option>
+									<option value="5.0">5.0</option>
+							</select></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+
+			<!-- 再生回数 -->
+			<div id="jouken_views" class="jouken<%=views_is_error%>">
+				<div class="input_table">
+					<table>
+						<tr>
+							<td class="label" rowspan=2>再生回数</td>
+							<td class="value">
+								<table class="radio_base">
+									<tr>
+										<td><input type="radio" name="views_radio" value="1"
+											class="onOffRadio" <%=views_radio1%>> <span
+											class="radio_label">指定</span></td>
+										<td><input type="radio" name="views_radio" value="2"
+											class="onOffRadio" <%=views_radio2%>> <span
+											class="radio_label">指定なし</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td class="value"><input type="text" name="views_from"
+								maxlength="8" value=<%=views_from%>>
+								<div class="left_padding2">≀</div> <input type="text"
+								name="views_to" maxlength="8" value=<%=views_to%>></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+
+			<!-- 曲名 -->
+			<div id="jouken_song_title" class="jouken<%=title_is_error%>">
+				<div class="input_table">
+					<table>
+						<tr>
+							<td class="label" rowspan=2>曲名</td>
+							<td class="value">
+								<table class="radio_base">
+									<tr>
+										<td><input type="radio" name="title_radio" value="1"
+											class="onOffRadio" <%=title_radio1%>> <span
+											class="radio_label">指定</span></td>
+										<td><input type="radio" name="title_radio" value="2"
+											class="onOffRadio" <%=title_radio2%>> <span
+											class="radio_label">指定なし</span></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td class="value">
+								<table class="radio_base">
+									<tr>
+										<td><input type="radio" name="title_type_radio" value="1"
+											<%=title_type_radio1%>> <span class="radio_label">あいまい</span></td>
+										<td><input type="radio" name="title_type_radio" value="2"
+											<%=title_type_radio2%>> <span class="radio_label">完全一致</span></td>
+									</tr>
+								</table> <input type="text" name="title" maxlength="255"
+								value=<%=title%>>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+
+			<!-- 並び順 -->
+			<div id="jouken_sort_order" class="jouken">
+				<div class="input_table">
+					<table>
+						<tr>
+							<td class="label">並び順</td>
+							<td class="value"><select name="sort_order" tabindex="10">
+									<option value="01" <%=sort_order1%>>新しい順</option>
+									<option value="02" <%=sort_order2%>>古い順</option>
+									<option value="03" <%=sort_order3%>>感動指数が多い順</option>
+									<option value="04" <%=sort_order4%>>感動指数が少ない順</option>
+									<option value="05" <%=sort_order5%>>平均感動指数が高い順</option>
+									<option value="06" <%=sort_order6%>>平均感動指数が低い順</option>
+									<option value="07" <%=sort_order7%>>再生回数が多い順</option>
+									<option value="08" <%=sort_order8%>>再生回数が少ない順</option>
+							</select></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+
+			<!-- メインボタン -->
+			<div class="main_button">
+				<input type="submit" value="検索">
+			</div>
+
 		</form>
-
-
 	</div>
+
+
+
+
+
+
 
 
 

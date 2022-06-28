@@ -1,7 +1,10 @@
 package jp.excd.common;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CommonUtils {
@@ -340,7 +343,6 @@ public class CommonUtils {
 		
 		return a3;
 	}
-		
 
 	/**
 	 * 評価のフォーマット。ratingによってhmtlのクラスを変更する。
@@ -397,5 +399,67 @@ public class CommonUtils {
 			imageLength = (d1-160)/2; //高さから160を引き、それを2で割ると、画像をどれだけカットすれば良いか分かる
 		}
 		return imageLength;
+	}
+
+	/**
+	 * 入力値の整数チェックを行う
+	 * @param value チェック対象値
+	 * @return True:空欄 or Null,  False:それ以外
+	 */
+	public static boolean isNumber(String num) {
+		try {
+			Integer.parseInt(num);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	public static boolean isWholeNumber(String num) {
+		try {
+			int wn = Integer.parseInt(num);
+			if(wn < 0) {
+				return false;
+			} else {
+			return true; }
+		} catch (NumberFormatException e) {
+			return false; // エラーにならないように、とりあえずダミー
+		}
+	}
+	
+	public static long getDateValue(String value) throws ParseException {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date dt = format.parse(value);
+		long miliTime = dt.getTime();
+		long retValue = (miliTime / 1000);
+		return retValue;
+	}
+	
+	public static boolean isDouble(String num) {
+		try {
+			Double.parseDouble(num);
+			return true;
+		} catch (NumberFormatException e) {
+			return false; // エラーにならないように、とりあえずダミー
+		}
+	}
+	
+	public static boolean isDateValue(String value) {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+		try {
+			format.parse(value);
+			return true;
+		} catch (ParseException e) {
+			return false;
+		}
+	}
+
+	public static boolean isBlank(String value) {
+		if ("".equals(value) || value == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
