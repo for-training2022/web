@@ -63,6 +63,7 @@
     <% } %>
 
     <!-- プロフィール -->
+    <% if((composerBean.getGenderResult() != null && !"".equals(composerBean.getGenderResult())) || (composerBean.getBirthday_formated() != null && !"".equals(composerBean.getBirthday_formated())) || (composerBean.getFbLink() != null && !"".equals(composerBean.getFbLink())) || (composerBean.getTwLink() != null && !"".equals(composerBean.getTwLink()))){%>
     <div class="single_row_table">
       <table>
         <tr>
@@ -79,15 +80,28 @@
             <span class="value"><%=composerBean.getBirthday_formated() %></span>
             <br/>
           <% } %>
+          <% if((composerBean.getGenderResult() == null || "".equals(composerBean.getGenderResult())) &&(composerBean.getBirthday_formated() == null || "".equals(composerBean.getBirthday_formated()))){ %>
+          <% }else if((composerBean.getBirthday_formated() == null || "".equals(composerBean.getBirthday_formated())) && (composerBean.getFbLink() != null && !"".equals(composerBean.getFbLink()))){ %>
+          	<br/>
+          <% } %>
+          <% if(composerBean.getFbLink() != null && !"".equals(composerBean.getFbLink())){ %>
             <span class="label_top">FB：</span>
             <span class="value"><a href="<%= composerBean.getFbLink()%>"><%=composerBean.getFbLink() %></a></span>
             <br/>
+          <% } %>
+          <% if((composerBean.getGenderResult() == null || "".equals(composerBean.getGenderResult())) &&(composerBean.getBirthday_formated() == null || "".equals(composerBean.getBirthday_formated())) && (composerBean.getFbLink() == null || "".equals(composerBean.getFbLink())) && (composerBean.getTwLink() != null && !"".equals(composerBean.getTwLink()))){ %>
+          <% }else if((composerBean.getBirthday_formated() == null || "".equals(composerBean.getBirthday_formated())) && (composerBean.getFbLink() == null || "".equals(composerBean.getFbLink())) && (composerBean.getTwLink() != null && !"".equals(composerBean.getTwLink()))){ %>
+           <br/>
+          <% } %>
+          <% if(composerBean.getTwLink() != null && !"".equals(composerBean.getTwLink())){ %>
             <span class="label_top">Twitter：</span>
             <span class="value"><a href="<%= composerBean.getTwLink()%>"><%=composerBean.getTwLink() %></a></span>
+          <% } %>
           </td>
         </tr>
       </table>
     </div>
+    <% } %>
 
     <!-- 情報 -->
     <div class="single_row_table">
@@ -123,6 +137,7 @@
     </div>
 
     <!-- 関連リンク -->
+    <% if(composerBean.getOtherLinkDecription() != null &&  !"".equals(composerBean.getOtherLinkDecription())){ %>
     <div class="single_row_table">
       <table>
         <tr>
@@ -135,6 +150,7 @@
         </tr>
       </table>
     </div>
+    <% } %>
 
     <!-- 公開曲一覧のヘッダー -->
     <div class="sub_header">
