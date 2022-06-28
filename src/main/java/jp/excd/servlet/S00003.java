@@ -24,17 +24,16 @@ public class S00003 extends HttpServlet{
 			throws IOException, ServletException{
 
 		Connection con = null;
-
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		//DB接続
 
 		try {
 			con = MySQLSetting.getConnection("meloko","meloko","exceed","Asia/Tokyo");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			getServletConfig().getServletContext().getRequestDispatcher("/jsp/500.jsp").forward(request, response);
 		}
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
 		try {
 			mainSongSearch(request, response, con, pstmt, rs);
