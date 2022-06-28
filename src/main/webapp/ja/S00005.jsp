@@ -67,12 +67,259 @@ if ("1".equals(request.getAttribute("rating_average_radio"))) {
 } else {
 	rating_average_radio2 = "checked=\"checked\"";
 }
-String rating_average_from = (String) request.getAttribute("rating_average_from");
-if (rating_average_from == null)
-	rating_average_from = "1.0";
-String rating_average_to = (String) request.getAttribute("rating_average_to");
-if (rating_average_to == null)
-	rating_average_to = "1.0";
+
+String rating_average_from1 = null;
+String rating_average_from2 = null;
+String rating_average_from3 = null;
+String rating_average_from4 = null;
+String rating_average_from5 = null;
+String rating_average_from6 = null;
+String rating_average_from7 = null;
+String rating_average_from8 = null;
+String rating_average_from9 = null;
+String rating_average_from10 = null;
+String rating_average_from11 = null;
+String rating_average_from12 = null;
+String rating_average_from13 = null;
+String rating_average_from14 = null;
+String rating_average_from15 = null;
+String rating_average_from16 = null;
+String rating_average_from17 = null;
+String rating_average_from18 = null;
+String rating_average_from19 = null;
+String rating_average_from20 = null;
+String rating_average_from21 = null;
+String rating_average_from22 = null;
+String rating_average_from23 = null;
+String rating_average_from24 = null;
+String rating_average_from25 = null;
+String rating_average_from26 = null;
+String rating_average_from27 = null;
+String rating_average_from28 = null;
+String rating_average_from29 = null;
+String rating_average_from30 = null;
+String rating_average_from31 = null;
+String rating_average_from32 = null;
+String rating_average_from33 = null;
+String rating_average_from34 = null;
+String rating_average_from35 = null;
+String rating_average_from36 = null;
+String rating_average_from37 = null;
+String rating_average_from38 = null;
+String rating_average_from39 = null;
+String rating_average_from40 = null;
+String rating_average_from41 = null;
+
+if ("1.0".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from1 = "selected=\"selected\"";
+} else if ("1.1".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from2 = "selected=\"selected\"";
+} else if ("1.2".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from3 = "selected=\"selected\"";
+} else if ("13".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from4 = "selected=\"selected\"";
+} else if ("1.4".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from5 = "selected=\"selected\"";
+} else if ("1.5".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from6 = "selected=\"selected\"";
+} else if ("1.6".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from7 = "selected=\"selected\"";
+} else if ("1.7".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from8 = "selected=\"selected\"";
+} else if ("1.8".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from9 = "selected=\"selected\"";
+} else if ("1.9".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from10 = "selected=\"selected\"";
+} else if ("2.0".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from11 = "selected=\"selected\"";
+} else if ("2.1".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from12 = "selected=\"selected\"";
+} else if ("2.2".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from13 = "selected=\"selected\"";
+} else if ("2.3".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from14 = "selected=\"selected\"";
+} else if ("2.4".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from15 = "selected=\"selected\"";
+} else if ("2.5".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from16 = "selected=\"selected\"";
+} else if ("2.6".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from17 = "selected=\"selected\"";
+} else if ("2.7".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from18 = "selected=\"selected\"";
+} else if ("2.8".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from19 = "selected=\"selected\"";
+} else if ("2.9".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from20 = "selected=\"selected\"";
+} else if ("3.0".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from21 = "selected=\"selected\"";
+} else if ("3.1".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from22 = "selected=\"selected\"";
+} else if ("3.2".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from23 = "selected=\"selected\"";
+} else if ("3.3".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from24 = "selected=\"selected\"";
+} else if ("3.4".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from25 = "selected=\"selected\"";
+} else if ("3.5".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from26 = "selected=\"selected\"";
+} else if ("3.6".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from27 = "selected=\"selected\"";
+} else if ("3.7".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from28 = "selected=\"selected\"";
+} else if ("3.8".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from29 = "selected=\"selected\"";
+} else if ("3.9".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from30 = "selected=\"selected\"";
+} else if ("4.0".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from31 = "selected=\"selected\"";
+} else if ("4.1".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from32 = "selected=\"selected\"";
+} else if ("4.2".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from33 = "selected=\"selected\"";
+} else if ("4.3".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from34 = "selected=\"selected\"";
+} else if ("4.4".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from35 = "selected=\"selected\"";
+} else if ("4.5".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from36 = "selected=\"selected\"";
+} else if ("4.6".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from37 = "selected=\"selected\"";
+} else if ("4.7".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from38 = "selected=\"selected\"";
+} else if ("4.8".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from39 = "selected=\"selected\"";
+} else if ("4.9".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from40 = "selected=\"selected\"";
+} else if ("5.0".equals(request.getAttribute("rating_average_from"))) {
+	rating_average_from41 = "selected=\"selected\"";
+} 
+
+
+String rating_average_to1 = null;
+String rating_average_to2 = null;
+String rating_average_to3 = null;
+String rating_average_to4 = null;
+String rating_average_to5 = null;
+String rating_average_to6 = null;
+String rating_average_to7 = null;
+String rating_average_to8 = null;
+String rating_average_to9 = null;
+String rating_average_to10 = null;
+String rating_average_to11 = null;
+String rating_average_to12 = null;
+String rating_average_to13 = null;
+String rating_average_to14 = null;
+String rating_average_to15 = null;
+String rating_average_to16 = null;
+String rating_average_to17 = null;
+String rating_average_to18 = null;
+String rating_average_to19 = null;
+String rating_average_to20 = null;
+String rating_average_to21 = null;
+String rating_average_to22 = null;
+String rating_average_to23 = null;
+String rating_average_to24 = null;
+String rating_average_to25 = null;
+String rating_average_to26 = null;
+String rating_average_to27 = null;
+String rating_average_to28 = null;
+String rating_average_to29 = null;
+String rating_average_to30 = null;
+String rating_average_to31 = null;
+String rating_average_to32 = null;
+String rating_average_to33 = null;
+String rating_average_to34 = null;
+String rating_average_to35 = null;
+String rating_average_to36 = null;
+String rating_average_to37 = null;
+String rating_average_to38 = null;
+String rating_average_to39 = null;
+String rating_average_to40 = null;
+String rating_average_to41 = null;
+
+if ("1.0".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to1 = "selected=\"selected\"";
+} else if ("1.1".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to2 = "selected=\"selected\"";
+} else if ("1.2".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to3 = "selected=\"selected\"";
+} else if ("13".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to4 = "selected=\"selected\"";
+} else if ("1.4".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to5 = "selected=\"selected\"";
+} else if ("1.5".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to6 = "selected=\"selected\"";
+} else if ("1.6".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to7 = "selected=\"selected\"";
+} else if ("1.7".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to8 = "selected=\"selected\"";
+} else if ("1.8".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to9 = "selected=\"selected\"";
+} else if ("1.9".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to10 = "selected=\"selected\"";
+} else if ("2.0".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to11 = "selected=\"selected\"";
+} else if ("2.1".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to12 = "selected=\"selected\"";
+} else if ("2.2".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to13 = "selected=\"selected\"";
+} else if ("2.3".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to14 = "selected=\"selected\"";
+} else if ("2.4".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to15 = "selected=\"selected\"";
+} else if ("2.5".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to16 = "selected=\"selected\"";
+} else if ("2.6".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to17 = "selected=\"selected\"";
+} else if ("2.7".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to18 = "selected=\"selected\"";
+} else if ("2.8".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to19 = "selected=\"selected\"";
+} else if ("2.9".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to20 = "selected=\"selected\"";
+} else if ("3.0".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to21 = "selected=\"selected\"";
+} else if ("3.1".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to22 = "selected=\"selected\"";
+} else if ("3.2".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to23 = "selected=\"selected\"";
+} else if ("3.3".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to24 = "selected=\"selected\"";
+} else if ("3.4".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to25 = "selected=\"selected\"";
+} else if ("3.5".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to26 = "selected=\"selected\"";
+} else if ("3.6".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to27 = "selected=\"selected\"";
+} else if ("3.7".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to28 = "selected=\"selected\"";
+} else if ("3.8".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to29 = "selected=\"selected\"";
+} else if ("3.9".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to30 = "selected=\"selected\"";
+} else if ("4.0".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to31 = "selected=\"selected\"";
+} else if ("4.1".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to32 = "selected=\"selected\"";
+} else if ("4.2".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to33 = "selected=\"selected\"";
+} else if ("4.3".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to34 = "selected=\"selected\"";
+} else if ("4.4".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to35 = "selected=\"selected\"";
+} else if ("4.5".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to36 = "selected=\"selected\"";
+} else if ("4.6".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to37 = "selected=\"selected\"";
+} else if ("4.7".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to38 = "selected=\"selected\"";
+} else if ("4.8".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to39 = "selected=\"selected\"";
+} else if ("4.9".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to40 = "selected=\"selected\"";
+} else if ("5.0".equals(request.getAttribute("rating_average_to"))) {
+	rating_average_to41 = "selected=\"selected\"";
+}
 
 // (8) 「再生回数_エラー状態(views_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String views_is_error = "";
@@ -285,97 +532,96 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 						</tr>
 						<tr>
 							<td class="value"><select name="rating_average_from"
-								tabindex="1" <%=rating_average_from%>>
+								tabindex="1">
 
-
-
-									<option value="1.0">1.0</option>
-									<option value="1.1">1.1</option>
-									<option value="1.2">1.2</option>
-									<option value="1.3">1.3</option>
-									<option value="1.4">1.4</option>
-									<option value="1.5">1.5</option>
-									<option value="1.6">1.6</option>
-									<option value="1.7">1.7</option>
-									<option value="1.8">1.8</option>
-									<option value="1.9">1.9</option>
-									<option value="2.0">2.0</option>
-									<option value="2.1">2.1</option>
-									<option value="2.2">2.2</option>
-									<option value="2.3">2.3</option>
-									<option value="2.4">2.4</option>
-									<option value="2.5">2.5</option>
-									<option value="2.6">2.6</option>
-									<option value="2.7">2.7</option>
-									<option value="2.8">2.8</option>
-									<option value="2.9">2.9</option>
-									<option value="3.0">3.0</option>
-									<option value="3.1">3.1</option>
-									<option value="3.2">3.2</option>
-									<option value="3.3">3.3</option>
-									<option value="3.4">3.4</option>
-									<option value="3.5">3.5</option>
-									<option value="3.6">3.6</option>
-									<option value="3.7">3.7</option>
-									<option value="3.8">3.8</option>
-									<option value="3.9">3.9</option>
-									<option value="4.0">4.0</option>
-									<option value="4.1">4.1</option>
-									<option value="4.2">4.2</option>
-									<option value="4.3">4.3</option>
-									<option value="4.4">4.4</option>
-									<option value="4.5">4.5</option>
-									<option value="4.6">4.6</option>
-									<option value="4.7">4.7</option>
-									<option value="4.8">4.8</option>
-									<option value="4.9">4.9</option>
-									<option value="5.0">5.0</option>
+									<option value="1.0" <%=rating_average_from1%>>1.0</option>
+									<option value="1.1" <%=rating_average_from2%>>1.1</option>
+									<option value="1.2" <%=rating_average_from3%>>1.2</option>
+									<option value="1.3" <%=rating_average_from4%>>1.3</option>
+									<option value="1.4" <%=rating_average_from5%>>1.4</option>
+									<option value="1.5" <%=rating_average_from6%>>1.5</option>
+									<option value="1.6" <%=rating_average_from7%>>1.6</option>
+									<option value="1.7" <%=rating_average_from8%>>1.7</option>
+									<option value="1.8" <%=rating_average_from9%>>1.8</option>
+									<option value="1.9" <%=rating_average_from10%>>1.9</option>
+									<option value="2.0" <%=rating_average_from11%>>2.0</option>
+									<option value="2.1" <%=rating_average_from12%>>2.1</option>
+									<option value="2.2" <%=rating_average_from13%>>2.2</option>
+									<option value="2.3" <%=rating_average_from14%>>2.3</option>
+									<option value="2.4" <%=rating_average_from15%>>2.4</option>
+									<option value="2.5" <%=rating_average_from16%>>2.5</option>
+									<option value="2.6" <%=rating_average_from17%>>2.6</option>
+									<option value="2.7" <%=rating_average_from18%>>2.7</option>
+									<option value="2.8" <%=rating_average_from19%>>2.8</option>
+									<option value="2.9" <%=rating_average_from20%>>2.9</option>
+									<option value="3.0" <%=rating_average_from21%>>3.0</option>
+									<option value="3.1" <%=rating_average_from22%>>3.1</option>
+									<option value="3.2" <%=rating_average_from23%>>3.2</option>
+									<option value="3.3" <%=rating_average_from24%>>3.3</option>
+									<option value="3.4" <%=rating_average_from25%>>3.4</option>
+									<option value="3.5" <%=rating_average_from26%>>3.5</option>
+									<option value="3.6" <%=rating_average_from27%>>3.6</option>
+									<option value="3.7" <%=rating_average_from28%>>3.7</option>
+									<option value="3.8" <%=rating_average_from29%>>3.8</option>
+									<option value="3.9" <%=rating_average_from30%>>3.9</option>
+									<option value="4.0" <%=rating_average_from31%>>4.0</option>
+									<option value="4.1" <%=rating_average_from32%>>4.1</option>
+									<option value="4.2" <%=rating_average_from33%>>4.2</option>
+									<option value="4.3" <%=rating_average_from34%>>4.3</option>
+									<option value="4.4" <%=rating_average_from35%>>4.4</option>
+									<option value="4.5" <%=rating_average_from36%>>4.5</option>
+									<option value="4.6" <%=rating_average_from37%>>4.6</option>
+									<option value="4.7" <%=rating_average_from38%>>4.7</option>
+									<option value="4.8" <%=rating_average_from39%>>4.8</option>
+									<option value="4.9" <%=rating_average_from40%>>4.9</option>
+									<option value="5.0" <%=rating_average_from41%>>5.0</option>
 
 							</select>
 								<div class="left_padding3">≀</div> <select
-								name="rating_average_to" tabindex="2" <%=rating_average_to%>>
+								name="rating_average_to" tabindex="2" >
 
-									<option value="1.0">1.0</option>
-									<option value="1.1">1.1</option>
-									<option value="1.2">1.2</option>
-									<option value="1.3">1.3</option>
-									<option value="1.4">1.4</option>
-									<option value="1.5">1.5</option>
-									<option value="1.6">1.6</option>
-									<option value="1.7">1.7</option>
-									<option value="1.8">1.8</option>
-									<option value="1.9">1.9</option>
-									<option value="2.0">2.0</option>
-									<option value="2.1">2.1</option>
-									<option value="2.2">2.2</option>
-									<option value="2.3">2.3</option>
-									<option value="2.4">2.4</option>
-									<option value="2.5">2.5</option>
-									<option value="2.6">2.6</option>
-									<option value="2.7">2.7</option>
-									<option value="2.8">2.8</option>
-									<option value="2.9">2.9</option>
-									<option value="3.0">3.0</option>
-									<option value="3.1">3.1</option>
-									<option value="3.2">3.2</option>
-									<option value="3.3">3.3</option>
-									<option value="3.4">3.4</option>
-									<option value="3.5">3.5</option>
-									<option value="3.6">3.6</option>
-									<option value="3.7">3.7</option>
-									<option value="3.8">3.8</option>
-									<option value="3.9">3.9</option>
-									<option value="4.0">4.0</option>
-									<option value="4.1">4.1</option>
-									<option value="4.2">4.2</option>
-									<option value="4.3">4.3</option>
-									<option value="4.4">4.4</option>
-									<option value="4.5">4.5</option>
-									<option value="4.6">4.6</option>
-									<option value="4.7">4.7</option>
-									<option value="4.8">4.8</option>
-									<option value="4.9">4.9</option>
-									<option value="5.0">5.0</option>
+									<option value="1.0" <%=rating_average_to1%>>1.0</option>
+									<option value="1.1" <%=rating_average_to2%>>1.1</option>
+									<option value="1.2" <%=rating_average_to3%>>1.2</option>
+									<option value="1.3" <%=rating_average_to4%>>1.3</option>
+									<option value="1.4" <%=rating_average_to5%>>1.4</option>
+									<option value="1.5" <%=rating_average_to6%>>1.5</option>
+									<option value="1.6" <%=rating_average_to7%>>1.6</option>
+									<option value="1.7" <%=rating_average_to8%>>1.7</option>
+									<option value="1.8" <%=rating_average_to9%>>1.8</option>
+									<option value="1.9" <%=rating_average_to10%>>1.9</option>
+									<option value="2.0" <%=rating_average_to11%>>2.0</option>
+									<option value="2.1" <%=rating_average_to12%>>2.1</option>
+									<option value="2.2" <%=rating_average_to13%>>2.2</option>
+									<option value="2.3" <%=rating_average_to14%>>2.3</option>
+									<option value="2.4" <%=rating_average_to15%>>2.4</option>
+									<option value="2.5" <%=rating_average_to16%>>2.5</option>
+									<option value="2.6" <%=rating_average_to17%>>2.6</option>
+									<option value="2.7" <%=rating_average_to18%>>2.7</option>
+									<option value="2.8" <%=rating_average_to19%>>2.8</option>
+									<option value="2.9" <%=rating_average_to20%>>2.9</option>
+									<option value="3.0" <%=rating_average_to21%>>3.0</option>
+									<option value="3.1" <%=rating_average_to22%>>3.1</option>
+									<option value="3.2" <%=rating_average_to23%>>3.2</option>
+									<option value="3.3" <%=rating_average_to24%>>3.3</option>
+									<option value="3.4" <%=rating_average_to25%>>3.4</option>
+									<option value="3.5" <%=rating_average_to26%>>3.5</option>
+									<option value="3.6" <%=rating_average_to27%>>3.6</option>
+									<option value="3.7" <%=rating_average_to28%>>3.7</option>
+									<option value="3.8" <%=rating_average_to29%>>3.8</option>
+									<option value="3.9" <%=rating_average_to30%>>3.9</option>
+									<option value="4.0" <%=rating_average_to31%>>4.0</option>
+									<option value="4.1" <%=rating_average_to32%>>4.1</option>
+									<option value="4.2" <%=rating_average_to33%>>4.2</option>
+									<option value="4.3" <%=rating_average_to34%>>4.3</option>
+									<option value="4.4" <%=rating_average_to35%>>4.4</option>
+									<option value="4.5" <%=rating_average_to36%>>4.5</option>
+									<option value="4.6" <%=rating_average_to37%>>4.6</option>
+									<option value="4.7" <%=rating_average_to38%>>4.7</option>
+									<option value="4.8" <%=rating_average_to39%>>4.8</option>
+									<option value="4.9" <%=rating_average_to40%>>4.9</option>
+									<option value="5.0" <%=rating_average_to41%>>5.0</option>
+
 							</select></td>
 						</tr>
 					</table>

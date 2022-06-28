@@ -227,7 +227,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_radio)) {
 			if (rating_from == null || "".equals(rating_from)) {
 				// 処理継続
-			} else if (CommonUtils.isWholeNumber(rating_from) == false) {
+			} else if (CommonUtils.isNumber(rating_from) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00005_005");
 				request.setAttribute("error", s);
@@ -287,21 +287,22 @@ public class S00005 extends HttpServlet {
 
 		// (10) 感動指数FROM　感動指数TO（逆転チェック）
 		if ("1".equals(rating_radio)) {
-			if (rating_from != null) {
+			if (!"".equals(rating_from)) {
 				rf = Integer.parseInt(rating_from);
 			}
-			if (rating_to != null || rating_to != "") {
+			if (!"".equals(rating_to)){
 				rt = Integer.parseInt(rating_to);
 			}
-			if (rAf != null || rAt != null || rf > rt) {
-				//エラー
-				String s = this.getDescription(con, "ES00005_008");
-				request.setAttribute("error", s);
-				request.setAttribute("rating_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request,
-						response);
-				return;
-
+			if (rf!=null && rt!=null) {
+				if(rf > rt) {
+					//エラー
+					String s = this.getDescription(con, "ES00005_008");
+					request.setAttribute("error", s);
+					request.setAttribute("rating_is_error", "1");
+					getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request,
+							response);
+					return;
+				}
 			} else {
 				//処理続行
 			}
@@ -314,7 +315,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_average_radio)) {
 			if (rating_average_from == null || "".equals(rating_average_from)) {
 				// 処理継続
-			} else if (CommonUtils.isWholeNumber(rating_from) == false) {
+			} else if (CommonUtils.isDouble(rating_average_from) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00005_015");
 				request.setAttribute("error", s);
@@ -324,9 +325,9 @@ public class S00005 extends HttpServlet {
 				return;
 			} else {
 				// 処理継続
-				rf = Integer.parseInt(rating_from);
+				rAf = Double.parseDouble(rating_average_from);
 			}
-			if (!("1".equals(rating_radio))) {
+			if (!("1".equals(rating_average_radio))) {
 				//処理続行
 			}
 		}
@@ -335,7 +336,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_average_radio)) {
 			if (rating_average_to == null || "".equals(rating_average_to)) {
 				//処理継続
-			} else if (CommonUtils.isNumber(rating_average_to) == false) {
+			} else if (CommonUtils.isDouble(rating_average_to) == false) {
 				//エラー
 				String s = this.getDescription(con, "ES00005_015");
 				request.setAttribute("error", s);
@@ -345,9 +346,9 @@ public class S00005 extends HttpServlet {
 				return;
 			} else {
 				//処理継続
-				rt = Integer.parseInt(rating_to);
+				rAt = Double.parseDouble(rating_average_to);
 			}
-			if (!("1".equals(rating_radio))) {
+			if (!("1".equals(rating_average_radio))) {
 				//処理続行
 			}
 		}
@@ -360,7 +361,7 @@ public class S00005 extends HttpServlet {
 			if (rating_average_to != null) {
 				rAt = Double.parseDouble(rating_average_to);
 			}
-			if ((rAf != null || rAt != null) && (rAf > rAt)) {
+			if ((rAf != null && rAt != null) && (rAf > rAt)) {
 				//エラー
 				String s = this.getDescription(con, "ES00005_009");
 				request.setAttribute("error", s);
@@ -440,20 +441,22 @@ public class S00005 extends HttpServlet {
 
 		// (15) 再生回数FROM、再生回数TOについて、以下のとおりエラー判定を行う。
 		if ("1".equals(views_radio)) {
-			if (views_from != null) {
+			if (!"".equals(views_from)) {
 				vf = Integer.parseInt(views_from);
 			}
-			if (views_to != null) {
+			if (!"".equals(views_to)) {
 				vt = Integer.parseInt(views_to);
 			}
-			if ((vf != null || vt != null) && (vf > vt)){
-				//エラー
-				String s = this.getDescription(con, "ES00005_013");
-				request.setAttribute("error", s);
-				request.setAttribute("views_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp")
-				.forward(request, response);
-				return;
+			if (vf != null && vt != null) {
+				if(vf > vt){
+					//エラー
+					String s = this.getDescription(con, "ES00005_013");
+					request.setAttribute("error", s);
+					request.setAttribute("views_is_error", "1");
+					getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp")
+					.forward(request, response);
+					return;
+				}
 			}
 		} else {
 			//処理続行
@@ -684,8 +687,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_radio)) {
 			if (rating_from == null || "".equals(rating_from)) {
 				//処理続行
-			}
-			if (CommonUtils.isNumber(rating_from)) {
+			} else if (CommonUtils.isNumber(rating_from)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
@@ -707,8 +709,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_radio)) {
 			if (rating_to == null || "".equals(rating_to)) {
 				//処理続行
-			}
-			if (CommonUtils.isNumber(rating_to)) {
+			}else if (CommonUtils.isNumber(rating_to)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
@@ -731,8 +732,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_average_radio)) {
 			if (rating_average_from == null || "".equals(rating_average_from)) {
 				//処理続行
-			}
-			if (CommonUtils.isDouble(rating_average_from)) {
+			}else if (CommonUtils.isDouble(rating_average_from)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
@@ -754,8 +754,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_average_radio)) {
 			if (rating_average_to == null || "".equals(rating_average_to)) {
 				//処理続行
-			}
-			if (CommonUtils.isDouble(rating_average_to)) {
+			}else if (CommonUtils.isDouble(rating_average_to)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
