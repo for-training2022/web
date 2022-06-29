@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.excd.common.CommonUtils;
 import jp.excd.bean.SongComposerBean;
+import jp.excd.common.CommonUtils;
 
 public class S00001 extends HttpServlet {
 
@@ -185,6 +185,8 @@ public class S00001 extends HttpServlet {
 				+ "    , total_listen_count\n"
 				+ "    , release_datetime\n"
 				+ "    , image_file_name \n"
+				+"     , image_file_height \n"
+				+"     , image_file_width \n "
 				+ "from\n"
 				+ "    song \n"
 				+ "    left join composer \n"
@@ -309,6 +311,14 @@ public class S00001 extends HttpServlet {
 					//ファイルネーム
 					String Image_file_name = rs.getString("Image_file_name");
 					record.setImage_file_name(Image_file_name);
+					
+					//ファイルの大きさ修正
+					int width = rs.getInt("image_file_width");
+					int height = rs.getInt("image_file_height");
+					record.setImage_file_height(CommonUtils.imageHeightformat(width , height));
+					record.setImage_file_width(rs.getInt("image_file_width"));
+					record.setCutLength(CommonUtils.cutLength(record.getImage_file_height()));
+					
 					
 					displayList.add(record);
 				}

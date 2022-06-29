@@ -123,7 +123,27 @@
 					<div class="image_base">
 						<a href="http://localhost:8080/web/ja/S00003/<%= record.getId()%>">
 							<div class="image song1">
-								<img alt="<%= record.getTitle() %>" src="/web/images/<%= record.getImage_file_name() %>" />
+						<%
+						if(record.getcutLength()>0){	
+						%>
+								<img alt="<%= record.getTitle() %>" src="/web/images/<%= record.getImage_file_name() %>" 
+								style = "height : <%=record.getImage_file_height()%>px !important;
+										position:relative ! important;
+										top:-<%=record.getImage_file_height() %>px !important;">
+								<%
+						}else if(record.getcutLength()<0){
+								%>
+								<img alt="<%= record.getTitle() %>" src="/web/images/<%= record.getImage_file_name() %>" 
+								style = "height : <%=record.getImage_file_height()%>px !important;
+										position:relative ! important;">
+								<%
+						}else{ 
+								%>
+								<img alt="<%= record.getTitle() %>" src="/web/images/<%= record.getImage_file_name() %>" >
+								<%
+						} 
+								%>
+								
 								<img alt= "play" class="play" src="/web/images/play.png" />
 							</div>
 						</a>

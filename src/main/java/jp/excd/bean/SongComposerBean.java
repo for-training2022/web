@@ -2,6 +2,7 @@ package jp.excd.bean;
 
 public class SongComposerBean {
 
+	private static final String cut_length = null;
 	String id;
 	String title;
 	String unique_code;
@@ -11,8 +12,9 @@ public class SongComposerBean {
 	String total_listen_count_formated;
 	String release_datetime_formated;
 	String image_file_name;
-	String image_file_height;
-	String image_file_width;
+	double image_file_height;
+	int image_file_width;
+	double cutLength;
 
 	public void setId(String id) {
 		this.id = id;
@@ -77,19 +79,26 @@ public class SongComposerBean {
 		return image_file_name;
 	}
 	
-	public void setImage_file_height(String image_file_height) {
-		this.image_file_height = image_file_height;
+	public void setImage_file_height(double d) {
+		this.image_file_height = d;
 	}
-	public String getImage_file_height() {
+	public double getImage_file_height() {
 		return image_file_height;
 	}
 	
-	public void setImage_file_width(String image_file_width) {
-		this.image_file_width = image_file_width;
+	public void setImage_file_width(int i) {
+		this.image_file_width = i;
 	}
-	public String getImage_file_width() {
+	public int getImage_file_width() {
 		return image_file_width;
 	}
-
+	public void setCutLength(double cutLength) {
+	 this.cutLength = cutLength;
+	}
+	
+	public double getcutLength() {
+		return cutLength;
+	}
+	
 
 }
