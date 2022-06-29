@@ -73,10 +73,10 @@
           <td class="value">
           <% if(composerBean.getGenderResult() != null && !"".equals(composerBean.getGenderResult())){ %>
             <span class="label_top">性別：</span>
-            <span class="value"><%=composerBean.getGenderResult() %></span>
+            <span class="value"><%=composerBean.getGenderResult() %>&nbsp;</span>
           <% } %>
           <% if(composerBean.getBirthday_formated() != null && !"".equals(composerBean.getBirthday_formated())){ %>
-            <span class="label">誕生日：</span>
+            <span class="label_top">誕生日：</span>
             <span class="value"><%=composerBean.getBirthday_formated() %></span>
             <br/>
           <% } %>
