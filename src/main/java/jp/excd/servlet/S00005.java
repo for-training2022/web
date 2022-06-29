@@ -325,9 +325,9 @@ public class S00005 extends HttpServlet {
 				return;
 			} else {
 				// 処理継続
-				rf = Integer.parseInt(rating_from);
+				rAf = Double.parseDouble(rating_average_from);
 			}
-			if (!("1".equals(rating_radio))) {
+			if (!("1".equals(rating_average_radio))) {
 				//処理続行
 			}
 		}
@@ -346,19 +346,19 @@ public class S00005 extends HttpServlet {
 				return;
 			} else {
 				//処理継続
-				rt = Integer.parseInt(rating_to);
+				rAt = Double.parseDouble(rating_average_to);
 			}
-			if (!("1".equals(rating_radio))) {
+			if (!("1".equals(rating_average_radio))) {
 				//処理続行
 			}
 		}
 
 		// (11) 平均感動指数FROM　平均感動指数TO エラーチェック
 		if ("1".equals(rating_average_radio)) {
-			if (rating_average_from != null) {
+			if (!"".equals(rating_average_from)) {
 				rAf = Double.parseDouble(rating_average_from);
 			}
-			if (rating_average_to != null) {
+			if (!"".equals(rating_average_to)) {
 				rAt = Double.parseDouble(rating_average_to);
 			}
 			if (rAf != null && rAt != null){
