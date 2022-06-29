@@ -7,11 +7,13 @@
 String errorMessage = (String) request.getAttribute("error");
 if (errorMessage == null)
 	errorMessage = "";
+
 // (2) 「公開日_エラー状態(release_date_is_error)」= "1"の場合
 String release_date_is_error = "";
 if ("1".equals(request.getAttribute("release_date_is_error"))) {
 	release_date_is_error = ", error";
 }
+
 // (3) 以下の項目を元に公開日の入力状態を再現する。
 String release_date_radio1 = "";
 String release_date_radio2 = "";
@@ -22,17 +24,20 @@ if ("1".equals(request.getAttribute("release_date_radio"))) {
 }
 String release_date_from = (String) request.getAttribute("release_date_from");
 String release_date_to = (String) request.getAttribute("release_date_to");
+
 if (release_date_from == null) {
 	release_date_from = "";
 }
 if (release_date_to == null) {
 	release_date_to = "";
 }
+
 // (4) 「感動指数_エラー状態(rating_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String rating_is_error = "";
 if ("1".equals(request.getAttribute("rating_is_error"))) {
 	rating_is_error = ", error";
 }
+
 // (5) 以下の項目を元に感動指数の入力状態を再現する。
 String rating_radio1 = "";
 String rating_radio2 = "";
@@ -47,11 +52,13 @@ if (rating_from == null)
 String rating_to = (String) request.getAttribute("rating_to");
 if (rating_to == null)
 	rating_to = "";
+
 // (6) 「平均感動指数_エラー状態(rating_average_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String rating_average_is_error = "";
 if ("1".equals(request.getAttribute("rating_average_is_error"))) {
 	rating_average_is_error = ", error";
 }
+
 // (7) 以下の項目を元に平均感動指数の入力状態を再現する。
 String rating_average_radio1 = "";
 String rating_average_radio2 = "";
@@ -60,6 +67,7 @@ if ("1".equals(request.getAttribute("rating_average_radio"))) {
 } else {
 	rating_average_radio2 = "checked=\"checked\"";
 }
+
 String rating_average_from1 = null;
 String rating_average_from2 = null;
 String rating_average_from3 = null;
@@ -101,6 +109,7 @@ String rating_average_from38 = null;
 String rating_average_from39 = null;
 String rating_average_from40 = null;
 String rating_average_from41 = null;
+
 if ("1.0".equals(request.getAttribute("rating_average_from"))) {
 	rating_average_from1 = "selected=\"selected\"";
 } else if ("1.1".equals(request.getAttribute("rating_average_from"))) {
@@ -184,6 +193,8 @@ if ("1.0".equals(request.getAttribute("rating_average_from"))) {
 } else if ("5.0".equals(request.getAttribute("rating_average_from"))) {
 	rating_average_from41 = "selected=\"selected\"";
 } 
+
+
 String rating_average_to1 = null;
 String rating_average_to2 = null;
 String rating_average_to3 = null;
@@ -225,6 +236,7 @@ String rating_average_to38 = null;
 String rating_average_to39 = null;
 String rating_average_to40 = null;
 String rating_average_to41 = null;
+
 if ("1.0".equals(request.getAttribute("rating_average_to"))) {
 	rating_average_to1 = "selected=\"selected\"";
 } else if ("1.1".equals(request.getAttribute("rating_average_to"))) {
@@ -308,11 +320,13 @@ if ("1.0".equals(request.getAttribute("rating_average_to"))) {
 } else if ("5.0".equals(request.getAttribute("rating_average_to"))) {
 	rating_average_to41 = "selected=\"selected\"";
 }
+
 // (8) 「再生回数_エラー状態(views_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String views_is_error = "";
 if ("1".equals(request.getAttribute("views_is_error"))) {
 	views_is_error = ", error";
 }
+
 // (9) 以下の項目を元に再生回数の入力状態を再現する。
 String views_radio1 = "";
 String views_radio2 = "";
@@ -327,11 +341,13 @@ if (views_from == null)
 String views_to = (String) request.getAttribute("views_to");
 if (views_to == null)
 	views_to = "";
+
 // (10) 「曲名_エラー状態(title_is_error)」= "1"の場合、divタグのクラス属性に errorを加える。
 String title_is_error = "";
 if ("1".equals(request.getAttribute("title_is_error"))) {
 	title_is_error = ", error";
 }
+
 // (11) 以下の項目を元に曲名の入力状態を再現する。
 String title_radio1 = "";
 String title_radio2 = "";
@@ -340,6 +356,7 @@ if ("1".equals(request.getAttribute("title_radio"))) {
 } else {
 	title_radio2 = "checked=\"checked\"";
 }
+
 String title_type_radio1 = "";
 String title_type_radio2 = "";
 if ("1".equals(request.getAttribute("title_type_radio"))) {
@@ -347,9 +364,11 @@ if ("1".equals(request.getAttribute("title_type_radio"))) {
 } else {
 	title_type_radio2 = "checked=\"checked\"";
 }
+
 String title = (String) request.getAttribute("title");
 if (title == null)
 	title = "";
+
 // (12) 以下の項目を元に並び順の入力状態を再現する。
 String sort_order1 = "";
 String sort_order2 = "";
@@ -359,6 +378,7 @@ String sort_order5 = "";
 String sort_order6 = "";
 String sort_order7 = "";
 String sort_order8 = "";
+
 if ("02".equals(request.getAttribute("sort_order"))) {
 	sort_order2 = "selected=\"selected\"";
 } else if ("03".equals(request.getAttribute("sort_order"))) {
@@ -737,4 +757,8 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 </body>
 
 </HTML>
+
+
+
+
 
