@@ -217,8 +217,9 @@
 								<table class="radio_base">
 									<tr>
 										<td><input type="radio" id="nickname_radio1" name="nickname_radio" value="1"
-											class="onOffRadio" <%= nickname_radio1 %> onclick="namechange('nickname')"><span
-											class="radio_label">指定</span></td>
+											class="onOffRadio" <%= nickname_radio1 %> onclick="namechange('nickname')">
+											<span class="radio_label">指定</span>
+											</td>
 										<td><input type="radio" id="nickname_radio2"name="nickname_radio" value="2"
 											class="onOffRadio" <%= nickname_radio2 %> onclick="namechange('nickname')"><span
 											class="radio_label" >指定なし</span></td>
@@ -324,8 +325,9 @@
 								<table class="radio_base">
 									<tr>
 										<td><input type="radio" id="birthday_radio1"name="birthday_radio" value="1"
-											class="onOffRadio" <%=birthday_radio1 %> onclick="change('birthday')"><span
-											class="radio_label">指定</span></td>
+											class="onOffRadio" <%=birthday_radio1 %> onclick="change('birthday')">
+											<span class="radio_label">指定</span>
+											</td>
 										<td><input type="radio" id="birthday_radio2"name="birthday_radio" value="2"
 											class="onOffRadio" <%=birthday_radio2 %> onclick="change('birthday')"><span
 											class="radio_label">指定なし</span></td>
