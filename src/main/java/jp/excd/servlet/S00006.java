@@ -1,14 +1,11 @@
 package jp.excd.servlet;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 public class S00006 extends HttpServlet {
-
 	public void doGet(
 			HttpServletRequest request,
 			HttpServletResponse response)
@@ -17,21 +14,17 @@ public class S00006 extends HttpServlet {
 		// （1）404.jspにフォワーディングする。
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
 	}
-
 	public void doPost(
 			HttpServletRequest request,
 			HttpServletResponse response)
 			throws IOException, ServletException {
-
 		//--------------------------------------------
 		//  (1)接続URLのチェック
 		//--------------------------------------------
 		String URI = request.getRequestURI();
-
 		if (("/web/ja/S00006/S00006.back".equals(URI) || "/web/ja/S00006/S00006.change".equals(URI)) == false) {
 			getServletConfig().getServletContext().getRequestDispatcher("/jsp/404.jsp").forward(request, response);
 		}
-
 		//--------------------------------------------
 		//  (2) POSTパラメタで以下の値を受け取る
 		//--------------------------------------------
@@ -52,7 +45,8 @@ public class S00006 extends HttpServlet {
 		String title_type_radio = request.getParameter("title_type_radio");
 		String title = request.getParameter("title");
 		String sort_order = request.getParameter("sort_order");
-
+		String image_file_height = request.getParameter("image_file_height");
+		String image_file_width = request.getParameter("image_file_width");
 		//--------------------------------------------
 		//  (3) 入力項目(POSTパラメタ)を使って、Requestオブジェクトのアトリビュートの初期化をする。
 		//--------------------------------------------
@@ -72,9 +66,10 @@ public class S00006 extends HttpServlet {
 		request.setAttribute("title_type_radio", title_type_radio);
 		request.setAttribute("title", title);
 		request.setAttribute("sort_order", sort_order);
+		request.setAttribute("image_file_height", image_file_height);
+		request.setAttribute("image_file_width", image_file_width);
 		
 		// (4) S00005.jspにフォワーディングする。
 		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request, response);
 	}
-
 }
