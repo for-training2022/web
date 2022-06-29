@@ -222,9 +222,9 @@
 										<td><input type="radio" name="nickname_radio" value="1"
 											class="onOffRadio" <%= nickname_radio1 %>><span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="nickname_radio" value="2"
-											class="onOffRadio" <%= nickname_radio2 %>><span
-											class="radio_label">指定なし</span></td>
+										<td><input type="radio" id="nickname_radio2"name="nickname_radio" value="2"
+											class="onOffRadio" <%= nickname_radio2 %> onclick="namechange('nickname')"><span
+											class="radio_label" >指定なし</span></td>
 									</tr>
 								</table>
 							</td>
@@ -246,10 +246,10 @@
 						</tr>
 					</table>
 				</div>
-				</div>
-
-
-
+			</div>
+			<!-- 条件タイトル、フォームをまとめるdiv-->
+			<div id="jouken_date" class="jouken<%= joined_date_is_error %>">
+			
 				<!--登録日-->
 				<div id="jouken_date" class="jouken<%= joined_date_is_error %>">
 				<div class="input_table">
@@ -259,11 +259,11 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="joined_date_radio"
-											value="1" class="onOffRadio" <%= joined_date_radio1 %>><span
-											class="radio_label">指定</span></td>
-										<td><input type="radio" name="joined_date_radio"
-											value="2" class="onOffRadio" <%= joined_date_radio2 %>><span
+										<td><input type="radio" id="joined_date_radio1"name="joined_date_radio"
+											value="1" class="onOffRadio" <%= joined_date_radio1 %> onclick="change('joined_date')">
+											<span class="radio_label">指定</span></td>
+										<td><input type="radio" id="joined_date_radio2"name="joined_date_radio"
+											value="2" class="onOffRadio" <%= joined_date_radio2 %> onclick="change('joined_date')"><span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
@@ -279,8 +279,7 @@
 						</tr>
 					</table>
 				</div>
-				</div>
-
+			</div>
 
 				<!-- 性別 -->
 				<div class="input_table">
@@ -310,7 +309,10 @@
 				</div>
 
 
-
+			
+			<!-- 条件タイトル、フォームをまとめるdiv-->
+			<div id="jouken_date" class="jouken<%= birthday_is_error %>">
+			
 				<!-- 誕生日 -->
 				<div id="jouken_date" class="jouken<%= birthday_is_error %>">
 				<div class="input_table">
@@ -338,8 +340,7 @@
 						</tr>
 					</table>
 				</div>
-				</div>
-
+			</div>
 				<!-- リスナー数 -->
 				<div id="jouken_date" class="jouken<%= listener_count_is_error %>">
 				<div class="input_table">
@@ -369,8 +370,10 @@
 						</tr>
 					</table>
 				</div>
-				</div>
+			</div>
 
+			<!-- 条件タイトル、フォームをまとめるdiv-->
+			<div id="jouken_date" class="jouken<%= language_type_is_error %>">
 				<!-- 言語 -->
 				<div id="jouken_date" class="jouken<%= language_type_is_error %>">
 				<div class="input_table">
@@ -392,8 +395,7 @@
 						</tr>
 					</table>
 				</div>
-				</div>
-				
+			</div>
 				<!-- 並び順 -->
 				<div class="input_table">
 					<table>
@@ -408,7 +410,8 @@
 						</tr>
 					</table>
 				</div>
-
+			
+			
 
 				<!-- メインボタン -->
 				<div class="main_button">

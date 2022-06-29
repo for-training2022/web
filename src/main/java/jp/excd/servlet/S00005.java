@@ -908,21 +908,13 @@ public class S00005 extends HttpServlet {
 			String Image_file_name = rs.getString("Image_file_name");
 			record.setImage_file_name(Image_file_name);
 			//
-
-
 			songList.add(record);
 		}
-
-
 
 		// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
 		pstmt.close();
 
 		// (18) 前処理で生成したListを呼び出し元に返却する。
 		return songList;
-
-
 	}
-
-
 }
