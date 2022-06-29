@@ -432,6 +432,14 @@
 		Copyright <a href="https://www.excd.jp/">&copy; EXCEED Co., Ltd.</a>
 		All Rights Reserved.
 	</footer>
+	<script>
+	window.addEventListener('load',function(){
+		namechange('nickname')
+		change('joined_date')
+		change('birthday')
+		change('listener_count')
+		genderchange('gender')
+	});</script>
 
 </body>
 
