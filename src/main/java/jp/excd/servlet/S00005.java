@@ -6,9 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,15 +26,15 @@ public class S00005 extends HttpServlet {
 	public void doGet(
 			HttpServletRequest request,
 			HttpServletResponse response)
-			throws IOException, ServletException {
-		
+					throws IOException, ServletException {
+
 		getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request, response);
 	}
 
 	public void doPost(
 			HttpServletRequest request,
 			HttpServletResponse response)
-			throws IOException, ServletException {
+					throws IOException, ServletException {
 
 		Connection con = null;
 		request.setCharacterEncoding("UTF-8");
@@ -45,25 +43,25 @@ public class S00005 extends HttpServlet {
 		String connectUserName = "meloko";
 		String connectPassword = "exceed";
 		String dbName = "meloko";
-		
+
 		String timeZone = "Asia/Tokyo";
-		
+
 		// コネクション用のSQL
 		final String URL = "jdbc:mysql://"
-						+ hostName
-						+ ":3306/"
-						+ dbName
-						+ "?serverTimezone="
-						+ timeZone
-						+ "&allowPublicKeyRetrieval=true"
-						+ "&useSSL=false";
+				+ hostName
+				+ ":3306/"
+				+ dbName
+				+ "?serverTimezone="
+				+ timeZone
+				+ "&allowPublicKeyRetrieval=true"
+				+ "&useSSL=false";
 
-				
-			
+
+
 		try {
 			// (1)DB接続（コネクションの確立）
 			con = DriverManager.getConnection(URL, connectUserName, connectPassword);
-			
+
 			// (2)内部メソッド呼び出し
 			this.mainProcessForSearch(request, response, con);
 
@@ -74,7 +72,7 @@ public class S00005 extends HttpServlet {
 		} finally {
 			try {
 				if (con != null) {
-					
+
 					// (3)接続したコネクションの切断を行う。
 					con.close();
 				}
@@ -85,12 +83,13 @@ public class S00005 extends HttpServlet {
 
 		}
 	}
-	
+
 	private void mainProcessForSearch(HttpServletRequest request, HttpServletResponse response, Connection con)
 			throws IOException, Exception {
-		
+
 		// 接続URL受け取り
 		String URL = request.getRequestURI();
+
 
 		// (1) 接続URLが「/ja/S00005/searh」以外の場合は、404.jspへフォワーディングする。
 		if ("/web/ja/S00005/search".equals(URL)) {
@@ -153,12 +152,12 @@ public class S00005 extends HttpServlet {
 		//-----------------------------------------------------------------------------------------------
 		// 入力チェック
 		//-----------------------------------------------------------------------------------------------
-		
+
 		// (3) 公開日FROMについてエラー判定を行う。
 		if ("1".equals(release_date_radio)) {
 			if (release_date_from == null || "".equals(release_date_from)) {
 				// 処理継続
-			} else if (this.isDateValue(release_date_from) == false) {
+			} else if (CommonUtils.isDateValue(release_date_from) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00005_001");
 				request.setAttribute("error", s);
@@ -170,12 +169,12 @@ public class S00005 extends HttpServlet {
 				// 処理継続
 			}
 		}
-		
+
 		// (4) 公開日TOについてエラー判定を行う。
 		if ("1".equals(release_date_radio)) {
 			if (release_date_to == null || "".equals(release_date_to)) {
 				// 処理継続
-			} else if (this.isDateValue(release_date_to) == false) {
+			} else if (CommonUtils.isDateValue(release_date_to) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00005_002");
 				request.setAttribute("error", s);
@@ -186,11 +185,11 @@ public class S00005 extends HttpServlet {
 				// 処理継続
 			}
 		}
-		
+
 		// (5) 公開日FROM、公開日TOについてエラー判定を行う。
 		if ("1".equals(release_date_radio)) {
 			if (release_date_from == null || "".equals(release_date_from) &&
-			(release_date_to == null || "".equals(release_date_to))) {
+					(release_date_to == null || "".equals(release_date_to))) {
 				//エラー
 				String s = this.getDescription(con, "ES00005_003");
 				request.setAttribute("error", s);
@@ -199,24 +198,28 @@ public class S00005 extends HttpServlet {
 						response);
 				return;
 			} else if (release_date_from == null
-					|| "".equals(release_date_from) && this.isDateValue(release_date_to) == true) {
+					|| "".equals(release_date_from) && CommonUtils.isDateValue(release_date_to) == true) {
 				//処理続行
-			} else if (this.isDateValue(release_date_from)) {
+			} else if (CommonUtils.isDateValue(release_date_from)) {
 				//処理続行
 			}
 		}
 
-		// (6) 公開日FROM、公開日TOについてエラー判定を行う。
+		// (6) 公開日FROM、公開日TOについてエラー判定を行う。（逆転チェック）
 		if ("1".equals(release_date_radio)) {
-			int checkResult = release_date_radio.compareTo(release_date_from);
-			if (checkResult > 0 ){
-				// エラー
-				String s = this.getDescription(con, "ES00005_004");
-				request.setAttribute("error", s);
-				request.setAttribute("release_date_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request,
-						response);
-				return;
+			if (CommonUtils.isBlank(release_date_from) == false && CommonUtils.isBlank(release_date_to) == false) {
+				SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+				Date dateFrom = sdformat.parse(release_date_from);
+				Date dateTo = sdformat.parse(release_date_to);
+				if (dateFrom.compareTo(dateTo) > 0) {
+					// エラー					
+					String s = this.getDescription(con, "ES00005_004");
+					request.setAttribute("error", s);
+					request.setAttribute("release_date_is_error", "1");
+					getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request,
+							response);
+					return;
+				}
 			}
 		}
 
@@ -224,7 +227,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_radio)) {
 			if (rating_from == null || "".equals(rating_from)) {
 				// 処理継続
-			} else if (CommonUtils.isNumber(rating_from) == false) {
+			} else if (CommonUtils.isWholeNumber(rating_from) == false) {
 				// エラー
 				String s = this.getDescription(con, "ES00005_005");
 				request.setAttribute("error", s);
@@ -245,7 +248,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_radio)) {
 			if (rating_to == null || "".equals(rating_to)) {
 				//処理継続
-			} else if (this.isNumber(rating_to) == false) {
+			} else if (CommonUtils.isWholeNumber(rating_to) == false) {
 				//エラー
 				String s = this.getDescription(con, "ES00005_006");
 				request.setAttribute("error", s);
@@ -261,7 +264,7 @@ public class S00005 extends HttpServlet {
 				//処理続行
 			}
 		}
-		
+
 		// (9) 感動指数FROM 感動指数TO についてエラー判定を行う。
 		if ("1".equals(rating_radio))
 			if ((rating_from == null || "".equals(rating_from) &&
@@ -273,9 +276,9 @@ public class S00005 extends HttpServlet {
 				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request,
 						response);
 				return;
-			} else if (rating_from == null || "".equals(rating_from) && this.isNumber(rating_to) == true) {
+			} else if (rating_from == null || "".equals(rating_from) && CommonUtils.isWholeNumber(rating_to) == true) {
 				//処理続行
-			} else if (this.isNumber(rating_from)) {
+			} else if (CommonUtils.isWholeNumber(rating_from)) {
 				//処理続行
 			}
 		if (!("1".equals(rating_radio))) {
@@ -284,14 +287,14 @@ public class S00005 extends HttpServlet {
 
 		// (10) 感動指数FROM　感動指数TO（逆転チェック）
 		if ("1".equals(rating_radio)) {
-			if (!"".equals(rating_from)) {
+			if (rating_from != null) {
 				rf = Integer.parseInt(rating_from);
 			}
-			if (!"".equals(rating_to)){
+			if (rating_to != null || rating_to != "") {
 				rt = Integer.parseInt(rating_to);
 			}
-			if (rf!=null && rt!=null) {
-				if(rf > rt) {
+			if (rf != null && rt != null ) {
+				if (rf > rt) {
 					//エラー
 					String s = this.getDescription(con, "ES00005_008");
 					request.setAttribute("error", s);
@@ -322,9 +325,9 @@ public class S00005 extends HttpServlet {
 				return;
 			} else {
 				// 処理継続
-				rAf = Double.parseDouble(rating_average_from);
+				rf = Integer.parseInt(rating_from);
 			}
-			if (!("1".equals(rating_average_radio))) {
+			if (!("1".equals(rating_radio))) {
 				//処理続行
 			}
 		}
@@ -343,9 +346,9 @@ public class S00005 extends HttpServlet {
 				return;
 			} else {
 				//処理継続
-				rAt = Double.parseDouble(rating_average_to);
+				rt = Integer.parseInt(rating_to);
 			}
-			if (!("1".equals(rating_average_radio))) {
+			if (!("1".equals(rating_radio))) {
 				//処理続行
 			}
 		}
@@ -358,17 +361,20 @@ public class S00005 extends HttpServlet {
 			if (rating_average_to != null) {
 				rAt = Double.parseDouble(rating_average_to);
 			}
-			if ((rAf != null && rAt != null) && (rAf > rAt)) {
-				//エラー
-				String s = this.getDescription(con, "ES00005_009");
-				request.setAttribute("error", s);
-				request.setAttribute("rating_average_is_error", "1");
-				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp")
-						.forward(request, response);
-				return;
+			if (rAf != null && rAt != null){
+				if (rAf > rAt) {
+					//エラー
+					String s = this.getDescription(con, "ES00005_009");
+					request.setAttribute("error", s);
+					request.setAttribute("rating_average_is_error", "1");
+					getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp")
+					.forward(request, response);
+					return;
+				}
+
+			} else {
+				//処理続行
 			}
-		} else {
-			//処理続行
 		}
 		if (!("1".equals(rating_average_radio))) {
 			//処理続行
@@ -378,13 +384,13 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(views_radio)) {
 			if (views_from == null || "".equals(views_from)) {
 				//処理継続
-			} else if (this.isNumber(views_from) == false) {
+			} else if (CommonUtils.isWholeNumber(views_from) == false) {
 				//エラー
 				String s = this.getDescription(con, "ES00005_010");
 				request.setAttribute("error", s);
 				request.setAttribute("views_is_error", "1");
 				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp")
-						.forward(request, response);
+				.forward(request, response);
 				return;
 			} else {
 				//処理継続
@@ -398,13 +404,13 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(views_radio)) {
 			if (views_to == null || "".equals(views_to)) {
 				//処理継続
-			} else if (this.isNumber(views_to) == false) {
+			} else if (CommonUtils.isWholeNumber(views_to) == false) {
 				//えらー
 				String s = this.getDescription(con, "ES00005_011");
 				request.setAttribute("error", s);
 				request.setAttribute("views_is_error", "1");
 				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp")
-						.forward(request, response);
+				.forward(request, response);
 				return;
 			} else {
 				//処理継続
@@ -414,7 +420,7 @@ public class S00005 extends HttpServlet {
 				//処理続行
 			}
 		}
-		
+
 		// (14) 再生回数FROM　再生回数TO エラー判定を行う。
 		if ("1".equals(views_radio))
 			if (views_from == null || "".equals(views_from) &&
@@ -424,12 +430,12 @@ public class S00005 extends HttpServlet {
 				request.setAttribute("error", s);
 				request.setAttribute("views_is_error", "1");
 				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp")
-						.forward(request, response);
+				.forward(request, response);
 				return;
 			} else if (views_from == null
-					|| "".equals(views_from) && this.isNumber(views_to) == true) {
+					|| "".equals(views_from) && CommonUtils.isWholeNumber(views_to) == true) {
 				//処理続行
-			} else if (this.isNumber(views_from)) {
+			} else if (CommonUtils.isWholeNumber(views_from)) {
 				//処理続行
 			}
 		if (!("1".equals(views_radio))) {
@@ -438,14 +444,13 @@ public class S00005 extends HttpServlet {
 
 		// (15) 再生回数FROM、再生回数TOについて、以下のとおりエラー判定を行う。
 		if ("1".equals(views_radio)) {
-			if (!"".equals(views_from)) {
+			if (views_from != null) {
 				vf = Integer.parseInt(views_from);
 			}
-			if (!"".equals(views_to)) {
+			if (views_to != null) {
 				vt = Integer.parseInt(views_to);
 			}
-
-			if (vf != null && vt != null) {
+			if (vf != null && vt != null){
 				if(vf > vt){
 					//エラー
 					String s = this.getDescription(con, "ES00005_013");
@@ -455,13 +460,13 @@ public class S00005 extends HttpServlet {
 					.forward(request, response);
 					return;
 				}
-			}
-		} else {
-			//処理続行
+			} else {
+				//処理続行
 
-		}
-		if (!("1".equals(views_radio))) {
-			//処理続行
+			}
+			if (!("1".equals(views_radio))) {
+				//処理続行
+			}
 		}
 
 		// (16) 曲名についてエラー判定を行う。
@@ -472,7 +477,7 @@ public class S00005 extends HttpServlet {
 				request.setAttribute("error", s);
 				request.setAttribute("title_is_error", "1");
 				getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp")
-						.forward(request, response);
+				.forward(request, response);
 				return;
 			} else {
 				//処理続行
@@ -482,7 +487,7 @@ public class S00005 extends HttpServlet {
 
 			}
 		}
-		
+
 		// (17) SQLの組み立てと、Where句への値の設定を行う。
 		List<SongRecord> results2 = null;
 		try {
@@ -510,7 +515,7 @@ public class S00005 extends HttpServlet {
 			getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request, response);
 			return;
 		}
-		
+
 		if (results2 == null) {
 			results2 = new ArrayList<SongRecord>();
 		}
@@ -523,13 +528,13 @@ public class S00005 extends HttpServlet {
 			getServletConfig().getServletContext().getRequestDispatcher("/ja/S00005.jsp").forward(request, response);
 			return;
 		}
-		
+
 		// (19) 前処理で得られたListを用いて、Requestオブジェクトに値を設定していく。
 		List<SongRecord> newList =  new ArrayList<SongRecord>();
-		
+
 		int counter = 0;
 		String hits = null;
-		
+
 		for (SongRecord l: results2) {
 			counter = counter + 1;
 			// 先頭の10件のみ処理を行う。
@@ -537,14 +542,14 @@ public class S00005 extends HttpServlet {
 				String count = NumberFormat.getNumberInstance().format(counter);
 				hits = count+"件該当します。";
 			}else if (counter >= 10) {
-					String count = NumberFormat.getNumberInstance().format(counter);
-					hits = count+"件該当します(うち10件を表示しています)。";	
+				String count = NumberFormat.getNumberInstance().format(counter);
+				hits = count+"件該当します(うち10件を表示しています)。";	
 			}
 			newList.add(l);
 		}
-		
+
 		List<SongRecord> resultList = new ArrayList<SongRecord>();
-		
+
 		if(newList.size() < 10) {
 			resultList.addAll(newList);
 		} else {
@@ -552,7 +557,7 @@ public class S00005 extends HttpServlet {
 				resultList.add(newList.get(i));
 			}
 		}
-		
+
 		String count = NumberFormat.getNumberInstance().format(counter);
 		request.setAttribute("hits", hits);
 		request.setAttribute("list", resultList);
@@ -636,7 +641,7 @@ public class S00005 extends HttpServlet {
 
 		// (2) SQLを連結するための文字列を宣言する。
 		String query = sql1 + sql2;
-		
+
 		// (3) プレイスホルダに設定する値を格納するためのListを用意する。
 		List<PlaceHolderInput> list = new ArrayList<PlaceHolderInput>();
 
@@ -644,17 +649,15 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(release_date_radio)) {
 			if (release_date_from == null || "".equals(release_date_from)) {
 				// 処理続行
-			}
-			if (this.isDateValue(release_date_from)) {
+			} else if (CommonUtils.isDateValue(release_date_from)) {
 				// No.3を連結する。
 				query = query + sql3;
 				// No,4を連結する
 				query = query + sql4;
 
 				PlaceHolderInput phi = new PlaceHolderInput();
-				String convert = release_date_from.replaceAll("-","");
 				phi.setType("2");
-				phi.setDoubleValue(this.getDateValue(convert));
+				phi.setDoubleValue(CommonUtils.getDateValue(release_date_from));
 				list.add(phi);
 			}
 		} else {
@@ -664,8 +667,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(release_date_radio)) {
 			if (release_date_to == null || "".equals(release_date_to)) {
 				//処理続行
-			}
-			if (this.isDateValue(release_date_to)) {
+			}else if (CommonUtils.isDateValue(release_date_to)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
@@ -674,9 +676,8 @@ public class S00005 extends HttpServlet {
 				query = query + sql6;
 
 				PlaceHolderInput phi = new PlaceHolderInput();
-				String convert = release_date_to.replaceAll("-","");
 				phi.setType("2");
-				phi.setDoubleValue(this.getDateValue(convert));
+				phi.setDoubleValue(CommonUtils.getDateValue(release_date_to));
 				list.add(phi);
 			} else {
 				throw new Exception();
@@ -689,7 +690,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(rating_radio)) {
 			if (rating_from == null || "".equals(rating_from)) {
 				//処理続行
-			} else if (CommonUtils.isNumber(rating_from)) {
+			}else if (CommonUtils.isNumber(rating_from)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
@@ -778,7 +779,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(views_radio)) {
 			if (views_from == null || "".equals(views_from)) {
 				//処理続行
-			} else if (this.isNumber(views_from)) {
+			} else if (CommonUtils.isNumber(views_from)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
@@ -800,7 +801,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(views_radio)) {
 			if (views_to == null || "".equals(views_to)) {
 				//処理続行
-			} else if (this.isNumber(views_to)) {
+			} else if (CommonUtils.isNumber(views_to)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {
@@ -907,58 +908,21 @@ public class S00005 extends HttpServlet {
 			String Image_file_name = rs.getString("Image_file_name");
 			record.setImage_file_name(Image_file_name);
 			//
-			
-			
+
+
 			songList.add(record);
 		}
-		
 
-		
+
+
 		// (17) ResultSetのインスタンス、PreparedStatementのインスタンスをクローズする。
 		pstmt.close();
 
 		// (18) 前処理で生成したListを呼び出し元に返却する。
 		return songList;
-		
-		
+
+
 	}
 
-	private boolean isNumber(String num) {
-		try {
-			Integer.parseInt(num);
-			return true;
-		} catch (NumberFormatException e) {
-			return false; // エラーにならないように、とりあえずダミー
-		}
-	}
 
-	private boolean isDouble(String num) {
-		try {
-			Double.parseDouble(num);
-			return true;
-		} catch (NumberFormatException e) {
-			return false; // エラーにならないように、とりあえずダミー
-		}
-	}
-
-	private boolean isDateValue(String value) {
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-		try {
-			format.parse(value);
-			return true;
-		} catch (ParseException e) {
-			return false;
-		}
-	}
-
-	private long getDateValue(String value) throws ParseException {
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date dt = format.parse(value);
-		long miliTime = dt.getTime();
-		long retValue = (miliTime / 1000);
-		return retValue;
-	}
-
-	
 }
