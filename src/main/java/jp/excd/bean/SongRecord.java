@@ -1,7 +1,5 @@
 package jp.excd.bean;
-
 public class SongRecord {
-
 	private String title;
 	private String rating_total;
 	private String rating_average;
@@ -10,7 +8,9 @@ public class SongRecord {
 	private String image_file_name;
 	private String song_id;
 	private String language_type;
-
+	private Double formatHeight;
+	private Double cutLength;
+	
 	/**
 	 * @return title
 	 */
@@ -102,9 +102,51 @@ public class SongRecord {
 		return language_type;
 	}
 	/**
-	 * @param language_type セットする 
+	 * @param language_type セットする
 	 */
 	public void setLanguage_type(String language_type) {
 		this.language_type = language_type;
 	}
+	
+	/**
+	 * @param formatHeight セットする
+	 */
+	public void setFormatHeight(Double formatHeight) {
+		this.formatHeight = formatHeight;
+	}
+	
+	/**
+	 * @return language_type
+	 */
+	public Double getFormatHeight() {
+		return formatHeight;
+	}
+	
+	/**
+	 * @param cutLength セットする
+	 */
+	public void setCutLength(Double cutLength) {
+		this.cutLength = cutLength;
+	}
+	
+	/**
+	 * @return language_type
+	 */
+	public Double getCutLength() {
+		return cutLength;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
