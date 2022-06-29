@@ -236,15 +236,15 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="nickname_type_radio"
+										<td><input type="radio" id="nickname_type_radio"name="nickname_type_radio"
 											value="1" <%=nickname_type_radio1 %>><span
 											class="radio_label">あいまい</span></td>
-										<td><input type="radio" name="nickname_type_radio"
+										<td><input type="radio" id="nickname_type_radio"name="nickname_type_radio"
 											value="2" <%=nickname_type_radio2 %>><span
 											class="radio_label">完全一致</span></td>
 									</tr>
 								</table>
-								<input type="text" name="nickname" maxlength="255" value="<%=nickname %>">
+								<input type="text" id="nickname"name="nickname" maxlength="255" value="<%=nickname %>" disabled>
 							</td>
 						</tr>
 					</table>
@@ -272,12 +272,12 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><input type="date" name="joined_date_from"
-								value=<%=joined_date_from %>>
+							<td class="value"><input type="date" id="joined_date_from"name="joined_date_from"
+								value="<%=joined_date_from %>"disabled>
 								 <br />
 								<div class="left_padding1">≀</div> 
-								<input type="date"
-								name="joined_date_to" value=<%=joined_date_to %>></td>
+								<input type="date" id="joined_date_to"
+								name="joined_date_to" value="<%=joined_date_to %>"disabled></td>
 						</tr>
 					</table>
 				</div>
@@ -291,18 +291,18 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="gender_radio" value="1"
-											class="onOffRadio" <%= gender_radio1 %>><span
+										<td><input type="radio"id="gender_radio" name="gender_radio" value="1"
+											class="onOffRadio" <%= gender_radio1 %> onclick="genderchange('gender')"><span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" name="gender_radio" value="2"
-											class="onOffRadio" <%=gender_radio2 %>><span
+										<td><input type="radio" id="gender_radio"name="gender_radio" value="2"
+											class="onOffRadio" <%=gender_radio2 %> onclick="genderchange('gender')"><span
 											class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><select name="gender" tabindex="10">
+							<td class="value"><select id="gender"name="gender" tabindex="10"disabled>
 									<option value="1" <%=gender1 %>>男</option>
 									<option value="2" <%=gender2 %>>女</option>
 							</select></td>
@@ -337,10 +337,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><input type="date" name="birthday_from"
-								value=<%=birthday_from %>> <br />
-								<div class="left_padding1">≀</div> <input type="date"
-								name="birthday_to" value=<%=birthday_to %>></td>
+							<td class="value"><input type="date" id="birthday_from"name="birthday_from"
+								value="<%=birthday_from %>"disabled> <br />
+								<div class="left_padding1">≀</div> <input type="date"id="birthday_to"
+								name="birthday_to" value="<%=birthday_to %>"disabled></td>
 						</tr>
 					</table>
 				</div>
@@ -354,22 +354,22 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" name="listener_count_radio"
-											value="1" class="onOffRadio" <%=listener_count_radio1 %>>
+										<td><input type="radio" id="listener_count_radio"name="listener_count_radio"
+											value="1" class="onOffRadio" <%=listener_count_radio1 %> onclick="change('listener_count')">
 											<span class="radio_label">指定</span></td>
-										<td><input type="radio" name="listener_count_radio"
-											value="2" class="onOffRadio" <%=listener_count_radio2 %>>
+										<td><input type="radio" id="listener_count_radio"name="listener_count_radio"
+											value="2" class="onOffRadio" <%=listener_count_radio2 %> onclick="change('listener_count')">
 											<span class="radio_label">指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><input type="text"
-								name="listener_count_from" maxlength="8" value=<%= listener_count_from%>>
+							<td class="value"><input type="text"id="listener_count_from"
+								name="listener_count_from" maxlength="8" value="<%= listener_count_from%>"disabled>
 								<br />
-								<div class="left_padding2">≀</div> <input type="text"
-								name="listener_count_to" maxlength="8" value=<%= listener_count_to%>>
+								<div class="left_padding2">≀</div> <input type="text"id="listener_count_to"
+								name="listener_count_to" maxlength="8" value="<%= listener_count_to%>"disabled>
 							</td>
 						</tr>
 					</table>
