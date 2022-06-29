@@ -168,18 +168,29 @@
             <div class="song_title"><%=sb.getTitle() %></div>
             <div class="image_base">
               <a href="http://localhost:8080/web/ja/S00003/<%= sb.getSong_id() %>">
-                <div class="image">
-                	<%if(sb.getImage_file_name() != null && !"".equals(sb.getImage_file_name())){ %>
-                 		<img alt="<%= sb.getSong_id() %>" src="/web/images/<%= sb.getImage_file_name() %>" 
-                  		style= "height: <%= sb.getFormatHeight() %>px !important;
-                  		top:-<%= sb.getCutLength() %>px !important;
-                  		position:relative !important;">
-                 	<% }else{ %>
-                 		<img alt="<%= sb.getSong_id() %>" src="/web/images/noimage.png" 
-                 		style= "height:220px !important;
-                  		top:-30px !important;
-                  		position:relative !important;">
-                 	<% } %>
+                <%if(sb.getImage_file_name() == null || "".equals(sb.getImage_file_name())){ %>
+                	<div class="image">
+                		<img alt="<%= sb.getSong_id() %>" src="/web/images/noimage.png" 
+                 		width="275" height="160" >
+                <% }else{ %>
+                	<%if(sb.getCutLength() < 0){ %>
+                		<div class="image"
+                			style ="height : <%=sb.getFormatHeight()%>px !important;
+							position:relative ! important;">
+                 			<img alt="<%= sb.getSong_id() %>" src="/web/images/<%= sb.getImage_file_name() %>" 
+                  				style= "height: <%= sb.getFormatHeight() %>px !important;
+                  				position:relative !important;">
+                  	<% }else if(sb.getCutLength() > 0){%>
+                  		<div class="image">
+							<img alt="<%= sb.getSong_id() %>" src="/web/images/<%= sb.getImage_file_name() %>" 
+                  				style= "height: <%= sb.getFormatHeight() %>px !important;
+                  				top:-<%= sb.getCutLength() %>px !important;
+                  				position:relative !important;">
+                  	<% }else{ %>
+                  		<div class="image">
+                  			<img alt="<%= sb.getSong_id() %>" src="/web/images/<%= sb.getImage_file_name() %>" >
+                	<% } %>
+                <% } %>
                  
                  <img alt="play" class="play" src="/web/images/play.png">
                 </div>
