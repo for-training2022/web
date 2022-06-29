@@ -154,20 +154,20 @@ if (views_to == null) {
 	</form>
 	<form id="formChange" method="POST" action="/web/ja/S00006/S00006.change">
 			<input name="release_date_radio" type="hidden" value="<%=request.getAttribute("release_date_radio")%>">
-			<input name="release_date_from" type="hidden" value="<%=request.getAttribute("release_date_from")%>">
-			<input name="release_date_to" type="hidden" value="<%=request.getAttribute("release_date_to")%>">
+			<input name="release_date_from" type="hidden" value="<%=release_date_from%>">
+			<input name="release_date_to" type="hidden" value="<%=release_date_to%>">
 			<input name="rating_radio" type="hidden" value="<%=request.getAttribute("rating_radio")%>">
-			<input name="rating_from" type="hidden" value="<%=request.getAttribute("rating_from")%>">
-			<input name="rating_to" type="hidden" value="<%=request.getAttribute("rating_to")%>">
+			<input name="rating_from" type="hidden" value="<%=rating_from%>">
+			<input name="rating_to" type="hidden" value="<%=rating_to%>">
 			<input name="rating_average_radio" type="hidden" value="<%=request.getAttribute("rating_average_radio")%>">
-			<input name="rating_average_from" type="hidden" value="<%=request.getAttribute("rating_average_from")%>">
-			<input name="rating_average_to" type="hidden" value="<%=request.getAttribute("rating_average_to")%>">
+			<input name="rating_average_from" type="hidden" value="<%=rating_average_from%>">
+			<input name="rating_average_to" type="hidden" value="<%=rating_average_to%>">
 			<input name="views_radio" type="hidden" value="<%=request.getAttribute("views_radio")%>">
-			<input name="views_from" type="hidden" value="<%=request.getAttribute("views_from")%>">
-			<input name="views_to" type="hidden" value="<%=request.getAttribute("views_to")%>">
+			<input name="views_from" type="hidden" value="<%=views_from%>">
+			<input name="views_to" type="hidden" value="<%=views_to%>">
 			<input name="title_radio" type="hidden" value="<%=request.getAttribute("title_radio")%>">
 			<input name="title_type_radio" type="hidden" value="<%=request.getAttribute("title_type_radio")%>">
-			<input name="title" type="hidden" value="<%=request.getAttribute("title")%>">
+			<input name="title" type="hidden" value="<%=title%>">
 			<input name="sort_order" type="hidden" value="<%=request.getAttribute("sort_order")%>">
 	</form>
 

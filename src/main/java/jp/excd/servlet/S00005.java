@@ -644,8 +644,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(release_date_radio)) {
 			if (release_date_from == null || "".equals(release_date_from)) {
 				// 処理続行
-			}
-			if (this.isDateValue(release_date_from)) {
+			}else if (this.isDateValue(release_date_from)) {
 				// No.3を連結する。
 				query = query + sql3;
 				// No,4を連結する
@@ -664,8 +663,7 @@ public class S00005 extends HttpServlet {
 		if ("1".equals(release_date_radio)) {
 			if (release_date_to == null || "".equals(release_date_to)) {
 				//処理続行
-			}
-			if (this.isDateValue(release_date_to)) {
+			}else if (this.isDateValue(release_date_to)) {
 				if (list.size() == 0) {
 					query = query + sql3;
 				} else {

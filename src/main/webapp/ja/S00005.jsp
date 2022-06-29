@@ -522,17 +522,17 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 								<table class="radio_base">
 									<tr>
 										<td><input type="radio" id="rating_average_radio1"name="rating_average_radio"
-											value="1" <%=rating_average_radio1%> class="onOffRadio"onclick="change(rating_average)">
+											value="1" <%=rating_average_radio1%> class="onOffRadio"onclick="change('rating_average')">
 											<span class="radio_label">指定</span></td>
 										<td><input type="radio" id="rating_average_radio2"name="rating_average_radio"
-											value="2" <%=rating_average_radio2%> class="onOffRadio" onclick="change(rating_average)"><span>指定なし</span></td>
+											value="2" <%=rating_average_radio2%> class="onOffRadio" onclick="change('rating_average')"><span>指定なし</span></td>
 									</tr>
 								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="value"><select name="rating_average_from"
-								tabindex="1">
+							<td class="value"><select id="rating_average_from"name="rating_average_from"
+								tabindex="1" disabled>
 
 									<option value="1.0" <%=rating_average_from1%>>1.0</option>
 									<option value="1.1" <%=rating_average_from2%>>1.1</option>
@@ -577,8 +577,8 @@ if ("02".equals(request.getAttribute("sort_order"))) {
 									<option value="5.0" <%=rating_average_from41%>>5.0</option>
 
 							</select>
-								<div class="left_padding3">≀</div> <select
-								name="rating_average_to" tabindex="2" >
+								<div class="left_padding3">≀</div> <select id="rating_average_to"
+								name="rating_average_to" tabindex="2" disabled>
 
 									<option value="1.0" <%=rating_average_to1%>>1.0</option>
 									<option value="1.1" <%=rating_average_to2%>>1.1</option>
