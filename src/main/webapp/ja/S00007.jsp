@@ -236,10 +236,10 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" id="nickname_type_radio"name="nickname_type_radio"
+										<td><input type="radio" id="nickname_type_radio1"name="nickname_type_radio"
 											value="1" <%=nickname_type_radio1 %>><span
 											class="radio_label">あいまい</span></td>
-										<td><input type="radio" id="nickname_type_radio"name="nickname_type_radio"
+										<td><input type="radio" id="nickname_type_radio2"name="nickname_type_radio"
 											value="2" <%=nickname_type_radio2 %>><span
 											class="radio_label">完全一致</span></td>
 									</tr>
@@ -291,10 +291,10 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio"id="gender_radio" name="gender_radio" value="1"
+										<td><input type="radio"id="gender_radio1" name="gender_radio" value="1"
 											class="onOffRadio" <%= gender_radio1 %> onclick="genderchange('gender')"><span
 											class="radio_label">指定</span></td>
-										<td><input type="radio" id="gender_radio"name="gender_radio" value="2"
+										<td><input type="radio" id="gender_radio2"name="gender_radio" value="2"
 											class="onOffRadio" <%=gender_radio2 %> onclick="genderchange('gender')"><span
 											class="radio_label">指定なし</span></td>
 									</tr>
@@ -354,10 +354,10 @@
 							<td class="value">
 								<table class="radio_base">
 									<tr>
-										<td><input type="radio" id="listener_count_radio"name="listener_count_radio"
+										<td><input type="radio" id="listener_count_radio1"name="listener_count_radio"
 											value="1" class="onOffRadio" <%=listener_count_radio1 %> onclick="change('listener_count')">
 											<span class="radio_label">指定</span></td>
-										<td><input type="radio" id="listener_count_radio"name="listener_count_radio"
+										<td><input type="radio" id="listener_count_radio2"name="listener_count_radio"
 											value="2" class="onOffRadio" <%=listener_count_radio2 %> onclick="change('listener_count')">
 											<span class="radio_label">指定なし</span></td>
 									</tr>
