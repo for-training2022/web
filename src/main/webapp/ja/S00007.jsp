@@ -91,13 +91,10 @@
 		birthday_radio2 = "checked=\"checked\"";
 	}
     String birthday_from = (String)request.getAttribute("birthday_from");
-	if (birthday_from == null) {
-		birthday_from = "2015-10-29";
-	}
+	
+	
 	String birthday_to = (String)request.getAttribute("birthday_to");
-	if (birthday_to == null) {
-		birthday_to = "2015-10-29";
-	}
+	
 	
 	// (9) 「リスナー数_エラー状態(listener_count_is_error)」= "1"の場合
 	String listener_count_is_error = "";
